@@ -140,6 +140,29 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 /* REPLANNED TIP */
 .replanned-tip{background:linear-gradient(135deg,#fff8e1,#fff3cd);border-left:4px solid #f5d78e;padding:12px 16px;border-radius:0 10px 10px 0;margin-bottom:18px;font-size:.85rem;color:#5a3800}
 .replanned-tip strong{color:#2d1a00}
+
+/* GPS TRACKING PANEL */
+.track-panel{background:linear-gradient(135deg,#1a2a00,#2d3a10);padding:16px 20px;border-bottom:1px solid #3a4a20}
+.track-gps-status{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:10px;font-size:.78rem}
+.gps-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.gps-dot.active{background:#4caf50;box-shadow:0 0 6px #4caf50}
+.gps-dot.searching{background:#ff9800;animation:pulse 1.5s ease-in-out infinite}
+.gps-dot.off{background:#f44336}
+.gps-label{color:#a0b878}
+.track-next{background:rgba(255,255,255,.08);border-radius:10px;padding:12px 16px;margin-bottom:10px}
+.track-next-label{font-size:.72rem;color:#8a9a68;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.track-next-name{font-size:1.05rem;font-weight:700;color:#d4e8a0}
+.track-next-dist{font-size:.88rem;color:#b0c878;margin-top:4px}
+.track-next-eta{font-size:.82rem;color:#8a9a68;margin-top:2px}
+.track-progress{display:flex;align-items:center;gap:4px;justify-content:center;padding:8px 0 4px;flex-wrap:wrap}
+.track-dot{width:12px;height:12px;border-radius:50%;border:2px solid #5a6a40;background:transparent;transition:all .3s}
+.track-dot.completed{background:#4caf50;border-color:#4caf50}
+.track-dot.current{background:#f5d78e;border-color:#f5d78e;box-shadow:0 0 8px rgba(245,215,142,.5)}
+.track-dot-line{width:8px;height:2px;background:#3a4a20}
+.track-copy{display:block;margin:10px auto 0;background:#5a6a40;color:#d4e8a0;border:none;padding:8px 20px;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.3px}
+.track-copy:active{background:#4a5a30}
+.track-copy-done{background:#4caf50!important}
+.track-accuracy{font-size:.68rem;color:#6a7a50;text-align:center;margin-top:6px}
 </style>
 <script>
 function copyAddr(text){
@@ -168,7 +191,237 @@ function updateClock(){
   const el=document.getElementById('jst-clock');
   if(el) el.textContent='🕐 '+h12+':'+mStr+' '+ampm+' JST · '+jst.toLocaleDateString('en-US',{timeZone:'Asia/Tokyo',weekday:'short',month:'short',day:'numeric'});
 }
-document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);});
+// ═══ GPS TRACKING SYSTEM ═══
+const ACTIVITIES=[
+  {id:'act-philosophers-path',name:"Philosopher's Path",lat:35.0272,lng:135.7983,r:200},
+  {id:'act-smart-coffee',name:'Smart Coffee',lat:35.0088,lng:135.7685,r:100},
+  {id:'act-kinkakuji',name:'Kinkaku-ji',lat:35.0394,lng:135.7292,r:150},
+  {id:'act-nishiki',name:'Nishiki Market',lat:35.0050,lng:135.7650,r:150},
+  {id:'act-lunch',name:'Lunch',lat:35.0055,lng:135.7645,r:200},
+  {id:'act-fushimi-inari',name:'Fushimi Inari',lat:34.9671,lng:135.7727,r:200},
+  {id:'act-kiyomizu',name:'Kiyomizu-dera',lat:34.9949,lng:135.7850,r:250},
+  {id:'act-gion',name:'Gion + Kamo River',lat:35.0036,lng:135.7756,r:200},
+  {id:'act-dinner',name:'Dinner Pontocho',lat:35.0050,lng:135.7700,r:150},
+  {id:'act-shinpuku',name:'Shinpuku Saikan',lat:34.9875,lng:135.7590,r:150}
+];
+const HOTEL={lat:34.9882,lng:135.7485};
+
+let trackState={pos:null,accuracy:null,completed:JSON.parse(localStorage.getItem('kyoto-done')||'[]'),watchId:null};
+
+function haversine(lat1,lon1,lat2,lon2){
+  const R=6371e3,toRad=d=>d*Math.PI/180;
+  const dLat=toRad(lat2-lat1),dLon=toRad(lon2-lon1);
+  const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function getNextActivity(){
+  for(let i=0;i<ACTIVITIES.length;i++){
+    if(!trackState.completed.includes(ACTIVITIES[i].id)) return {act:ACTIVITIES[i],idx:i};
+  }
+  return null;
+}
+
+function formatDist(m){
+  return m<1000?Math.round(m)+'m':(m/1000).toFixed(1)+'km';
+}
+
+function estimateTime(m){
+  const walkMin=Math.round(m/80); // ~80m/min walking
+  const taxiMin=Math.round(m/400); // ~400m/min in city taxi
+  if(m<500) return '~'+walkMin+' min walk';
+  return '~'+walkMin+' min walk · ~'+Math.max(taxiMin,5)+' min taxi';
+}
+
+function nearestKnownPlace(lat,lng){
+  let best=null,bestDist=Infinity;
+  for(const a of ACTIVITIES){
+    const d=haversine(lat,lng,a.lat,a.lng);
+    if(d<bestDist){bestDist=d;best=a;}
+  }
+  const hotelDist=haversine(lat,lng,HOTEL.lat,HOTEL.lng);
+  if(hotelDist<bestDist) return {name:'Umekoji Potel',dist:hotelDist};
+  return {name:best.name,dist:bestDist};
+}
+
+function markDone(actId){
+  if(!trackState.completed.includes(actId)){
+    trackState.completed.push(actId);
+    localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+    const el=document.getElementById(actId);
+    if(el) el.classList.add('done');
+  }
+}
+
+function updateTrackingUI(){
+  const gDot=document.getElementById('gps-dot');
+  const gLabel=document.getElementById('gps-label');
+  const nextName=document.getElementById('track-next-name');
+  const nextDist=document.getElementById('track-next-dist');
+  const nextEta=document.getElementById('track-next-eta');
+  const accEl=document.getElementById('track-accuracy');
+  const statusLoc=document.querySelector('.status-location');
+  const statusDet=document.querySelector('.status-detail');
+
+  // Update progress dots
+  ACTIVITIES.forEach((a,i)=>{
+    const dot=document.getElementById('prog-'+i);
+    if(!dot) return;
+    dot.className='track-dot';
+    if(trackState.completed.includes(a.id)) dot.classList.add('completed');
+  });
+
+  if(!trackState.pos){
+    gDot.className='gps-dot searching';
+    gLabel.textContent='Acquiring GPS...';
+    nextName.textContent='Waiting for location...';
+    nextDist.textContent='';
+    nextEta.textContent='Enable location access on your phone';
+    return;
+  }
+
+  gDot.className='gps-dot active';
+  const acc=Math.round(trackState.accuracy);
+  gLabel.textContent='GPS active · ±'+acc+'m';
+  accEl.textContent='Lat '+trackState.pos.lat.toFixed(4)+' · Lng '+trackState.pos.lng.toFixed(4)+' · Accuracy ±'+acc+'m';
+
+  // Find nearest known place for status banner
+  const nearest=nearestKnownPlace(trackState.pos.lat,trackState.pos.lng);
+  if(nearest.dist<150){
+    statusLoc.textContent='At '+nearest.name;
+    statusDet.textContent='· Arrived';
+  } else if(nearest.dist<1000){
+    statusLoc.textContent='Near '+nearest.name;
+    statusDet.textContent='· '+formatDist(nearest.dist)+' away';
+  } else {
+    statusLoc.textContent='En route';
+    statusDet.textContent='· '+formatDist(nearest.dist)+' from '+nearest.name;
+  }
+
+  // Check auto-arrival
+  for(const a of ACTIVITIES){
+    if(trackState.completed.includes(a.id)) continue;
+    const d=haversine(trackState.pos.lat,trackState.pos.lng,a.lat,a.lng);
+    if(d<a.r){
+      markDone(a.id);
+    }
+  }
+
+  // Next activity info
+  const next=getNextActivity();
+  if(!next){
+    nextName.textContent='All done! 🎉';
+    nextDist.textContent='Day 2 complete';
+    nextEta.textContent='';
+    // Mark current dot
+    return;
+  }
+
+  const dist=haversine(trackState.pos.lat,trackState.pos.lng,next.act.lat,next.act.lng);
+  nextName.textContent=next.act.name;
+  nextDist.textContent=formatDist(dist)+' away';
+  nextEta.textContent=estimateTime(dist);
+
+  // Highlight current dot
+  const curDot=document.getElementById('prog-'+next.idx);
+  if(curDot) curDot.classList.add('current');
+
+  // Update progress dots
+  ACTIVITIES.forEach((a,i)=>{
+    const dot=document.getElementById('prog-'+i);
+    if(!dot) return;
+    if(trackState.completed.includes(a.id)){
+      dot.className='track-dot completed';
+    } else if(i===next.idx){
+      dot.className='track-dot current';
+    } else {
+      dot.className='track-dot';
+    }
+  });
+}
+
+function generateStatus(){
+  const now=new Date();
+  const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const time=jst.toLocaleTimeString('en-US',{timeZone:'Asia/Tokyo',hour:'numeric',minute:'2-digit'});
+  const done=trackState.completed.map(id=>{
+    const a=ACTIVITIES.find(x=>x.id===id);
+    return a?a.name:'';
+  }).filter(Boolean);
+  const next=getNextActivity();
+  let msg='📍 ';
+  if(trackState.pos){
+    const nearest=nearestKnownPlace(trackState.pos.lat,trackState.pos.lng);
+    if(nearest.dist<150) msg+='At '+nearest.name;
+    else msg+='Near '+nearest.name+' ('+formatDist(nearest.dist)+')';
+  } else {
+    msg+='Location unknown';
+  }
+  msg+=' | '+time+' JST';
+  if(done.length) msg+=' | Done: '+done.join(', ');
+  if(next) {
+    const dist=trackState.pos?formatDist(haversine(trackState.pos.lat,trackState.pos.lng,next.act.lat,next.act.lng)):'?';
+    msg+=' | Next: '+next.act.name+' ('+dist+')';
+  }
+  return msg;
+}
+
+function copyStatus(){
+  const btn=document.getElementById('track-copy-btn');
+  const msg=generateStatus();
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(msg).then(()=>{
+      btn.textContent='✓ Copied!';btn.classList.add('track-copy-done');
+      setTimeout(()=>{btn.textContent='📋 Copy Status for Claude';btn.classList.remove('track-copy-done');},2000);
+    });
+  } else {
+    fallbackCopy(msg,()=>{
+      btn.textContent='✓ Copied!';btn.classList.add('track-copy-done');
+      setTimeout(()=>{btn.textContent='📋 Copy Status for Claude';btn.classList.remove('track-copy-done');},2000);
+    });
+  }
+}
+
+function startTracking(){
+  if(!navigator.geolocation){
+    document.getElementById('gps-label').textContent='GPS not available';
+    document.getElementById('gps-dot').className='gps-dot off';
+    return;
+  }
+  // Restore completed state
+  trackState.completed.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.add('done');
+  });
+  updateTrackingUI();
+
+  trackState.watchId=navigator.geolocation.watchPosition(
+    function(pos){
+      trackState.pos={lat:pos.coords.latitude,lng:pos.coords.longitude};
+      trackState.accuracy=pos.coords.accuracy;
+      updateTrackingUI();
+    },
+    function(err){
+      const gDot=document.getElementById('gps-dot');
+      const gLabel=document.getElementById('gps-label');
+      if(err.code===1){gDot.className='gps-dot off';gLabel.textContent='Location denied — enable in Settings';}
+      else if(err.code===2){gDot.className='gps-dot off';gLabel.textContent='Location unavailable';}
+      else{gDot.className='gps-dot searching';gLabel.textContent='Acquiring GPS...';}
+    },
+    {enableHighAccuracy:true,maximumAge:10000,timeout:15000}
+  );
+}
+
+function resetTracking(){
+  if(confirm('Reset all progress? This clears completed activities.')){
+    trackState.completed=[];
+    localStorage.removeItem('kyoto-done');
+    ACTIVITIES.forEach(a=>{const el=document.getElementById(a.id);if(el)el.classList.remove('done');});
+    updateTrackingUI();
+  }
+}
+
+document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);startTracking();});
 </script>
 </head>
 <body>
@@ -195,6 +448,33 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <span class="status-detail">· En route to Philosopher's Path 🚕</span>
 </div>
 <div class="status-clock" id="jst-clock">🕐 Loading JST...</div>
+</div>
+
+<div class="track-panel">
+<div class="track-gps-status">
+<span class="gps-dot searching" id="gps-dot"></span>
+<span class="gps-label" id="gps-label">Acquiring GPS...</span>
+</div>
+<div class="track-next">
+<div class="track-next-label">Next Stop</div>
+<div class="track-next-name" id="track-next-name">Waiting for location...</div>
+<div class="track-next-dist" id="track-next-dist"></div>
+<div class="track-next-eta" id="track-next-eta">Enable location access on your phone</div>
+</div>
+<div class="track-progress">
+<span class="track-dot" id="prog-0" title="Philosopher's Path"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-1" title="Smart Coffee"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-2" title="Kinkaku-ji"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-3" title="Nishiki Market"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-4" title="Lunch"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-5" title="Fushimi Inari"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-6" title="Kiyomizu-dera"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-7" title="Gion"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-8" title="Dinner"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-9" title="Shinpuku"></span>
+</div>
+<button class="track-copy" id="track-copy-btn" onclick="copyStatus()">📋 Copy Status for Claude</button>
+<div class="track-accuracy" id="track-accuracy"></div>
 </div>
 
 <div class="container">
