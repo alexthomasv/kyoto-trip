@@ -81,7 +81,32 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .option-or span{color:#b89860;font-size:.72rem;font-weight:700;letter-spacing:1px}
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.grid-2{grid-template-columns:1fr}.img-card .img-banner{height:160px}}
+@media(max-width:640px){
+.grid-2{grid-template-columns:1fr}
+.img-card .img-banner{height:160px}
+.hero{padding:30px 16px}
+.hero h1{font-size:1.6rem}
+.nav{gap:6px;padding:10px 12px}
+.nav a{font-size:.72rem;padding:4px 10px}
+.status-banner{padding:12px 14px}
+.status-location{font-size:.85rem}
+.track-panel{padding:12px 14px}
+.track-next{padding:10px 12px}
+.container{padding:0 10px 40px}
+.card{padding:14px 14px}
+.time-block{padding:8px 14px;font-size:.82rem}
+.transport-card{padding:10px 12px}
+.route-table{font-size:.72rem}
+.route-table th,.route-table td{padding:4px 5px}
+.route-total{font-size:.78rem;flex-direction:column;gap:2px}
+.clothes-card{padding:12px 14px}
+.food-group-title{font-size:.68rem}
+.img-card .img-banner{height:140px}
+.addr-box{font-size:.78rem}
+.card-desc{font-size:.82rem}
+.dishes{padding:8px 10px}
+.must-buy{padding:6px 12px;font-size:.78rem}
+}
 .shop-card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:3px solid #d4769a;position:relative}
 .shop-card .shop-img{width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:8px}
 .shop-card .shop-emoji{font-size:1.6rem;margin-bottom:6px}
@@ -163,6 +188,19 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .track-copy:active{background:#4a5a30}
 .track-copy-done{background:#4caf50!important}
 .track-accuracy{font-size:.68rem;color:#6a7a50;text-align:center;margin-top:6px}
+
+/* FOOD CHOICE SYSTEM */
+.food-group{position:relative}
+.food-group .food-option{cursor:pointer;transition:all .3s;border:2px solid transparent}
+.food-option .pick-label{display:block;text-align:center;padding:6px;font-size:.75rem;color:#888;letter-spacing:.3px}
+.food-option.food-chosen{border-color:#2d7a4f!important;box-shadow:0 0 0 1px #2d7a4f}
+.food-option.food-chosen .pick-label{background:#e8f5ee;color:#1a6b3a;font-weight:700}
+.food-option.food-chosen .pick-label::before{content:"✓ "}
+.food-option.food-skipped{opacity:.35;filter:grayscale(.2);transform:scale(.98)}
+.food-option.food-skipped .pick-label{display:none}
+.food-group-title{font-size:.72rem;color:#b89860;text-transform:uppercase;letter-spacing:.5px;text-align:center;padding:6px 0 2px;font-weight:700}
+.food-reset{display:block;margin:4px auto;background:none;border:none;font-size:.68rem;color:#999;cursor:pointer;padding:4px 12px}
+.food-reset:hover{color:#c41a1a}
 </style>
 <script>
 function copyAddr(text){
@@ -191,6 +229,76 @@ function updateClock(){
   const el=document.getElementById('jst-clock');
   if(el) el.textContent='🕐 '+h12+':'+mStr+' '+ampm+' JST · '+jst.toLocaleDateString('en-US',{timeZone:'Asia/Tokyo',weekday:'short',month:'short',day:'numeric'});
 }
+// ═══ FOOD CHOICE SYSTEM ═══
+let foodChoices=JSON.parse(localStorage.getItem('kyoto-food')||'{}');
+
+function pickFood(el){
+  const group=el.closest('.food-group');
+  if(!group) return;
+  const gid=group.dataset.group;
+  const opts=group.querySelectorAll('.food-option');
+  const wasChosen=el.classList.contains('food-chosen');
+  opts.forEach(o=>{o.classList.remove('food-chosen','food-skipped');});
+  if(!wasChosen){
+    el.classList.add('food-chosen');
+    opts.forEach(o=>{if(o!==el) o.classList.add('food-skipped');});
+    foodChoices[gid]=el.dataset.foodId||'';
+    // Mark same food type as "already chosen" in other groups
+    updateFoodRecs();
+  } else {
+    delete foodChoices[gid];
+  }
+  localStorage.setItem('kyoto-food',JSON.stringify(foodChoices));
+}
+
+function resetFoodGroup(btn){
+  const group=btn.closest('.food-group');
+  if(!group) return;
+  const gid=group.dataset.group;
+  group.querySelectorAll('.food-option').forEach(o=>{o.classList.remove('food-chosen','food-skipped');});
+  delete foodChoices[gid];
+  localStorage.setItem('kyoto-food',JSON.stringify(foodChoices));
+  updateFoodRecs();
+}
+
+function updateFoodRecs(){
+  // Get all chosen food types
+  const chosenTypes=[];
+  Object.values(foodChoices).forEach(v=>{if(v) chosenTypes.push(v.toLowerCase());});
+  // Mark duplicates in other groups
+  document.querySelectorAll('.food-option[data-food-type]').forEach(el=>{
+    const t=el.dataset.foodType;
+    const gid=el.closest('.food-group')?.dataset.group;
+    if(t && chosenTypes.includes(t) && foodChoices[gid]!==el.dataset.foodId){
+      el.style.opacity='.5';
+      const note=el.querySelector('.already-note');
+      if(!note){
+        const n=document.createElement('div');
+        n.className='already-note';
+        n.style.cssText='background:#fff3e0;padding:4px 10px;font-size:.72rem;color:#7a4000;border-radius:4px;margin-top:4px;text-align:center';
+        n.textContent='Already chose '+t+' earlier — try something different?';
+        el.querySelector('.img-body,.card-info')?.appendChild(n);
+      }
+    } else {
+      el.style.opacity='';
+      el.querySelector('.already-note')?.remove();
+    }
+  });
+}
+
+function restoreFoodChoices(){
+  Object.entries(foodChoices).forEach(([gid,fid])=>{
+    const group=document.querySelector('.food-group[data-group="'+gid+'"]');
+    if(!group) return;
+    const chosen=group.querySelector('.food-option[data-food-id="'+fid+'"]');
+    if(chosen){
+      chosen.classList.add('food-chosen');
+      group.querySelectorAll('.food-option').forEach(o=>{if(o!==chosen) o.classList.add('food-skipped');});
+    }
+  });
+  updateFoodRecs();
+}
+
 // ═══ GPS TRACKING SYSTEM ═══
 const ACTIVITIES=[
   {id:'act-philosophers-path',name:"Philosopher's Path",lat:35.0272,lng:135.7983,r:200},
@@ -421,7 +529,7 @@ function resetTracking(){
   }
 }
 
-document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);startTracking();});
+document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);startTracking();restoreFoodChoices();});
 </script>
 </head>
 <body>
@@ -551,7 +659,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="tip">🍜 <strong>Hungry near the path's south end?</strong> Two Kyoto-exclusive spots within walking distance:</div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Curry_udon_by_Tak_H..jpg/800px-Curry_udon_by_Tak_H..jpg')">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Curry_Udon.jpg/960px-Curry_Udon.jpg')">
 <div class="img-title">Hinode Udon — Kyoto's Famous Curry Udon<small>日の出うどん · Near Nanzen-ji · Walk-in</small></div>
 </div>
 <div class="img-body">
@@ -561,7 +669,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Nishin_soba_by_yoppy_at_a_restaurant_near_Kita-no-T%C3%A9nmangu.jpg/800px-Nishin_soba_by_yoppy_at_a_restaurant_near_Kita-no-T%C3%A9nmangu.jpg')">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Nishin_soba_2022_1_1.jpg/960px-Nishin_soba_2022_1_1.jpg')">
 <div class="img-title">Omen Nanzenji — Sesame Udon Dipping Noodles<small>おめん南禅寺店 · Tabelog 3.55 · Kyoto-born chain</small></div>
 </div>
 <div class="img-body">
@@ -627,7 +735,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="tip">🍵 <strong>Right at Kinkaku-ji exit:</strong> Quick Kyoto-only snacks before the bus to Nishiki</div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Matcha_ice_cream_in_Kyoto%2C_Japan.jpg/800px-Matcha_ice_cream_in_Kyoto%2C_Japan.jpg')">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Green_tea_ice_cream_1.jpg/960px-Green_tea_ice_cream_1.jpg')">
 <div class="img-title">Kinkaku-ji Exit — Matcha Soft Serve + Gold Leaf<small>金閣寺参道 · Street stalls · Walk-in</small></div>
 </div>
 <div class="img-body">
@@ -652,6 +760,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="dish"><strong>Tofu doughnuts at Konnamonja</strong> — hot, crispy, sells out by 2pm · ¥100</div>
 <div class="dish"><strong>Fresh yuba</strong> — warm, creamy tofu skin with soy + ginger · ¥300–400</div>
 <div class="dish"><strong>Kyo-tsukemono pickles</strong> — free tasting! Senmaizuke is the Kyoto original · Free</div>
+<div class="dish"><strong>Senmaizuke (千枚漬)</strong> — one of Kyoto's "Three Great Pickles." Shogoin turnip + kombu. <em>March = tail end of season, last chance!</em> · ¥500–800/pack</div>
 <div class="dish"><strong>Matcha warabi mochi at Sawawa</strong> — wobbly matcha jelly mochi · ¥350–500</div>
 <div class="dish"><strong>Tako tamago</strong> — whole baby octopus + quail egg on a stick · ¥350</div>
 </div>
@@ -672,9 +781,12 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
 
 <!-- 12:50 PM LUNCH -->
-<div class="time-block" id="act-lunch"><span class="clock">🍴</span> 12:50 – 1:35 PM · Lunch — Pick One</div>
+<div class="time-block" id="act-lunch"><span class="clock">🍴</span> 12:50 – 1:35 PM · Lunch — Tap to Choose</div>
 
-<div class="card">
+<div class="food-group" data-group="lunch">
+<div class="food-group-title">👆 Tap a card to choose your lunch</div>
+
+<div class="card food-option" data-food-id="rantan" data-food-type="ramen" onclick="pickFood(this)">
 <span class="card-label label-top">⭐ Yelp 4.9 (478 reviews)</span>
 <div class="card-top">
 <div class="card-emoji">🍜</div>
@@ -685,11 +797,10 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🚶 5 min from Nishiki</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — KYOTO SPECIALTY</span></div>
-
-<div class="card">
+<div class="card food-option" data-food-id="okutan" data-food-type="tofu" onclick="pickFood(this)">
 <span class="card-label label-walkin">est. 1637 · No reservations</span>
 <div class="card-top">
 <div class="card-emoji">🥣</div>
@@ -700,11 +811,10 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥3,000–4,000</span><span class="meta-pill">🚕 ~¥800 from Nishiki</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — BUDGET ¥500</span></div>
-
-<div class="card">
+<div class="card food-option" data-food-id="gyoza" data-food-type="gyoza" onclick="pickFood(this)">
 <span class="card-label label-walkin">⭐ Yelp 4.9 (161)</span>
 <div class="card-top">
 <div class="card-emoji">🥟</div>
@@ -715,30 +825,43 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥500–900</span><span class="meta-pill">Walk-in · 15 min meal</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — KYOTO'S OLDEST SOBA (est. 1465)</span></div>
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Zaru_soba_by_Hideto_KOBAYASHI.jpg/800px-Zaru_soba_by_Hideto_KOBAYASHI.jpg')">
+<div class="img-card food-option" data-food-id="owariya" data-food-type="soba" onclick="pickFood(this)">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Japanese_Zaru_Soba.JPG/960px-Japanese_Zaru_Soba.JPG')">
 <div class="img-title">Honke Owariya — 560 Years of Soba<small>本家尾張屋 · est. 1465 · Near Nishiki · Walk-in</small></div>
 </div>
 <div class="img-body">
-<div class="desc">The oldest soba restaurant in Japan — serving buckwheat noodles since 1465, originally as confectioner to the Imperial Court. Their signature hourai soba comes in five stacking lacquer boxes, each with a different topping. The building itself is a registered cultural property.</div>
+<div class="desc">The oldest soba restaurant in Japan — serving buckwheat noodles since 1465. Signature hourai soba comes in five stacking lacquer boxes, each with a different topping.</div>
 <div class="card-meta"><span class="meta-pill">¥1,600–2,200</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Hourai Soba (宝来そば) — 5-tier boxes</span></div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — FIRE RAMEN 🔥 (only in Kyoto)</span></div>
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Wok_fire_in_Chinese_restaurant.jpg/800px-Wok_fire_in_Chinese_restaurant.jpg')">
-<div class="img-title">Menbakaichidai — Fire Ramen<small>めん馬鹿一代 · 🔥 They literally set it on fire · Only location</small></div>
+<div class="img-card food-option" data-food-id="nishin-soba" data-food-type="soba" onclick="pickFood(this)">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Nishin_soba_2022_1_1.jpg/960px-Nishin_soba_2022_1_1.jpg')">
+<div class="img-title">Honke Tagoto — Nishin Soba<small>本家たご田 · Herring on hot soba · Invented in Kyoto 1882</small></div>
 </div>
 <div class="img-body">
-<div class="desc">The chef pours hot oil into your bowl of green onion ramen and ignites a 1-meter flame at your seat. Rich miso-based broth with thick noodles. Only one location in the world — a 10 min taxi from Nishiki. Wild experience, legit delicious ramen.</div>
-<div class="card-meta"><span class="meta-pill">¥900</span><span class="meta-pill">Walk-in · line moves fast</span><span class="meta-pill">🔥 GET: Negi Ramen (ネギラーメン) — the fire one</span></div>
+<div class="desc">Sweet simmered herring on hot soba — invented in Kyoto because the city is landlocked and relied on dried fish. THE most "only in Kyoto" noodle dish. Near Shijo, easy walk from Nishiki.</div>
+<div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🐟 GET: Nishin Soba (にしん蕎麦)</span></div>
 </div>
+<span class="pick-label">Tap to choose</span>
+</div>
+
+<div class="img-card food-option" data-food-id="fire-ramen" data-food-type="ramen" onclick="pickFood(this)">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Shoyu_Ramen.jpg/960px-Shoyu_Ramen.jpg')">
+<div class="img-title">Menbakaichidai — Fire Ramen 🔥<small>めん馬鹿一代 · They literally set it on fire · Only location</small></div>
+</div>
+<div class="img-body">
+<div class="desc">The chef pours hot oil into your bowl and ignites a 1-meter flame at your seat. Rich miso broth, thick noodles. Only one location in the world — 10 min taxi from Nishiki.</div>
+<div class="card-meta"><span class="meta-pill">¥900</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🔥 GET: Negi Ramen (ネギラーメン) — the fire one</span></div>
+</div>
+<span class="pick-label">Tap to choose</span>
+</div>
+
+<button class="food-reset" onclick="resetFoodGroup(this)">↺ Reset lunch choice</button>
 </div>
 
 <!-- 1:50 PM FUSHIMI INARI (SENBON TORII ONLY) -->
@@ -795,6 +918,28 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 
 <div class="tip">🚶 <strong>After Kiyomizu:</strong> Walk downhill through Ninen-zaka → Sannen-zaka → Gion (30 min stroll through Kyoto's most atmospheric streets). Free, no taxi needed. This naturally leads to the Kamo River and Pontocho for dinner.</div>
 
+<div class="tip">🌸 <strong>Kyoto-only stops on the walk down:</strong> Shichimiya (shichimi since 1655) → Kanshundo (seasonal wagashi) → Kasagiya (warabi mochi) → Nanaya (matcha gelato) → Issen Yoshoku (Kyoto crepe) → Kagizen (kuzukiri) → Tsujiri (matcha parfait)</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Shichimi_001.jpg')">
+<div class="img-title">Shichimiya Honpo — Shichimi Since 1655<small>七味家本舗 · Top of Kiyomizu-zaka · 370 years old</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Kyoto-style shichimi togarashi emphasizes sansho pepper and nori over raw heat — a fundamentally different blend from Tokyo's Yagenbori. Operating at this exact spot since 1655. Perfect edible souvenir you literally cannot get outside this shop.</div>
+<div class="card-meta"><span class="meta-pill">¥500–700</span><span class="meta-pill">Top of Kiyomizu-zaka</span><span class="meta-pill">🌶️ GET: Kyoto Shichimi tin (京七味)</span></div>
+</div>
+</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Namagashi.jpg/960px-Namagashi.jpg')">
+<div class="img-title">Kanshundo — Seasonal Namagashi Art<small>甘春堂 · est. 1865 · Higashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">March-specific namagashi (fresh wagashi): sakura and spring flower designs that are edible art. Kyoto is the undisputed capital of wagashi — these aesthetics are not replicated elsewhere. Sit in-shop with matcha for ¥800.</div>
+<div class="card-meta"><span class="meta-pill">¥400–800</span><span class="meta-pill">On the walk down</span><span class="meta-pill">🌸 GET: Seasonal namagashi + matcha set</span></div>
+</div>
+</div>
+
 <div class="card">
 <span class="card-label label-kyoto">Sannen-zaka · est. 1914</span>
 <div class="card-top">
@@ -822,7 +967,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Matcha_ice_cream_by_huichen.jpg/800px-Matcha_ice_cream_by_huichen.jpg')">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Matcha_ice_cream_001.jpg/960px-Matcha_ice_cream_001.jpg')">
 <div class="img-title">Nanaya Kyoto — World's Strongest Matcha Gelato<small>ななや京都 · 7 levels of matcha · Only in Kyoto + Shizuoka</small></div>
 </div>
 <div class="img-body">
@@ -832,12 +977,22 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Gion_Tsujiri_Parfait.jpg/800px-Gion_Tsujiri_Parfait.jpg')">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/14/KyotoTsujiri.jpg')">
 <div class="img-title">Gion Tsujiri — Matcha Parfait<small>祇園辻利 · est. 1860 · Gion corner · Walk-in</small></div>
 </div>
 <div class="img-body">
 <div class="desc">The matcha institution of Gion — est. 1860 as a tea merchant, now Kyoto's most famous matcha café. Their towering matcha parfait with jelly, shiratama, red bean, and matcha ice cream is THE Kyoto matcha experience. Right on Shijo-dori at the Gion corner.</div>
 <div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">Walk-in (15 min queue)</span><span class="meta-pill">🍨 GET: Tsujiri Matcha Parfait (特選抹茶パフェ)</span></div>
+</div>
+</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg/960px-Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg')">
+<div class="img-title">Issen Yoshoku — Kyoto Street Food Original<small>壹銭洋食 · Gion · Taisho-era savory crepe · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">A thin savory crepe stuffed with green onion, beef tendon, konjac, shrimp, and egg — invented in Taisho-era Kyoto. Wild retro interior with hundreds of vintage posters. The original shop is right here in Gion on your walk. Fun, fast, cheap, and uniquely Kyoto.</div>
+<div class="card-meta"><span class="meta-pill">¥700</span><span class="meta-pill">Walk-in · Gion</span><span class="meta-pill">🥞 GET: Issen Yoshoku (壹銭洋食)</span></div>
 </div>
 </div>
 
@@ -860,9 +1015,12 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 5:30 PM DINNER -->
-<div class="time-block" id="act-dinner"><span class="clock">🍴</span> 5:30 – 7:00 PM · Dinner in Pontocho — Pick One</div>
+<div class="time-block" id="act-dinner"><span class="clock">🍴</span> 5:30 – 7:00 PM · Dinner in Pontocho — Tap to Choose</div>
 
-<div class="card">
+<div class="food-group" data-group="dinner">
+<div class="food-group-title">👆 Tap a card to choose your dinner</div>
+
+<div class="card food-option" data-food-id="kohaku" data-food-type="obanzai" onclick="pickFood(this)">
 <span class="card-label label-book">Reservation REQUIRED · TripAdvisor 4.9</span>
 <div class="card-top">
 <div class="card-emoji">🍱</div>
@@ -873,11 +1031,10 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥2,500–4,000</span><span class="meta-pill">Book ahead</span><span class="meta-pill">Pontocho</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — NO RESERVATION</span></div>
-
-<div class="card">
+<div class="card food-option" data-food-id="panga" data-food-type="sukiyaki" onclick="pickFood(this)">
 <span class="card-label label-walkin">⭐ Yelp 5.0 (133)</span>
 <div class="card-top">
 <div class="card-emoji">🥩</div>
@@ -888,23 +1045,21 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥4,000–6,000</span><span class="meta-pill">Walk-in</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — KYOTO OBANZAI · WALK-IN</span></div>
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Kyoto-Pontocho.jpg/800px-Kyoto-Pontocho.jpg')">
+<div class="img-card food-option" data-food-id="pontocho-bar" data-food-type="obanzai" onclick="pickFood(this)">
+<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Pontocho_Alley%2C_Kyoto_-_Flickr_-_Sergiy_Galyonkin.jpg/960px-Pontocho_Alley%2C_Kyoto_-_Flickr_-_Sergiy_Galyonkin.jpg')">
 <div class="img-title">Pontocho Walk-in Obanzai Bars<small>先斗町 · Stroll the alley and pick one</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Pontocho alley is lined with tiny 8-seat obanzai bars — Kyoto home-cooking with seasonal small plates behind a curtain. No reservation needed at most. Look for places displaying おばんざい with counter seats and a glass case of prepared dishes. Point and choose. This style of eating only exists in Kyoto.</div>
+<div class="desc">Pontocho alley is lined with tiny 8-seat obanzai bars — Kyoto home-cooking with seasonal small plates behind a curtain. Walk in, point at dishes in the glass case, eat. This style of eating only exists in Kyoto.</div>
 <div class="card-meta"><span class="meta-pill">¥2,000–3,500</span><span class="meta-pill">Walk-in · counter seats</span><span class="meta-pill">🍶 GET: Obanzai plate set + Kyoto sake</span></div>
 </div>
+<span class="pick-label">Tap to choose</span>
 </div>
 
-<div class="option-or"><span>OR — BUDGET · KYOTO RAMEN</span></div>
-
-<div class="card">
+<div class="card food-option" data-food-id="duck-ramen" data-food-type="ramen" onclick="pickFood(this)">
 <span class="card-label label-walkin">Gion area · Walk-in · Fast</span>
 <div class="card-top">
 <div class="card-emoji">🍜</div>
@@ -915,6 +1070,10 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-meta"><span class="meta-pill">¥900–1,300</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🦆 GET: Duck Soba (鴨そば)</span></div>
 </div>
 </div>
+<span class="pick-label">Tap to choose</span>
+</div>
+
+<button class="food-reset" onclick="resetFoodGroup(this)">↺ Reset dinner choice</button>
 </div>
 
 <div class="transport-card">
