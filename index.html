@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Kyoto Complete Guide — Alex Thomas · March 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -101,7 +104,22 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .share-btn:hover{background:#5a3a10}
 </style>
 <script>
-function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=event.currentTarget;t.style.background='#e8f5ee';t.querySelector('.copy-icon').textContent='✓ copied';setTimeout(()=>{t.style.background='#fff';t.querySelector('.copy-icon').textContent='tap to copy'},1500)})}
+function copyAddr(text){
+  const t=event.currentTarget;
+  const done=()=>{t.style.background='#e8f5ee';t.querySelector('.copy-icon').textContent='✓ copied';setTimeout(()=>{t.style.background='#fff';t.querySelector('.copy-icon').textContent='tap to copy'},1500)};
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
+  }else{fallbackCopy(text,done);}
+}
+function fallbackCopy(text,cb){
+  const el=document.createElement('textarea');
+  el.value=text;el.setAttribute('readonly','');
+  el.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0;font-size:16px';
+  document.body.appendChild(el);
+  el.focus();el.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(el);
+}
 </script>
 </head>
 <body>
@@ -152,7 +170,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,800 · 15 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('銀閣寺橋 哲学の道 北端')"><strong>銀閣寺橋 哲学の道 北端</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0272,135.7983&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?ll=35.0272,135.7983&q=Philosopher%27s+Path+North" target="_blank">📍 Maps</a>
 </span></div>
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~45 min leisurely, 2km)</span></div>
 </div>
@@ -160,16 +178,15 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <!-- 8:00 AM BREAKFAST -->
 <div class="time-block"><span class="clock">☕</span> 8:00 – 9:00 AM · Kyoto-Exclusive Breakfast</div>
 
-<div class="card">
-<span class="card-label label-kyoto">est. 1932 · Kyoto institution</span>
-<div class="card-top">
-<div class="card-emoji">☕</div>
-<div class="card-info">
-<div class="card-name">Smart Coffee — Main Store</div>
-<div class="card-jp">スマート珈琲店 · 寺町三条 · Tabelog 3.58</div>
-<div class="card-desc">Kyoto's most iconic kissaten, unchanged since 1932. Dark wood, jazz on vinyl, hand-drip coffee. Their tamago sando and hotcakes are the reason people queue. Only exists here.</div>
+<div class="tip">🗺️ <strong>Route tip:</strong> Smart Coffee is ~20 min walk west from the path's south end — it sits right between Philosopher's Path and Kinkaku-ji, so the east→central→northwest flow is actually linear. <em>Want to skip the detour?</em> See the local option below.</div>
+
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/800x400/?kyoto,cafe,coffee,japan')">
+<div class="img-title">Smart Coffee — Main Store<small>スマート珈琲店 · Teramachi-Sanjo · est. 1932</small></div>
 </div>
-</div>
+<div class="img-body">
+<span class="card-label label-kyoto" style="position:static;display:inline-block;margin-bottom:8px">est. 1932 · Kyoto institution</span>
+<div class="desc">Kyoto's most iconic kissaten, unchanged since 1932. Dark wood, jazz on vinyl, hand-drip coffee. Their tamago sando and hotcakes are the reason people queue. Only exists here.</div>
 <div class="dishes">
 <div class="dishes-title">🍴 What to order</div>
 <div class="dish"><strong>Hotcakes (ホットケーキ)</strong> — thick, fluffy, golden with butter + maple · ¥700</div>
@@ -178,16 +195,33 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 <div class="card-meta"><span class="meta-pill">¥1,000–1,500</span><span class="meta-pill">Opens 8am</span><span class="meta-pill">Cash only</span></div>
 </div>
+</div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">South end of Philosopher's Path (Nanzen-ji area)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Smart Coffee (Teramachi-Sanjo)</span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">~20 min through Okazaki area</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">~20 min through Okazaki area (flat, pleasant)</span></div>
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">OR Taxi</span><span class="t-value">~¥1,000 · 8 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('京都市中京区寺町通三条上ル天性寺前町537')"><strong>京都市中京区寺町通三条上ル天性寺前町537</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Smart+Coffee+Kyoto+スマート珈琲店" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?q=Smart+Coffee+%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E7%8F%88%E7%90%B2%E5%BA%97+Kyoto" target="_blank">📍 Maps</a>
 </span></div>
+</div>
+
+<div class="option-or"><span>OR — SKIP THE DETOUR · LOCAL OPTION</span></div>
+
+<div class="card">
+<span class="card-label label-walkin">Near path south end · Opens 8am</span>
+<div class="card-top">
+<div class="card-emoji">🍵</div>
+<div class="card-info">
+<div class="card-name">Okazaki Area Cafés — Near Nanzen-ji</div>
+<div class="card-jp">岡崎エリア · 南禅寺周辺</div>
+<div class="card-desc">Several small bakeries and cafés dot the Okazaki/Heian Shrine area, a 5-min walk from the path's south end. Try <strong>Shizuka</strong> for matcha latte and a pastry, or grab an onigiri from a convenience store and eat by the Okazaki canal. Then taxi directly from Nanzen-ji to Kinkaku-ji — saves 20+ min of backtracking west.</div>
+<div class="tip">💡 <strong>If skipping Smart Coffee:</strong> Take a ¥1,400 taxi direct from Nanzen-ji area to Kinkaku-ji (25 min). Arrive at the gate right at 9am opening — no lines yet.</div>
+<div class="card-meta"><span class="meta-pill">¥400–800</span><span class="meta-pill">Saves ~25 min</span><span class="meta-pill">5 min walk from path</span></div>
+</div>
+</div>
 </div>
 
 <!-- 9:10 AM KINKAKU-JI -->
@@ -208,7 +242,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,600 · 15 min <em>(no direct train — taxi is the move)</em></span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('京都市北区金閣寺町1')"><strong>京都市北区金閣寺町1</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0394,135.7292&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?ll=35.0394,135.7292&q=Kinkaku-ji+Golden+Pavilion" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
@@ -237,10 +271,11 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Kinkaku-ji</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Nishiki Market (east entrance)</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,800 · 15 min</span></div>
+<div class="t-row"><span class="t-icon">🚌</span><span class="t-label">Best: Bus 59</span><span class="t-value">Kinkaku-ji-mae → Shijo-Karasuma · ~30 min · ¥230 IC card · <strong>Saves ¥1,570 vs taxi!</strong></span></div>
+<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">OR Taxi</span><span class="t-value">~¥1,800 · 15 min (faster but expensive)</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('錦市場 東入口 京都市中京区')"><strong>錦市場 東入口 京都市中京区</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0050,135.7649&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?q=%E9%8C%A6%E5%B8%82%E5%A0%B4+Nishiki+Market+Kyoto" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
@@ -303,10 +338,11 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="desc">THE most iconic image of Japan — thousands of vermillion torii gates tunneling up a mountainside. Free to enter, open 24 hours. The main torii tunnel (Senbon Torii) takes 15–20 min. Going halfway up (to the Yotsutsuji intersection viewpoint) takes about 45 min and gives you panoramic views over all of Kyoto. Afternoon light filtering through the orange gates is gorgeous.</div>
 <div class="tip">💡 <strong>Pro tip:</strong> Most tourists only do the first 10 min. Keep going past the first fork — the crowds thin dramatically. The Yotsutsuji viewpoint (halfway) is the sweet spot.</div>
 <div class="dishes">
-<div class="dishes-title">🍴 Approach street food</div>
+<div class="dishes-title">🍴 Approach street food + mid-mountain teahouse</div>
 <div class="dish"><strong>Inari sushi</strong> — sweet fried tofu pockets with sushi rice. Named after this shrine. · ¥200–300</div>
 <div class="dish"><strong>Suzume-yaki</strong> — sparrow/fox-shaped cakes with sweet red bean · ¥200</div>
 <div class="dish"><strong>Grilled rice skewers (yakimochi)</strong> — miso-glazed, perfect hiking fuel · ¥200–400</div>
+<div class="dish"><strong>Nishimura-ya Teahouse (西村屋)</strong> — right at Yotsutsuji viewpoint, halfway up. Cold matcha lemonade + azuki parfait while overlooking all of Kyoto · ¥400–700</div>
 </div>
 </div>
 </div>
@@ -318,7 +354,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">OR Train</span><span class="t-value">JR Kyoto Station → Inari (2 stops, 5 min, ¥150) — but station is farther from Nishiki</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('伏見稲荷大社 京都市伏見区深草藪之内町68')"><strong>伏見稲荷大社 京都市伏見区深草藪之内町68</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=34.9671,135.7727&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?ll=34.9671,135.7727&q=Fushimi+Inari+Taisha" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
@@ -341,11 +377,37 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk uphill 10 min to the temple gate</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('清水寺 京都市東山区清水1丁目294')"><strong>清水寺 京都市東山区清水1丁目294</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=34.9949,135.7850&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?ll=34.9949,135.7850&q=Kiyomizu-dera+Temple" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
 <div class="tip">🚶 <strong>After Kiyomizu:</strong> Walk downhill through Ninen-zaka → Sannen-zaka → Gion (30 min stroll through Kyoto's most atmospheric streets). Free, no taxi needed. This naturally leads to the Kamo River and Pontocho for dinner.</div>
+
+<div class="card">
+<span class="card-label label-kyoto">Sannen-zaka · est. 1914</span>
+<div class="card-top">
+<div class="card-emoji">🍡</div>
+<div class="card-info">
+<div class="card-name">Kasagiya — Warabi Mochi on the Lanes</div>
+<div class="card-jp">かさぎ屋 · 三年坂 · Tabelog 3.6</div>
+<div class="card-desc">A tiny wooden shop on Sannen-zaka, open since 1914. Famous for warabi mochi (bracken fern jelly dusted in kinako flour) and oshiruko (sweet red bean soup). Grab a takeaway cup and eat on the stone steps — the most Kyoto moment possible.</div>
+<div class="card-meta"><span class="meta-pill">¥600–800</span><span class="meta-pill">On your walk down</span><span class="meta-pill">Walk-in</span></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<span class="card-label label-kyoto">Gion · est. 1789</span>
+<div class="card-top">
+<div class="card-emoji">🍮</div>
+<div class="card-info">
+<div class="card-name">Kagizen Yoshifusa — Gion's Oldest Sweet Shop</div>
+<div class="card-jp">鍵善良房 · 祇園四条 · Tabelog 3.65</div>
+<div class="card-desc">Kyoto's most revered wagashi shop. Their kuzukiri (くずきり) — translucent kuzu jelly strips in cold syrup, either black sugar or white — is one of Kyoto's most distinctive sweets. Sit in the back tatami room for ¥1,200. You won't find this in Osaka.</div>
+<div class="card-meta"><span class="meta-pill">¥1,000–1,400</span><span class="meta-pill">On the Gion walk</span><span class="meta-pill">Walk-in · closes 6pm</span></div>
+</div>
+</div>
+</div>
 
 <!-- 5:00 PM GION + KAMO RIVER -->
 <div class="time-block"><span class="clock">🌅</span> 5:00 – 6:00 PM · Gion → Kamo River Sunset</div>
@@ -424,7 +486,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,000 · 8 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('新福菜館本店 京都市下京区東塩小路向畑町569')"><strong>新福菜館本店 京都市下京区東塩小路向畑町569</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=新福菜館本店+京都" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?q=%E6%96%B0%E7%A6%8F%E8%8F%9C%E9%A4%A8%E6%9C%AC%E5%BA%97+Shinpuku+Saikan+Kyoto" target="_blank">📍 Maps</a>
 </span></div>
 <div class="t-row"><span class="t-icon">⚠️</span><span class="t-label">Note</span><span class="t-value">Last order 7:45pm! If dinner runs long, skip this — hit it Day 3 before Arashiyama instead.</span></div>
 </div>
@@ -462,13 +524,31 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 </div>
 
+<div class="card">
+<span class="card-label label-walkin">Arashiyama · River views</span>
+<div class="card-top">
+<div class="card-emoji">🍜</div>
+<div class="card-info">
+<div class="card-name">Arashiyama Yoshimura — Soba with Togetsukyo Views</div>
+<div class="card-jp">嵐山よしむら · 渡月橋 · Tabelog 3.48</div>
+<div class="card-desc">Handmade buckwheat soba right on the Togetsukyo Bridge, with floor-to-ceiling windows over the river and mountains. If stalls aren't open when you arrive at 7:30am, this is a perfect 9am breakfast/brunch spot after the bamboo grove. Classic Arashiyama dining.</div>
+<div class="dishes">
+<div class="dishes-title">🍴 What to order</div>
+<div class="dish"><strong>Zaru soba</strong> — cold buckwheat noodles + dipping broth · ¥1,200</div>
+<div class="dish"><strong>Warabi mochi set</strong> — dessert pairing with soba · ¥300 add-on</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥1,200–1,800</span><span class="meta-pill">Opens 9am</span><span class="meta-pill">No reservation needed</span></div>
+</div>
+</div>
+</div>
+
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🏨</span><span class="t-label">FROM</span><span class="t-value">Umekoji Potel (hotel)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Arashiyama Bamboo Grove</span></div>
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,500 · 15 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('嵐山 竹林の小径 京都市右京区')"><strong>嵐山 竹林の小径 京都市右京区</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0173,135.6717&travelmode=driving" target="_blank">📍 Maps</a>
+<a class="maps-link" href="https://maps.apple.com/?ll=35.0173,135.6717&q=Arashiyama+Bamboo+Grove" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
@@ -600,6 +680,87 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 
 <!-- ═══════════════════════════════════ -->
+<!-- STREET FOOD QUICK REFERENCE         -->
+<!-- ═══════════════════════════════════ -->
+<div class="section" id="streetfood">
+<div class="section-title">
+<span class="icon">🍢</span>
+<h2>Street Food — Quick Reference</h2>
+<span class="sub">All areas · Eat as you walk</span>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🗾</div>
+<div class="card-info">
+<div class="card-name">Nishiki Market (Day 2 · 10:30am)</div>
+<div class="card-jp">錦市場 · 中京区 · 400 years old</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍴 Must-eat</div>
+<div class="dish"><strong>Tamagoyaki at Kaneyo</strong> — sweet rolled egg on a stick · ¥200</div>
+<div class="dish"><strong>Tofu doughnuts at Konnamonja</strong> — hot, crispy, sells out by 2pm · ¥100</div>
+<div class="dish"><strong>Fresh yuba</strong> — warm creamy tofu skin with soy + ginger · ¥300–400</div>
+<div class="dish"><strong>Matcha warabi mochi at Sawawa</strong> — wobbly matcha jelly · ¥350–500</div>
+<div class="dish"><strong>Tako tamago</strong> — baby octopus + quail egg on a stick · ¥350</div>
+<div class="dish"><strong>Kyo-tsukemono pickles</strong> — free tasting at stalls · Free</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">⛩️</div>
+<div class="card-info">
+<div class="card-name">Fushimi Inari Approach (Day 2 · 1:30pm)</div>
+<div class="card-jp">伏見稲荷大社 · 参道 · Free entry</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍴 Shrine approach + mid-mountain</div>
+<div class="dish"><strong>Inari sushi</strong> — sweet fried tofu pockets, named after this shrine · ¥200–300</div>
+<div class="dish"><strong>Suzume-yaki</strong> — sparrow/fox-shaped cakes with red bean · ¥200</div>
+<div class="dish"><strong>Yakimochi</strong> — miso-glazed grilled rice skewers, hiking fuel · ¥200–400</div>
+<div class="dish"><strong>Nishimura-ya Teahouse (halfway up)</strong> — matcha lemonade + azuki parfait with Kyoto panorama · ¥400–700</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🏯</div>
+<div class="card-info">
+<div class="card-name">Sannen-zaka / Ninen-zaka Lanes (Day 2 · after Kiyomizu)</div>
+<div class="card-jp">三年坂 · 二年坂 · On your walk down from Kiyomizu</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍴 On the stone-paved lanes</div>
+<div class="dish"><strong>Kasagiya warabi mochi</strong> — bracken jelly in kinako, eat on the steps · ¥600–800</div>
+<div class="dish"><strong>Sweet potato sweets (Imoya)</strong> — purple imo soft serve + tarts · ¥350–500</div>
+<div class="dish"><strong>Yatsuhashi samples</strong> — every shop gives free samples of the cinnamon wafers · Free</div>
+<div class="dish"><strong>Kagizen Yoshifusa kuzukiri</strong> — Gion's oldest sweet, translucent kuzu jelly · ¥1,200</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🎋</div>
+<div class="card-info">
+<div class="card-name">Arashiyama (Day 3 · stalls open ~8:30am)</div>
+<div class="card-jp">嵐山 · 右京区</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍴 Arashiyama main street</div>
+<div class="dish"><strong>Matcha soft serve</strong> — dark green, bitter, perfect · ¥350–500</div>
+<div class="dish"><strong>Tofu soft serve</strong> — creamy, mild with kinako powder · ¥400</div>
+<div class="dish"><strong>Yuba croquette</strong> — crispy shell, creamy tofu skin inside · ¥300</div>
+<div class="dish"><strong>Dango (3-colour mochi skewers)</strong> — grilled, sweet soy glaze · ¥250</div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
 <!-- RESTAURANTS                         -->
 <!-- ═══════════════════════════════════ -->
 <div class="section" id="restaurants">
@@ -610,69 +771,93 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 
 <div class="grid-2">
-<div class="card">
-<span class="card-label label-top">⭐ 4.9 (478)</span>
-<div class="card-top"><div class="card-emoji">🍜</div><div class="card-info">
-<div class="card-name">Chuka-Soba Rantan</div>
-<div class="card-jp">Yelp 4.9 · Chicken-shoyu ramen</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?ramen,japanese,noodles')">
+<div class="img-title">Chuka-Soba Rantan<small>⭐ Yelp 4.9 (478) · Kyoto's highest-rated ramen</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-top" style="position:static;display:inline-block;margin-bottom:6px">⭐ 4.9 (478)</span>
+<div class="desc">Chicken-shoyu ramen, thin wavy noodles, 10 seats. Near Nishiki.</div>
 <div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-top">⭐ 5.0 (133)</span>
-<div class="card-top"><div class="card-emoji">🥩</div><div class="card-info">
-<div class="card-name">Wagyu Sukiyaki Panga</div>
-<div class="card-jp">Yelp 5.0 · Wagyu hotpot</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?wagyu,beef,sukiyaki')">
+<div class="img-title">Wagyu Sukiyaki Panga<small>⭐ Yelp 5.0 (133) · Perfect score</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-top" style="position:static;display:inline-block;margin-bottom:6px">⭐ 5.0 (133)</span>
+<div class="desc">Thin-sliced wagyu in sweet soy broth, dipped in raw egg. Walk-in.</div>
 <div class="card-meta"><span class="meta-pill">¥4,000–6,000</span><span class="meta-pill">Walk-in</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-book">TripAdvisor #34</span>
-<div class="card-top"><div class="card-emoji">🍱</div><div class="card-info">
-<div class="card-name">Obanzai Kohaku</div>
-<div class="card-jp">Tabelog 3.43 · Kyoto home cooking</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?japanese,food,kyoto,traditional')">
+<div class="img-title">Obanzai Kohaku<small>TripAdvisor #34 of 9,824 · Kyoto home cooking</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-book" style="position:static;display:inline-block;margin-bottom:6px">TripAdvisor #34</span>
+<div class="desc">Seasonal obanzai small plates in a 100-year-old machiya. Book ahead.</div>
 <div class="card-meta"><span class="meta-pill">¥2,500–4,000</span><span class="meta-pill">Book required</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-kyoto">est. 1637</span>
-<div class="card-top"><div class="card-emoji">🥣</div><div class="card-info">
-<div class="card-name">Okutan Nanzenji</div>
-<div class="card-jp">Japan's oldest restaurant · Yudofu</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Nanzenji_tofu.jpg/400px-Nanzenji_tofu.jpg')">
+<div class="img-title">Okutan Nanzenji<small>est. 1637 · Japan's oldest restaurant</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-kyoto" style="position:static;display:inline-block;margin-bottom:6px">est. 1637</span>
+<div class="desc">Yudofu (silken tofu in kombu dashi) in a 400-year-old garden. No reservations.</div>
 <div class="card-meta"><span class="meta-pill">¥3,000–4,000</span><span class="meta-pill">No reservations</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-rec">⭐ 4.8 (496)</span>
-<div class="card-top"><div class="card-emoji">🥩</div><div class="card-info">
-<div class="card-name">Kobe Beef Moriya Gion</div>
-<div class="card-jp">Yelp 4.8 · Teppanyaki</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?teppanyaki,kobe,beef,japan')">
+<div class="img-title">Kobe Beef Moriya Gion<small>⭐ Yelp 4.8 (496) · Teppanyaki</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-rec" style="position:static;display:inline-block;margin-bottom:6px">⭐ 4.8 (496)</span>
+<div class="desc">Kobe beef teppanyaki in Gion. Splurge option. Reserve in advance.</div>
 <div class="card-meta"><span class="meta-pill">¥8,000–20,000</span><span class="meta-pill">Reserve</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-kyoto">est. 1938</span>
-<div class="card-top"><div class="card-emoji">🍜</div><div class="card-info">
-<div class="card-name">Shinpuku Saikan</div>
-<div class="card-jp">Tabelog 3.70 · Black soy ramen</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?ramen,dark,soy,broth')">
+<div class="img-title">Shinpuku Saikan<small>est. 1938 · Pitch-black soy ramen</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-kyoto" style="position:static;display:inline-block;margin-bottom:6px">est. 1938</span>
+<div class="desc">Pitch-black Kyoto soy ramen. Only one location. Closes ~8pm.</div>
 <div class="card-meta"><span class="meta-pill">¥800–1,700</span><span class="meta-pill">Walk-in</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-walkin">⭐ 4.9 (161)</span>
-<div class="card-top"><div class="card-emoji">🥟</div><div class="card-info">
-<div class="card-name">Kyoto Gyoza enen</div>
-<div class="card-jp">Yelp 4.9 · Thin-skin gyoza</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?gyoza,dumpling,japan,fried')">
+<div class="img-title">Kyoto Gyoza enen<small>⭐ Yelp 4.9 (161) · Thin-skin gyoza</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-walkin" style="position:static;display:inline-block;margin-bottom:6px">⭐ 4.9 (161)</span>
+<div class="desc">Kyoto-style thin-skin gyoza. Counter shop, queue moves fast. Budget lunch.</div>
 <div class="card-meta"><span class="meta-pill">¥500–900</span><span class="meta-pill">Walk-in</span></div>
-</div></div></div>
+</div>
+</div>
 
-<div class="card">
-<span class="card-label label-kyoto">est. 1854</span>
-<div class="card-top"><div class="card-emoji">🍵</div><div class="card-info">
-<div class="card-name">Nakamura Tokichi</div>
-<div class="card-jp">Uji · Matcha everything</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://source.unsplash.com/400x200/?matcha,green,tea,japan,dessert')">
+<div class="img-title">Nakamura Tokichi<small>est. 1854 · #1 matcha house in Japan · Uji</small></div>
+</div>
+<div class="img-body">
+<span class="card-label label-kyoto" style="position:static;display:inline-block;margin-bottom:6px">est. 1854</span>
+<div class="desc">Nama-cha jelly: matcha jelly + red bean + shiratama + ice cream. Building is a registered cultural property. Uji.</div>
 <div class="card-meta"><span class="meta-pill">¥1,200–1,800</span><span class="meta-pill">Walk-in · Uji</span></div>
-</div></div></div>
+</div>
+</div>
 </div>
 </div>
 
