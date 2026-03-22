@@ -75,6 +75,15 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .review{font-size:.82rem;color:#666;font-style:italic;border-left:2px solid #e0d0b0;padding:6px 10px;margin-top:8px}
 .time-block{background:#2d1a00;color:#f5d78e;padding:10px 20px;border-radius:8px;margin:20px 0 14px;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:8px}
 .time-block .clock{font-size:1.2rem}
+.step-num{background:#f5d78e;color:#2d1a00;font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:800;letter-spacing:.5px;flex-shrink:0}
+
+/* COLLAPSIBLE FOOD SUGGESTIONS */
+.food-nearby{margin:8px 0 14px;border:1px dashed #d4b896;border-radius:10px;overflow:hidden}
+.food-nearby summary{padding:10px 16px;font-size:.82rem;color:#8a5a00;cursor:pointer;background:#fdf8f0;font-weight:600;list-style:none;display:flex;align-items:center;gap:6px}
+.food-nearby summary::-webkit-details-marker{display:none}
+.food-nearby summary::before{content:"▸";font-size:.9rem;transition:transform .2s}
+.food-nearby[open] summary::before{transform:rotate(90deg)}
+.food-nearby .food-nearby-inner{padding:0 12px 12px}
 .tip{background:#fdf5e6;border-left:3px solid #d4a96a;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.85rem;color:#5a3800;margin:10px 0}
 .option-or{display:flex;align-items:center;gap:10px;margin:4px 0}
 .option-or::before,.option-or::after{content:"";flex:1;border-top:1px dashed #d4b896}
@@ -633,7 +642,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- ~8:30 AM PHILOSOPHER'S PATH -->
-<div class="time-block" id="act-philosophers-path"><span class="clock">⏰</span> ~8:30 – 9:10 AM · Philosopher's Path (no blossoms yet)</div>
+<div class="time-block" id="act-philosophers-path"><span class="step-num">STEP 1</span><span class="clock">⏰</span> ~8:30 – 9:10 AM · Philosopher's Path</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/800px-Japan_Kyoto_philosophers_walk_DSC00297.jpg')">
@@ -656,15 +665,18 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~1 hour leisurely, 2km)</span></div>
 </div>
 
-<div class="tip">🍜 <strong>Hungry near the path's south end?</strong> Two Kyoto-exclusive spots within walking distance:</div>
+<details class="food-nearby">
+<summary>🍜 Nearby food options (2 Kyoto-exclusive spots)</summary>
+<div class="food-nearby-inner">
 
 <div class="img-card">
 <div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Curry_Udon.jpg/960px-Curry_Udon.jpg')">
 <div class="img-title">Hinode Udon — Kyoto's Famous Curry Udon<small>日の出うどん · Near Nanzen-ji · Walk-in</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Kyoto soul food. Thick udon in a rich, spicy curry broth with tender beef — unlike anything in Tokyo or Osaka. Tiny shop, always a queue, but it moves fast. 5 min walk from the path's south end.</div>
-<div class="card-meta"><span class="meta-pill">¥800–1,000</span><span class="meta-pill">Walk-in · Opens 11am</span><span class="meta-pill">🍛 GET: Special Curry Udon (特カレーうどん)</span></div>
+<div class="desc">Kyoto soul food. Thick udon in a rich, spicy curry broth with tender beef — unlike anything in Tokyo or Osaka. 5 min walk from the path's south end.</div>
+<div class="card-meta"><span class="meta-pill">¥800–1,000</span><span class="meta-pill">Walk-in · Opens 11am</span><span class="meta-pill">🍛 GET: Special Curry Udon (特カレーうどん)</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Hinode+Udon+Kyoto&ll=35.0110,135.7910" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
@@ -673,13 +685,17 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="img-title">Omen Nanzenji — Sesame Udon Dipping Noodles<small>おめん南禅寺店 · Tabelog 3.55 · Kyoto-born chain</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Kyoto original: thick white udon with a rich sesame dipping broth and a plate of fresh vegetables. Started in Kyoto — this Nanzen-ji branch has garden seating. The sesame-miso tsukemen style was invented here.</div>
-<div class="card-meta"><span class="meta-pill">¥1,200–1,600</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Omen Udon (おめん) + veggie plate</span></div>
+<div class="desc">Kyoto original: thick white udon with a rich sesame dipping broth and a plate of fresh vegetables. Nanzen-ji branch has garden seating.</div>
+<div class="card-meta"><span class="meta-pill">¥1,200–1,600</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Omen Udon (おめん) + veggie plate</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Omen+Nanzenji+Kyoto&ll=35.0115,135.7925" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
+</div>
+</details>
+
 <!-- 9:40 AM SMART COFFEE — PROPER BREAKFAST -->
-<div class="time-block" id="act-smart-coffee"><span class="clock">☕</span> 9:30 – 10:10 AM · Smart Coffee — Full Breakfast</div>
+<div class="time-block" id="act-smart-coffee"><span class="step-num">STEP 2</span><span class="clock">☕</span> 9:30 – 10:10 AM · Smart Coffee — Full Breakfast</div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1932 · Kyoto institution</span>
@@ -711,7 +727,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 10:25 AM KINKAKU-JI (COMPRESSED) -->
-<div class="time-block" id="act-kinkakuji"><span class="clock">🏯</span> 10:25 – 11:05 AM · Kinkaku-ji (Golden Pavilion) — Compressed</div>
+<div class="time-block" id="act-kinkakuji"><span class="step-num">STEP 3</span><span class="clock">🏯</span> 10:25 – 11:05 AM · Kinkaku-ji</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/800px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg')">
@@ -732,20 +748,23 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </span></div>
 </div>
 
-<div class="tip">🍵 <strong>Right at Kinkaku-ji exit:</strong> Quick Kyoto-only snacks before the bus to Nishiki</div>
-
+<details class="food-nearby">
+<summary>🍵 Kinkaku-ji exit snacks (matcha soft serve + gold leaf)</summary>
+<div class="food-nearby-inner">
 <div class="img-card">
 <div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Green_tea_ice_cream_1.jpg/960px-Green_tea_ice_cream_1.jpg')">
-<div class="img-title">Kinkaku-ji Exit — Matcha Soft Serve + Gold Leaf<small>金閣寺参道 · Street stalls · Walk-in</small></div>
+<div class="img-title">Kinkaku-ji Exit — Matcha Soft Serve + Gold Leaf<small>金閣寺参道 · Street stalls</small></div>
 </div>
 <div class="img-body">
-<div class="desc">The approach street has matcha soft serve topped with gold leaf (fitting for the Golden Pavilion). Kyoto matcha is Uji-sourced and darker/more bitter than anywhere else. Also look for yatsuhashi samples at the souvenir shops — free tasting.</div>
+<div class="desc">Matcha soft serve topped with gold leaf. Uji-sourced, darker/more bitter than anywhere else. Free yatsuhashi samples at souvenir shops.</div>
 <div class="card-meta"><span class="meta-pill">¥400–600</span><span class="meta-pill">Street stall</span><span class="meta-pill">🍦 GET: Gold leaf matcha soft serve</span></div>
 </div>
 </div>
+</div>
+</details>
 
 <!-- 11:35 AM NISHIKI -->
-<div class="time-block" id="act-nishiki"><span class="clock">🍢</span> 11:35 AM – 12:50 PM · Nishiki Market Street Food Crawl</div>
+<div class="time-block" id="act-nishiki"><span class="step-num">STEP 4</span><span class="clock">🍢</span> 11:35 AM – 12:50 PM · Nishiki Market</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/800px-Nishiki_Ichiba_by_matsuyuki.jpg')">
@@ -781,7 +800,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
 
 <!-- 12:50 PM LUNCH -->
-<div class="time-block" id="act-lunch"><span class="clock">🍴</span> 12:50 – 1:35 PM · Lunch — Tap to Choose</div>
+<div class="time-block" id="act-lunch"><span class="step-num">STEP 5</span><span class="clock">🍴</span> 12:50 – 1:35 PM · Lunch — Tap to Choose</div>
 
 <div class="food-group" data-group="lunch">
 <div class="food-group-title">👆 Tap a card to choose your lunch</div>
@@ -794,7 +813,8 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="card-name">Chuka-Soba Rantan</div>
 <div class="card-jp">中華そば らんたん · Near Nishiki</div>
 <div class="card-desc">Kyoto's highest-rated ramen. Clear chicken-shoyu broth, thin wavy noodles. 10 seats, line down the street. Only location.</div>
-<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🚶 5 min from Nishiki</span></div>
+<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🚶 5 min from Nishiki</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Chuka+Soba+Rantan+Kyoto&ll=35.0045,135.7660" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 <span class="pick-label">Tap to choose</span>
@@ -834,7 +854,8 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 <div class="img-body">
 <div class="desc">The oldest soba restaurant in Japan — serving buckwheat noodles since 1465. Signature hourai soba comes in five stacking lacquer boxes, each with a different topping.</div>
-<div class="card-meta"><span class="meta-pill">¥1,600–2,200</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Hourai Soba (宝来そば) — 5-tier boxes</span></div>
+<div class="card-meta"><span class="meta-pill">¥1,600–2,200</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Hourai Soba (宝来そば) — 5-tier boxes</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Honke+Owariya+Kyoto&ll=35.0090,135.7620" target="_blank">📍 Maps</a></div>
 </div>
 <span class="pick-label">Tap to choose</span>
 </div>
@@ -845,7 +866,8 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 <div class="img-body">
 <div class="desc">Sweet simmered herring on hot soba — invented in Kyoto because the city is landlocked and relied on dried fish. THE most "only in Kyoto" noodle dish. Near Shijo, easy walk from Nishiki.</div>
-<div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🐟 GET: Nishin Soba (にしん蕎麦)</span></div>
+<div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🐟 GET: Nishin Soba (にしん蕎麦)</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Honke+Tagoto+Kyoto&ll=35.0060,135.7660" target="_blank">📍 Maps</a></div>
 </div>
 <span class="pick-label">Tap to choose</span>
 </div>
@@ -856,7 +878,8 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 <div class="img-body">
 <div class="desc">The chef pours hot oil into your bowl and ignites a 1-meter flame at your seat. Rich miso broth, thick noodles. Only one location in the world — 10 min taxi from Nishiki.</div>
-<div class="card-meta"><span class="meta-pill">¥900</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🔥 GET: Negi Ramen (ネギラーメン) — the fire one</span></div>
+<div class="card-meta"><span class="meta-pill">¥900</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🔥 GET: Negi Ramen (ネギラーメン) — the fire one</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Menbakaichidai+Kyoto&ll=35.0310,135.7560" target="_blank">📍 Maps</a></div>
 </div>
 <span class="pick-label">Tap to choose</span>
 </div>
@@ -865,7 +888,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 1:50 PM FUSHIMI INARI (SENBON TORII ONLY) -->
-<div class="time-block" id="act-fushimi-inari"><span class="clock">⛩️</span> 1:50 – 2:35 PM · Fushimi Inari — Senbon Torii Gates</div>
+<div class="time-block" id="act-fushimi-inari"><span class="step-num">STEP 6</span><span class="clock">⛩️</span> 1:50 – 2:35 PM · Fushimi Inari</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/800px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg')">
@@ -894,7 +917,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 2:45 PM KIYOMIZU-DERA -->
-<div class="time-block" id="act-kiyomizu"><span class="clock">🏯</span> 2:45 – 4:15 PM · Kiyomizu-dera + Higashiyama Lanes</div>
+<div class="time-block" id="act-kiyomizu"><span class="step-num">STEP 7</span><span class="clock">🏯</span> 2:45 – 4:15 PM · Kiyomizu-dera + Lanes</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/800px-Kiyomizu.jpg')">
@@ -918,86 +941,96 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 
 <div class="tip">🚶 <strong>After Kiyomizu:</strong> Walk downhill through Ninen-zaka → Sannen-zaka → Gion (30 min stroll through Kyoto's most atmospheric streets). Free, no taxi needed. This naturally leads to the Kamo River and Pontocho for dinner.</div>
 
-<div class="tip">🌸 <strong>Kyoto-only stops on the walk down:</strong> Shichimiya (shichimi since 1655) → Kanshundo (seasonal wagashi) → Kasagiya (warabi mochi) → Nanaya (matcha gelato) → Issen Yoshoku (Kyoto crepe) → Kagizen (kuzukiri) → Tsujiri (matcha parfait)</div>
+<details class="food-nearby" open>
+<summary>🌸 7 Kyoto-only food + souvenir stops on the walk down (tap each for details)</summary>
+<div class="food-nearby-inner">
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Shichimi_001.jpg')">
-<div class="img-title">Shichimiya Honpo — Shichimi Since 1655<small>七味家本舗 · Top of Kiyomizu-zaka · 370 years old</small></div>
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Shichimi_001.jpg')">
+<div class="img-title">① Shichimiya Honpo — Shichimi Since 1655<small>七味家本舗 · Top of Kiyomizu-zaka</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Kyoto-style shichimi togarashi emphasizes sansho pepper and nori over raw heat — a fundamentally different blend from Tokyo's Yagenbori. Operating at this exact spot since 1655. Perfect edible souvenir you literally cannot get outside this shop.</div>
-<div class="card-meta"><span class="meta-pill">¥500–700</span><span class="meta-pill">Top of Kiyomizu-zaka</span><span class="meta-pill">🌶️ GET: Kyoto Shichimi tin (京七味)</span></div>
+<div class="desc">Kyoto-style shichimi — sansho pepper + nori over raw heat. 370 years at this spot. Edible souvenir you can't get anywhere else.</div>
+<div class="card-meta"><span class="meta-pill">¥500–700</span><span class="meta-pill">🌶️ GET: Kyoto Shichimi tin</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Shichimiya+Honpo+Kiyomizu+Kyoto&ll=34.9955,135.7845" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Namagashi.jpg/960px-Namagashi.jpg')">
-<div class="img-title">Kanshundo — Seasonal Namagashi Art<small>甘春堂 · est. 1865 · Higashiyama · Walk-in</small></div>
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Namagashi.jpg/960px-Namagashi.jpg')">
+<div class="img-title">② Kanshundo — March Namagashi Art<small>甘春堂 · est. 1865</small></div>
 </div>
 <div class="img-body">
-<div class="desc">March-specific namagashi (fresh wagashi): sakura and spring flower designs that are edible art. Kyoto is the undisputed capital of wagashi — these aesthetics are not replicated elsewhere. Sit in-shop with matcha for ¥800.</div>
-<div class="card-meta"><span class="meta-pill">¥400–800</span><span class="meta-pill">On the walk down</span><span class="meta-pill">🌸 GET: Seasonal namagashi + matcha set</span></div>
+<div class="desc">March-specific edible art: sakura wagashi + matcha set ¥800. Kyoto's finest.</div>
+<div class="card-meta"><span class="meta-pill">¥400–800</span><span class="meta-pill">🌸 GET: Seasonal namagashi + matcha</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Kanshundo+Higashiyama+Kyoto&ll=34.9960,135.7835" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
 <div class="card">
-<span class="card-label label-kyoto">Sannen-zaka · est. 1914</span>
 <div class="card-top">
 <div class="card-emoji">🍡</div>
 <div class="card-info">
-<div class="card-name">Kasagiya — Warabi Mochi on the Lanes</div>
-<div class="card-jp">かさぎ屋 · 三年坂 · Tabelog 3.6</div>
-<div class="card-desc">A tiny wooden shop on Sannen-zaka, open since 1914. Famous for warabi mochi (bracken fern jelly dusted in kinako flour) and oshiruko (sweet red bean soup). Grab a takeaway cup and eat on the stone steps — the most Kyoto moment possible.</div>
-<div class="card-meta"><span class="meta-pill">¥600–800</span><span class="meta-pill">On your walk down</span><span class="meta-pill">Walk-in</span></div>
+<div class="card-name">③ Kasagiya — Warabi Mochi (est. 1914)</div>
+<div class="card-jp">かさぎ屋 · 三年坂</div>
+<div class="card-desc">Bracken jelly dusted in kinako. Eat on the stone steps.</div>
+<div class="card-meta"><span class="meta-pill">¥600–800</span><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Kasagiya+Sannen-zaka+Kyoto&ll=34.9982,135.7808" target="_blank">📍 Maps</a></div>
 </div>
+</div>
+</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Matcha_ice_cream_001.jpg/960px-Matcha_ice_cream_001.jpg')">
+<div class="img-title">④ Nanaya — World's Strongest Matcha Gelato<small>ななや京都 · 7 levels · Ninen-zaka</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Level 7 = most concentrated matcha ice cream on the planet. Pitch dark green, intensely bitter, unforgettable.</div>
+<div class="card-meta"><span class="meta-pill">¥400–600</span><span class="meta-pill">🍦 GET: Level 7 Premium</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Nanaya+Kyoto+Ninen-zaka&ll=34.9990,135.7800" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg/960px-Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg')">
+<div class="img-title">⑤ Issen Yoshoku — Kyoto Street Crepe<small>壹銭洋食 · Gion · est. Taisho era</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Savory crepe with green onion, beef tendon, shrimp, egg. Wild retro interior. ¥700, uniquely Kyoto.</div>
+<div class="card-meta"><span class="meta-pill">¥700</span><span class="meta-pill">🥞 Walk-in · Gion</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Issen+Yoshoku+Gion+Kyoto&ll=35.0030,135.7745" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
 <div class="card">
-<span class="card-label label-kyoto">Gion · est. 1789</span>
 <div class="card-top">
 <div class="card-emoji">🍮</div>
 <div class="card-info">
-<div class="card-name">Kagizen Yoshifusa — Gion's Oldest Sweet Shop</div>
-<div class="card-jp">鍵善良房 · 祇園四条 · Tabelog 3.65</div>
-<div class="card-desc">Kyoto's most revered wagashi shop. Their kuzukiri (くずきり) — translucent kuzu jelly strips in cold syrup, either black sugar or white — is one of Kyoto's most distinctive sweets. Sit in the back tatami room for ¥1,200. You won't find this in Osaka.</div>
-<div class="card-meta"><span class="meta-pill">¥1,000–1,400</span><span class="meta-pill">On the Gion walk</span><span class="meta-pill">Walk-in · closes 6pm</span></div>
+<div class="card-name">⑥ Kagizen Yoshifusa — Kuzukiri (est. 1789)</div>
+<div class="card-jp">鍵善良房 · 祇園四条</div>
+<div class="card-desc">Translucent kuzu jelly strips in cold syrup. Sit in the back tatami room. You won't find this in Osaka.</div>
+<div class="card-meta"><span class="meta-pill">¥1,000–1,400</span><span class="meta-pill">Walk-in · closes 6pm</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Kagizen+Yoshifusa+Gion+Kyoto&ll=35.0040,135.7755" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 </div>
 
 <div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Matcha_ice_cream_001.jpg/960px-Matcha_ice_cream_001.jpg')">
-<div class="img-title">Nanaya Kyoto — World's Strongest Matcha Gelato<small>ななや京都 · 7 levels of matcha · Only in Kyoto + Shizuoka</small></div>
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/14/KyotoTsujiri.jpg')">
+<div class="img-title">⑦ Gion Tsujiri — Matcha Parfait<small>祇園辻利 · est. 1860 · Gion corner</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Seven intensity levels of matcha gelato — from level 1 (mild) to level 7 (the most concentrated matcha ice cream on the planet). Level 7 is pitch dark green, intensely bitter, and unforgettable. On Ninen-zaka, right on your walking route down from Kiyomizu.</div>
-<div class="card-meta"><span class="meta-pill">¥400–600</span><span class="meta-pill">On Ninen-zaka (your walk)</span><span class="meta-pill">🍦 GET: Level 7 Premium (No. 7 抹茶)</span></div>
+<div class="desc">THE matcha parfait: jelly, shiratama, red bean, matcha ice cream. Kyoto matcha institution since 1860.</div>
+<div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">🍨 15 min queue · Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Gion+Tsujiri+Kyoto&ll=35.0038,135.7710" target="_blank">📍 Maps</a></div>
 </div>
 </div>
 
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/14/KyotoTsujiri.jpg')">
-<div class="img-title">Gion Tsujiri — Matcha Parfait<small>祇園辻利 · est. 1860 · Gion corner · Walk-in</small></div>
 </div>
-<div class="img-body">
-<div class="desc">The matcha institution of Gion — est. 1860 as a tea merchant, now Kyoto's most famous matcha café. Their towering matcha parfait with jelly, shiratama, red bean, and matcha ice cream is THE Kyoto matcha experience. Right on Shijo-dori at the Gion corner.</div>
-<div class="card-meta"><span class="meta-pill">¥1,200–1,500</span><span class="meta-pill">Walk-in (15 min queue)</span><span class="meta-pill">🍨 GET: Tsujiri Matcha Parfait (特選抹茶パフェ)</span></div>
-</div>
-</div>
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg/960px-Issen_Yoshoku_Gion_Store_%2850910225678%29.jpg')">
-<div class="img-title">Issen Yoshoku — Kyoto Street Food Original<small>壹銭洋食 · Gion · Taisho-era savory crepe · Walk-in</small></div>
-</div>
-<div class="img-body">
-<div class="desc">A thin savory crepe stuffed with green onion, beef tendon, konjac, shrimp, and egg — invented in Taisho-era Kyoto. Wild retro interior with hundreds of vintage posters. The original shop is right here in Gion on your walk. Fun, fast, cheap, and uniquely Kyoto.</div>
-<div class="card-meta"><span class="meta-pill">¥700</span><span class="meta-pill">Walk-in · Gion</span><span class="meta-pill">🥞 GET: Issen Yoshoku (壹銭洋食)</span></div>
-</div>
-</div>
+</details>
 
 <!-- 4:30 PM GION + KAMO RIVER -->
-<div class="time-block" id="act-gion"><span class="clock">🌅</span> 4:30 – 5:30 PM · Gion → Kamo River Sunset</div>
+<div class="time-block" id="act-gion"><span class="step-num">STEP 8</span><span class="clock">🌅</span> 4:30 – 5:30 PM · Gion + Sunset</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/800px-150124_Gion_Kyoto_Japan01s3.jpg')">
@@ -1015,7 +1048,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 5:30 PM DINNER -->
-<div class="time-block" id="act-dinner"><span class="clock">🍴</span> 5:30 – 7:00 PM · Dinner in Pontocho — Tap to Choose</div>
+<div class="time-block" id="act-dinner"><span class="step-num">STEP 9</span><span class="clock">🍴</span> 5:30 – 7:00 PM · Dinner — Tap to Choose</div>
 
 <div class="food-group" data-group="dinner">
 <div class="food-group-title">👆 Tap a card to choose your dinner</div>
@@ -1083,7 +1116,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 7:10 PM LATE RAMEN -->
-<div class="time-block" id="act-shinpuku"><span class="clock">🌙</span> ~7:10 PM · Shinpuku Saikan — No Rush</div>
+<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 10</span><span class="clock">🌙</span> ~7:10 PM · Shinpuku Saikan</div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1938 · Only in Kyoto</span>
