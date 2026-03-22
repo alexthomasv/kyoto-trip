@@ -102,6 +102,44 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .share-bar p{font-size:.88rem;color:#555;margin-bottom:8px}
 .share-btn{display:inline-block;padding:8px 20px;background:#2d1a00;color:#f5d78e;border-radius:20px;font-size:.82rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;margin:4px}
 .share-btn:hover{background:#5a3a10}
+
+/* LIVE STATUS BANNER */
+.status-banner{background:linear-gradient(135deg,#2d1a00,#3d2200);padding:16px 20px;text-align:center;border-bottom:2px solid #5a3a10;position:relative}
+.status-banner .status-line{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.status-dot{width:10px;height:10px;background:#f5d78e;border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(245,215,142,.7)}50%{opacity:.7;box-shadow:0 0 0 8px rgba(245,215,142,0)}}
+.status-location{color:#f5d78e;font-size:.95rem;font-weight:700}
+.status-detail{color:#c4997a;font-size:.82rem}
+.status-clock{color:#888;font-size:.75rem;margin-top:6px}
+
+/* TRIP PHOTOS */
+.trip-photo{border-radius:12px;overflow:hidden;margin:10px 0;box-shadow:0 2px 14px rgba(0,0,0,.1)}
+.trip-photo img{width:100%;display:block}
+.trip-photo .photo-caption{background:#fff;padding:10px 14px;font-size:.84rem;color:#444}
+.trip-photo .photo-meta{font-size:.72rem;color:#999;margin-top:4px}
+
+/* COMPLETED ACTIVITIES */
+.done{opacity:.5;position:relative}
+.done::before{content:"✓";position:absolute;top:14px;right:16px;background:#2d7a4f;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;z-index:2}
+
+/* CLOTHES CARD */
+.clothes-card{background:linear-gradient(135deg,#fdf8f0,#f5eed8);border-radius:10px;padding:16px 20px;margin-bottom:18px;border:1px dashed #d4b896;position:relative}
+.clothes-card .clothes-title{font-size:.92rem;font-weight:700;color:#2d1a00;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.clothes-card .clothes-body{font-size:.85rem;color:#444;line-height:1.7}
+.clothes-card .clothes-body strong{color:#2d1a00}
+
+/* ROUTE OPTIMIZER */
+.route-card{background:#fff;border-radius:10px;padding:18px 20px;margin-bottom:18px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:3px solid #2d7a4f}
+.route-card .route-title{font-size:1rem;font-weight:700;color:#2d1a00;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.route-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.route-table th{text-align:left;padding:6px 8px;background:#f5f0e8;color:#5a4020;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px}
+.route-table td{padding:6px 8px;border-bottom:1px solid #f0e8d8;color:#444}
+.route-table .rt-mode{font-weight:600;color:#2d1a00}
+.route-total{display:flex;justify-content:space-between;margin-top:10px;padding:10px 8px;background:#e8f5ee;border-radius:6px;font-size:.85rem;font-weight:700;color:#1a6b3a}
+
+/* REPLANNED TIP */
+.replanned-tip{background:linear-gradient(135deg,#fff8e1,#fff3cd);border-left:4px solid #f5d78e;padding:12px 16px;border-radius:0 10px 10px 0;margin-bottom:18px;font-size:.85rem;color:#5a3800}
+.replanned-tip strong{color:#2d1a00}
 </style>
 <script>
 function copyAddr(text){
@@ -120,6 +158,17 @@ function fallbackCopy(text,cb){
   try{document.execCommand('copy');cb();}catch(e){}
   document.body.removeChild(el);
 }
+function updateClock(){
+  const now=new Date();
+  const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const h=jst.getHours(),m=jst.getMinutes();
+  const ampm=h>=12?'PM':'AM';
+  const h12=h%12||12;
+  const mStr=m<10?'0'+m:m;
+  const el=document.getElementById('jst-clock');
+  if(el) el.textContent='🕐 '+h12+':'+mStr+' '+ampm+' JST · '+jst.toLocaleDateString('en-US',{timeZone:'Asia/Tokyo',weekday:'short',month:'short',day:'numeric'});
+}
+document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);});
 </script>
 </head>
 <body>
@@ -139,7 +188,36 @@ function fallbackCopy(text,cb){
 <a href="#shopping">Shopping</a>
 </div>
 
+<div class="status-banner">
+<div class="status-line">
+<span class="status-dot"></span>
+<span class="status-location">Currently at Umekoji Potel</span>
+<span class="status-detail">· Haven't departed yet</span>
+</div>
+<div class="status-clock" id="jst-clock">🕐 Loading JST...</div>
+</div>
+
 <div class="container">
+
+<!-- ROUTE OPTIMIZER -->
+<div class="route-card" id="route-optimizer">
+<div class="route-title">🗺️ Today's Optimized Route — from Umekoji Potel</div>
+<table class="route-table">
+<tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
+<tr><td>Hotel → Philosopher's Path</td><td class="rt-mode">🚕 Taxi</td><td>~15 min</td><td>¥1,800</td></tr>
+<tr><td>Path → Smart Coffee</td><td class="rt-mode">🚶 Walk</td><td>~20 min</td><td>Free</td></tr>
+<tr><td>Smart Coffee → Kinkaku-ji</td><td class="rt-mode">🚕 Taxi</td><td>~15 min</td><td>¥1,600</td></tr>
+<tr><td>Kinkaku-ji → Nishiki Market</td><td class="rt-mode">🚌 Bus 59</td><td>~30 min</td><td>¥230</td></tr>
+<tr><td>Lunch area → Fushimi Inari</td><td class="rt-mode">🚕 Taxi</td><td>~12 min</td><td>¥1,500</td></tr>
+<tr><td>Fushimi Inari → Kiyomizu-dera</td><td class="rt-mode">🚕 Taxi</td><td>~10 min</td><td>¥1,200</td></tr>
+<tr><td>Kiyomizu → Gion → Pontocho</td><td class="rt-mode">🚶 Walk</td><td>~25 min</td><td>Free</td></tr>
+<tr><td>Pontocho → Shinpuku Saikan</td><td class="rt-mode">🚕 Taxi</td><td>~8 min</td><td>¥1,000</td></tr>
+</table>
+<div class="route-total">
+<span>Total transit: ~2h 15min</span>
+<span>Total cost: ~¥7,330</span>
+</div>
+</div>
 
 <!-- ═══════════════════════════════════════════ -->
 <!-- DAY 2 — MONDAY MARCH 23 — FULL DAY KYOTO -->
@@ -151,16 +229,31 @@ function fallbackCopy(text,cb){
 <span class="sub">5 iconic landmarks + food</span>
 </div>
 
-<!-- 6:30 AM PHILOSOPHER'S PATH -->
-<div class="time-block"><span class="clock">⏰</span> 6:30 – 8:00 AM · Cherry Blossoms at Dawn</div>
+<div class="replanned-tip">
+⏳ <strong>Replanned ~9:00 AM</strong> — Late start from Umekoji Potel. Schedule shifted +2.5 hrs. Dropped: mountain hike at Fushimi Inari. Compressed: Kinkaku-ji (40 min), Smart Coffee (grab-and-go). All 5 landmarks still fit.
+</div>
+
+<div class="clothes-card">
+<div class="clothes-title">👔 What to Wear Today</div>
+<div class="clothes-body">
+<span class="meta-pill">10–17°C (50–63°F)</span> <span class="meta-pill">Chance of light rain</span><br><br>
+<strong>Outfit:</strong> Layers — light jacket or hoodie over a tee, comfortable walking shoes (15,000+ steps today)<br>
+<strong>Footwear:</strong> Sneakers (lots of walking + temple steps + Fushimi Inari climb)<br>
+<strong>Bag:</strong> Crossbody bag for snacks, souvenirs, and phone<br>
+<strong>Extras:</strong> Compact umbrella (spring showers), sunglasses, phone battery pack
+</div>
+</div>
+
+<!-- ~9:15 AM PHILOSOPHER'S PATH -->
+<div class="time-block" id="act-philosophers-path"><span class="clock">⏰</span> ~9:15 – 10:15 AM · Cherry Blossoms on the Canal</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/800px-Japan_Kyoto_philosophers_walk_DSC00297.jpg')">
-<div class="img-title">Philosopher's Path — Cherry Blossom Tunnel<small>哲学の道 · Free · Best before 8am</small></div>
+<div class="img-title">Philosopher's Path — Cherry Blossom Tunnel<small>哲学の道 · Free · 1 hour walk</small></div>
 </div>
 <div class="img-body">
-<div class="desc">2km canal path lined with hundreds of cherry trees. Late March is peak bloom — the canopy forms a pink tunnel over the water. At 6:30am you'll share it with a dozen joggers. By 10am it's shoulder-to-shoulder.</div>
-<div class="tip">🌸 <strong>Cherry blossom tip:</strong> Best light is 7–7:30am golden hour. The reflection of pink petals in the canal is the shot.</div>
+<div class="desc">2km canal path lined with hundreds of cherry trees. Late March is peak bloom — the canopy forms a pink tunnel over the water. Mid-morning will be busier than dawn, but still gorgeous and the cherry blossoms don't care what time you arrive.</div>
+<div class="tip">🌸 <strong>Cherry blossom tip:</strong> Morning light still hits beautifully at 9–10am. The reflection of pink petals in the canal is the shot.</div>
 </div>
 </div>
 
@@ -172,28 +265,27 @@ function fallbackCopy(text,cb){
 <div class="addr-box" onclick="copyAddr('銀閣寺橋 哲学の道 北端')"><strong>銀閣寺橋 哲学の道 北端</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?ll=35.0272,135.7983&q=Philosopher%27s+Path+North" target="_blank">📍 Maps</a>
 </span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~45 min leisurely, 2km)</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~1 hour leisurely, 2km)</span></div>
 </div>
 
-<!-- 8:00 AM BREAKFAST -->
-<div class="time-block"><span class="clock">☕</span> 8:00 – 9:00 AM · Kyoto-Exclusive Breakfast</div>
+<!-- 10:15 AM SMART COFFEE — QUICK GRAB -->
+<div class="time-block" id="act-smart-coffee"><span class="clock">☕</span> 10:15 – 10:35 AM · Smart Coffee — Quick Grab-and-Go</div>
 
-<div class="tip">🗺️ <strong>Route tip:</strong> Smart Coffee is ~20 min walk west from the path's south end — it sits right between Philosopher's Path and Kinkaku-ji, so the east→central→northwest flow is actually linear. <em>Want to skip the detour?</em> See the local option below.</div>
-
-<div class="img-card">
-<div class="img-banner" style="background-image:url('https://source.unsplash.com/800x400/?kyoto,cafe,coffee,japan')">
-<div class="img-title">Smart Coffee — Main Store<small>スマート珈琲店 · Teramachi-Sanjo · est. 1932</small></div>
-</div>
-<div class="img-body">
-<span class="card-label label-kyoto" style="position:static;display:inline-block;margin-bottom:8px">est. 1932 · Kyoto institution</span>
-<div class="desc">Kyoto's most iconic kissaten, unchanged since 1932. Dark wood, jazz on vinyl, hand-drip coffee. Their tamago sando and hotcakes are the reason people queue. Only exists here.</div>
+<div class="card">
+<span class="card-label label-kyoto">est. 1932 · Kyoto institution</span>
+<div class="card-top">
+<div class="card-emoji">☕</div>
+<div class="card-info">
+<div class="card-name">Smart Coffee — Main Store</div>
+<div class="card-jp">スマート珈琲店 · Teramachi-Sanjo · est. 1932</div>
+<div class="card-desc">Quick stop at Kyoto's most iconic kissaten. Grab a tamago sando + hand-drip coffee to go. 20 min max — eat on the move toward Kinkaku-ji.</div>
 <div class="dishes">
-<div class="dishes-title">🍴 What to order</div>
-<div class="dish"><strong>Hotcakes (ホットケーキ)</strong> — thick, fluffy, golden with butter + maple · ¥700</div>
+<div class="dishes-title">🍴 Grab and go</div>
 <div class="dish"><strong>Tamago Sando (たまごサンド)</strong> — legendary thick egg sandwich · ¥650</div>
 <div class="dish"><strong>Hand-drip coffee</strong> — roasted in-house since 1932 · ¥500</div>
 </div>
-<div class="card-meta"><span class="meta-pill">¥1,000–1,500</span><span class="meta-pill">Opens 8am</span><span class="meta-pill">Cash only</span></div>
+<div class="card-meta"><span class="meta-pill">¥1,000–1,200</span><span class="meta-pill">20 min stop</span><span class="meta-pill">Cash only</span></div>
+</div>
 </div>
 </div>
 
@@ -201,38 +293,21 @@ function fallbackCopy(text,cb){
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">South end of Philosopher's Path (Nanzen-ji area)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Smart Coffee (Teramachi-Sanjo)</span></div>
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">~20 min through Okazaki area (flat, pleasant)</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">OR Taxi</span><span class="t-value">~¥1,000 · 8 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('京都市中京区寺町通三条上ル天性寺前町537')"><strong>京都市中京区寺町通三条上ル天性寺前町537</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?q=Smart+Coffee+%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E7%8F%88%E7%90%B2%E5%BA%97+Kyoto" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
-<div class="option-or"><span>OR — SKIP THE DETOUR · LOCAL OPTION</span></div>
-
-<div class="card">
-<span class="card-label label-walkin">Near path south end · Opens 8am</span>
-<div class="card-top">
-<div class="card-emoji">🍵</div>
-<div class="card-info">
-<div class="card-name">Okazaki Area Cafés — Near Nanzen-ji</div>
-<div class="card-jp">岡崎エリア · 南禅寺周辺</div>
-<div class="card-desc">Several small bakeries and cafés dot the Okazaki/Heian Shrine area, a 5-min walk from the path's south end. Try <strong>Shizuka</strong> for matcha latte and a pastry, or grab an onigiri from a convenience store and eat by the Okazaki canal. Then taxi directly from Nanzen-ji to Kinkaku-ji — saves 20+ min of backtracking west.</div>
-<div class="tip">💡 <strong>If skipping Smart Coffee:</strong> Take a ¥1,400 taxi direct from Nanzen-ji area to Kinkaku-ji (25 min). Arrive at the gate right at 9am opening — no lines yet.</div>
-<div class="card-meta"><span class="meta-pill">¥400–800</span><span class="meta-pill">Saves ~25 min</span><span class="meta-pill">5 min walk from path</span></div>
-</div>
-</div>
-</div>
-
-<!-- 9:10 AM KINKAKU-JI -->
-<div class="time-block"><span class="clock">🏯</span> 9:10 – 10:15 AM · Kinkaku-ji (Golden Pavilion)</div>
+<!-- 10:50 AM KINKAKU-JI (COMPRESSED) -->
+<div class="time-block" id="act-kinkakuji"><span class="clock">🏯</span> 10:50 – 11:30 AM · Kinkaku-ji (Golden Pavilion) — Compressed</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/800px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg')">
-<div class="img-title">Kinkaku-ji — Golden Pavilion<small>鹿苑寺 金閣 · ¥500 entry · Opens 9am</small></div>
+<div class="img-title">Kinkaku-ji — Golden Pavilion<small>鹿苑寺 金閣 · ¥500 entry · 40 min circuit</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Gold-leaf pavilion reflected in its mirror pond. Arrive right at 9am opening before tour buses. Walk-through takes 30–45 min through the garden circuit. Your entry ticket doubles as a calligraphy charm.</div>
+<div class="desc">Gold-leaf pavilion reflected in its mirror pond. 40-min compressed visit: garden circuit + the iconic pond reflection photo. Your entry ticket doubles as a calligraphy charm. Busier than 9am but still manageable mid-morning.</div>
 </div>
 </div>
 
@@ -246,8 +321,8 @@ function fallbackCopy(text,cb){
 </span></div>
 </div>
 
-<!-- 10:30 AM NISHIKI -->
-<div class="time-block"><span class="clock">🍢</span> 10:30 – 12:00 PM · Nishiki Market Street Food Crawl</div>
+<!-- 12:00 PM NISHIKI -->
+<div class="time-block" id="act-nishiki"><span class="clock">🍢</span> 12:00 – 1:15 PM · Nishiki Market Street Food Crawl</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/800px-Nishiki_Ichiba_by_matsuyuki.jpg')">
@@ -281,8 +356,8 @@ function fallbackCopy(text,cb){
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
 
-<!-- 12:00 PM LUNCH -->
-<div class="time-block"><span class="clock">🍴</span> 12:00 – 1:00 PM · Lunch — Pick One</div>
+<!-- 1:15 PM LUNCH -->
+<div class="time-block" id="act-lunch"><span class="clock">🍴</span> 1:15 – 2:00 PM · Lunch — Pick One</div>
 
 <div class="card">
 <span class="card-label label-top">⭐ Yelp 4.9 (478 reviews)</span>
@@ -327,39 +402,37 @@ function fallbackCopy(text,cb){
 </div>
 </div>
 
-<!-- 1:30 PM FUSHIMI INARI -->
-<div class="time-block"><span class="clock">⛩️</span> 1:30 – 3:15 PM · Fushimi Inari Taisha</div>
+<!-- 2:15 PM FUSHIMI INARI (SENBON TORII ONLY) -->
+<div class="time-block" id="act-fushimi-inari"><span class="clock">⛩️</span> 2:15 – 3:00 PM · Fushimi Inari — Senbon Torii Gates</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/800px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg')">
-<div class="img-title">Fushimi Inari Taisha — Thousand Torii Gates<small>伏見稲荷大社 千本鳥居 · Free · 24 hours</small></div>
+<div class="img-title">Fushimi Inari — Senbon Torii Tunnel<small>伏見稲荷大社 千本鳥居 · Free · 45 min</small></div>
 </div>
 <div class="img-body">
-<div class="desc">THE most iconic image of Japan — thousands of vermillion torii gates tunneling up a mountainside. Free to enter, open 24 hours. The main torii tunnel (Senbon Torii) takes 15–20 min. Going halfway up (to the Yotsutsuji intersection viewpoint) takes about 45 min and gives you panoramic views over all of Kyoto. Afternoon light filtering through the orange gates is gorgeous.</div>
-<div class="tip">💡 <strong>Pro tip:</strong> Most tourists only do the first 10 min. Keep going past the first fork — the crowds thin dramatically. The Yotsutsuji viewpoint (halfway) is the sweet spot.</div>
+<div class="desc">THE most iconic image of Japan — thousands of vermillion torii gates tunneling up a mountainside. Focused visit: walk the main Senbon Torii tunnel (the iconic double-row gates), snap photos in the vermillion corridor, and head back. 45 min is perfect for the gates experience without the full mountain hike.</div>
+<div class="tip">📸 <strong>Photo tip:</strong> The best shots are in the tunnel itself. Wait for a brief gap in foot traffic — afternoon light filtering through the orange gates is gorgeous.</div>
 <div class="dishes">
-<div class="dishes-title">🍴 Approach street food + mid-mountain teahouse</div>
+<div class="dishes-title">🍴 Approach street food (grab on the way in/out)</div>
 <div class="dish"><strong>Inari sushi</strong> — sweet fried tofu pockets with sushi rice. Named after this shrine. · ¥200–300</div>
 <div class="dish"><strong>Suzume-yaki</strong> — sparrow/fox-shaped cakes with sweet red bean · ¥200</div>
-<div class="dish"><strong>Grilled rice skewers (yakimochi)</strong> — miso-glazed, perfect hiking fuel · ¥200–400</div>
-<div class="dish"><strong>Nishimura-ya Teahouse (西村屋)</strong> — right at Yotsutsuji viewpoint, halfway up. Cold matcha lemonade + azuki parfait while overlooking all of Kyoto · ¥400–700</div>
+<div class="dish"><strong>Grilled rice skewers (yakimochi)</strong> — miso-glazed, great snack · ¥200–400</div>
 </div>
 </div>
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Nishiki Market area / lunch spot</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Lunch spot (Nishiki area)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Fushimi Inari Taisha</span></div>
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,500 · 12 min</span></div>
-<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">OR Train</span><span class="t-value">JR Kyoto Station → Inari (2 stops, 5 min, ¥150) — but station is farther from Nishiki</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('伏見稲荷大社 京都市伏見区深草藪之内町68')"><strong>伏見稲荷大社 京都市伏見区深草藪之内町68</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?ll=34.9671,135.7727&q=Fushimi+Inari+Taisha" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
-<!-- 3:30 PM KIYOMIZU-DERA -->
-<div class="time-block"><span class="clock">🏯</span> 3:30 – 5:00 PM · Kiyomizu-dera + Higashiyama Lanes</div>
+<!-- 3:15 PM KIYOMIZU-DERA -->
+<div class="time-block" id="act-kiyomizu"><span class="clock">🏯</span> 3:15 – 4:45 PM · Kiyomizu-dera + Higashiyama Lanes</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/800px-Kiyomizu.jpg')">
@@ -410,7 +483,7 @@ function fallbackCopy(text,cb){
 </div>
 
 <!-- 5:00 PM GION + KAMO RIVER -->
-<div class="time-block"><span class="clock">🌅</span> 5:00 – 6:00 PM · Gion → Kamo River Sunset</div>
+<div class="time-block" id="act-gion"><span class="clock">🌅</span> 5:00 – 6:00 PM · Gion → Kamo River Sunset</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/800px-150124_Gion_Kyoto_Japan01s3.jpg')">
@@ -428,7 +501,7 @@ function fallbackCopy(text,cb){
 </div>
 
 <!-- 6:00 PM DINNER -->
-<div class="time-block"><span class="clock">🍴</span> 6:00 – 7:30 PM · Dinner in Pontocho — Pick One</div>
+<div class="time-block" id="act-dinner"><span class="clock">🍴</span> 6:00 – 7:30 PM · Dinner in Pontocho — Pick One</div>
 
 <div class="card">
 <span class="card-label label-book">Reservation REQUIRED · TripAdvisor 4.9</span>
@@ -465,7 +538,7 @@ function fallbackCopy(text,cb){
 </div>
 
 <!-- 7:30 PM LATE RAMEN -->
-<div class="time-block"><span class="clock">🌙</span> 7:30 PM · Optional Late Ramen</div>
+<div class="time-block" id="act-shinpuku"><span class="clock">🌙</span> 7:30 PM · Optional Late Ramen</div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1938 · Only in Kyoto</span>
@@ -501,6 +574,17 @@ function fallbackCopy(text,cb){
 <span class="icon">🎋</span>
 <h2>Day 3 — Tue, March 24 · Arashiyama + Uji → Osaka</h2>
 <span class="sub">Two bucket-list side trips before your train</span>
+</div>
+
+<div class="clothes-card">
+<div class="clothes-title">👔 What to Wear Tomorrow</div>
+<div class="clothes-body">
+<span class="meta-pill">8–17°C (46–63°F)</span> <span class="meta-pill">Cool dawn in Arashiyama</span><br><br>
+<strong>Outfit:</strong> Warmer layer for dawn bamboo grove (~8°C at 7:30 AM), can remove later. Comfortable shoes again<br>
+<strong>Footwear:</strong> Same sneakers (temples + walking + Uji stroll)<br>
+<strong>Bag:</strong> Tote bag or packable bag for Kyoto Station souvenir speed run<br>
+<strong>Extras:</strong> Compact umbrella, phone battery pack
+</div>
 </div>
 
 <div class="tip">⏰ <strong>Tight but doable.</strong> Early Arashiyama → Momohada Cosme → train to Uji → Byodo-in + matcha → Kyoto Station souvenirs → lunch → Osaka ~2pm.</div>
