@@ -310,7 +310,7 @@ function restoreFoodChoices(){
 
 // ═══ GPS TRACKING SYSTEM ═══
 const ACTIVITIES=[
-  {id:'act-philosophers-path',name:"Philosopher's Path",lat:35.0272,lng:135.7983,r:200},
+  {id:'act-philosophers-path',name:"Ginkaku-ji",lat:35.0270,lng:135.7982,r:200},
   {id:'act-smart-coffee',name:'Smart Coffee',lat:35.0088,lng:135.7685,r:100},
   {id:'act-kinkakuji',name:'Kinkaku-ji',lat:35.0394,lng:135.7292,r:150},
   {id:'act-nishiki',name:'Nishiki Market',lat:35.0050,lng:135.7650,r:150},
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="track-next-eta" id="track-next-eta">Enable location access on your phone</div>
 </div>
 <div class="track-progress">
-<span class="track-dot" id="prog-0" title="Philosopher's Path"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-0" title="Ginkaku-ji"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-1" title="Smart Coffee"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-2" title="Kinkaku-ji"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-3" title="Nishiki Market"></span><span class="track-dot-line"></span>
@@ -601,8 +601,8 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="route-title">🗺️ Today's Optimized Route — departed 8:07 AM</div>
 <table class="route-table">
 <tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
-<tr><td>Hotel → Philosopher's Path</td><td class="rt-mode">🚕 Taxi</td><td>~15 min</td><td>¥1,800</td></tr>
-<tr><td>Path → Smart Coffee</td><td class="rt-mode">🚶 Walk</td><td>~20 min</td><td>Free</td></tr>
+<tr><td>Hotel → Ginkaku-ji</td><td class="rt-mode">🚕 Taxi</td><td>~15 min</td><td>¥1,800</td></tr>
+<tr><td>Ginkaku-ji → Smart Coffee</td><td class="rt-mode">🚕 Taxi</td><td>~10 min</td><td>¥1,200</td></tr>
 <tr><td>Smart Coffee → Kinkaku-ji</td><td class="rt-mode">🚕 Taxi</td><td>~15 min</td><td>¥1,600</td></tr>
 <tr><td>Kinkaku-ji → Nishiki Market</td><td class="rt-mode">🚌 Bus 59</td><td>~30 min</td><td>¥230</td></tr>
 <tr><td>Lunch area → Fushimi Inari</td><td class="rt-mode">🚕 Taxi</td><td>~12 min</td><td>¥1,500</td></tr>
@@ -612,7 +612,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </table>
 <div class="route-total">
 <span>Total transit: ~2h 15min</span>
-<span>Total cost: ~¥7,330</span>
+<span>Total cost: ~¥8,530</span>
 </div>
 </div>
 
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="replanned-tip">
-⏳ <strong>Replanned 8:33 AM</strong> — At Philosopher's Path, no cherry blossoms yet. Shortened path walk to 40 min → extra 20 min banked. Smart Coffee upgraded to 40-min sit-down. More buffer for Kiyomizu/Higashiyama lanes.
+⏳ <strong>Replanned 8:35 AM</strong> — No cherry blossoms on Philosopher's Path → skipped it. Swapped in Ginkaku-ji (Silver Pavilion), right next to you. Opens 8:30 AM, perfect timing.
 </div>
 
 <div class="clothes-card">
@@ -641,58 +641,27 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 </div>
 
-<!-- ~8:30 AM PHILOSOPHER'S PATH -->
-<div class="time-block" id="act-philosophers-path"><span class="step-num">STEP 1</span><span class="clock">⏰</span> ~8:30 – 9:10 AM · Philosopher's Path</div>
+<!-- ~8:35 AM GINKAKU-JI -->
+<div class="time-block" id="act-philosophers-path"><span class="step-num">STEP 1</span><span class="clock">🏯</span> ~8:35 – 9:15 AM · Ginkaku-ji (Silver Pavilion)</div>
 
 <div class="img-card">
-<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/800px-Japan_Kyoto_philosophers_walk_DSC00297.jpg')">
-<div class="img-title">Philosopher's Path — Peaceful Canal Walk<small>哲学の道 · Free · 40 min walk (shortened)</small></div>
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ginkakuji_02.jpg/800px-Ginkakuji_02.jpg')">
+<div class="img-title">Ginkaku-ji — Silver Pavilion<small>銀閣寺 · ¥500 entry · Opens 8:30 AM</small></div>
 </div>
 <div class="img-body">
-<div class="desc">2km canal path lined with hundreds of cherry trees — but the blossoms haven't opened yet this year. Still a peaceful morning walk along the canal with barely anyone around. The bare branches with buds have their own beauty. Shorten to ~40 min and bank the extra time for later stops.</div>
-<div class="tip">🌿 <strong>No blossoms but still worth it:</strong> The canal, stone bridges, and quiet temples along the path are beautiful regardless. Look for early-blooming plum trees (ume) which may still have flowers.</div>
+<div class="desc">Despite its name, Ginkaku-ji was never covered in silver — its beauty is in the restraint. Zen sand garden (Ginshadan), stunning moss gardens, and a hillside trail with views over Kyoto. Less crowded and more intimate than Kinkaku-ji. At 8:35 AM you'll practically have it to yourself.</div>
+<div class="tip">📸 <strong>Don't miss:</strong> The perfect cone of sand (Kogetsudai) and the Ginshadan sea-of-silver-sand ripple garden. Walk the hillside loop for a panoramic view over the temple and city.</div>
 </div>
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">FROM</span><span class="t-value">Umekoji Potel (hotel)</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Ginkaku-ji Bridge (north end of Philosopher's Path)</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,800 · 15 min</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">You're already here! 5 min walk from Philosopher's Path north end</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Entry</span><span class="t-value">¥500 · Your ticket is a calligraphy charm (like Kinkaku-ji)</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
-<div class="addr-box" onclick="copyAddr('銀閣寺橋 哲学の道 北端')"><strong>銀閣寺橋 哲学の道 北端</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://maps.apple.com/?ll=35.0272,135.7983&q=Philosopher%27s+Path+North" target="_blank">📍 Maps</a>
+<div class="addr-box" onclick="copyAddr('銀閣寺 京都市左京区銀閣寺町2')"><strong>銀閣寺 京都市左京区銀閣寺町2</strong><span class="copy-icon">tap to copy</span></div>
+<a class="maps-link" href="https://maps.apple.com/?ll=35.0270,135.7982&q=Ginkaku-ji+Silver+Pavilion" target="_blank">📍 Maps</a>
 </span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~1 hour leisurely, 2km)</span></div>
 </div>
-
-<details class="food-nearby">
-<summary>🍜 Nearby food options (2 Kyoto-exclusive spots)</summary>
-<div class="food-nearby-inner">
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Curry_Udon.jpg/960px-Curry_Udon.jpg')">
-<div class="img-title">Hinode Udon — Kyoto's Famous Curry Udon<small>日の出うどん · Near Nanzen-ji · Walk-in</small></div>
-</div>
-<div class="img-body">
-<div class="desc">Kyoto soul food. Thick udon in a rich, spicy curry broth with tender beef — unlike anything in Tokyo or Osaka. 5 min walk from the path's south end.</div>
-<div class="card-meta"><span class="meta-pill">¥800–1,000</span><span class="meta-pill">Walk-in · Opens 11am</span><span class="meta-pill">🍛 GET: Special Curry Udon (特カレーうどん)</span>
-<a class="maps-link" href="https://maps.apple.com/?q=Hinode+Udon+Kyoto&ll=35.0110,135.7910" target="_blank">📍 Maps</a></div>
-</div>
-</div>
-
-<div class="img-card">
-<div class="img-banner" style="height:160px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Nishin_soba_2022_1_1.jpg/960px-Nishin_soba_2022_1_1.jpg')">
-<div class="img-title">Omen Nanzenji — Sesame Udon Dipping Noodles<small>おめん南禅寺店 · Tabelog 3.55 · Kyoto-born chain</small></div>
-</div>
-<div class="img-body">
-<div class="desc">Kyoto original: thick white udon with a rich sesame dipping broth and a plate of fresh vegetables. Nanzen-ji branch has garden seating.</div>
-<div class="card-meta"><span class="meta-pill">¥1,200–1,600</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🥢 GET: Omen Udon (おめん) + veggie plate</span>
-<a class="maps-link" href="https://maps.apple.com/?q=Omen+Nanzenji+Kyoto&ll=35.0115,135.7925" target="_blank">📍 Maps</a></div>
-</div>
-</div>
-
-</div>
-</details>
 
 <!-- 9:40 AM SMART COFFEE — PROPER BREAKFAST -->
 <div class="time-block" id="act-smart-coffee"><span class="step-num">STEP 2</span><span class="clock">☕</span> 9:30 – 10:10 AM · Smart Coffee — Full Breakfast</div>
@@ -717,9 +686,9 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">South end of Philosopher's Path (Nanzen-ji area)</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Ginkaku-ji</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Smart Coffee (Teramachi-Sanjo)</span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">~20 min through Okazaki area (flat, pleasant)</span></div>
+<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,200 · 10 min (faster than walking)</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('京都市中京区寺町通三条上ル天性寺前町537')"><strong>京都市中京区寺町通三条上ル天性寺前町537</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?q=Smart+Coffee+%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E7%8F%88%E7%90%B2%E5%BA%97+Kyoto" target="_blank">📍 Maps</a>
