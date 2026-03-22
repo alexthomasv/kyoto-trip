@@ -23,7 +23,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 
 /* IMAGE HERO CARDS */
 .img-card{border-radius:12px;overflow:hidden;margin-bottom:14px;box-shadow:0 2px 14px rgba(0,0,0,.1);position:relative}
-.img-card .img-banner{height:200px;background-size:cover;background-position:center;position:relative}
+.img-card .img-banner{height:200px;background-size:cover;background-position:center;position:relative;background-color:#3d1f00}
 .img-card .img-banner::after{content:"";position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(0,0,0,.7))}
 .img-card .img-banner .img-title{position:absolute;bottom:12px;left:16px;z-index:2;color:#fff;font-size:1.1rem;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .img-card .img-banner .img-title small{display:block;font-size:.78rem;font-weight:400;color:#ddd;margin-top:2px}
@@ -59,6 +59,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .transport-card .t-icon{font-size:1.1rem;min-width:24px;text-align:center}
 .transport-card .t-label{font-weight:700;color:#2d1a00;min-width:60px}
 .transport-card .t-value{flex:1}
+.transport-card.walk-card{border-left-color:#2d7a4f;background:linear-gradient(135deg,#f0f8f4,#e8f5ee)}
 .addr-box{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #ddd;border-radius:6px;padding:4px 10px;margin:4px 0;font-size:.85rem;cursor:pointer}
 .addr-box:active{background:#f0ebe0}
 .addr-box .copy-icon{font-size:.7rem;color:#999}
@@ -68,6 +69,9 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 /* MUST-BUY BADGE */
 .must-buy{background:linear-gradient(135deg,#ff2d55,#ff6b6b);color:#fff;padding:8px 16px;border-radius:8px;font-size:.82rem;font-weight:700;margin:8px 0;display:flex;align-items:center;gap:8px;letter-spacing:.3px}
 .must-buy .mb-icon{font-size:1.2rem}
+
+/* SAVE BADGE */
+.save-badge{background:linear-gradient(135deg,#2d7a4f,#3a9a60);color:#fff;padding:7px 14px;border-radius:8px;font-size:.8rem;font-weight:700;margin:8px 0;display:flex;align-items:center;gap:8px}
 
 .review{font-size:.82rem;color:#666;font-style:italic;border-left:2px solid #e0d0b0;padding:6px 10px;margin-top:8px}
 .time-block{background:#2d1a00;color:#f5d78e;padding:10px 20px;border-radius:8px;margin:20px 0 14px;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:8px}
@@ -130,7 +134,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="section-title">
 <span class="icon">🌸</span>
 <h2>Day 2 — Mon, March 23 · Full Day Kyoto</h2>
-<span class="sub">5 iconic landmarks + food</span>
+<span class="sub">5 iconic landmarks · route-optimized · food throughout</span>
 </div>
 
 <!-- 6:30 AM PHILOSOPHER'S PATH -->
@@ -146,6 +150,16 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 </div>
 
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nanzenji_suirokaku.jpg/800px-Nanzenji_suirokaku.jpg');background-color:#2d4a2d">
+<div class="img-title">Nanzen-ji Suirokaku — Roman Aqueduct<small>南禅寺水路閣 · Free · At south end of Philosopher's Path walk</small></div>
+</div>
+<div class="img-body">
+<div class="desc">At the south end of Philosopher's Path, step into Nanzen-ji's grounds (free) and find the Suirokaku — a stunning red-brick Roman-style aqueduct built in 1890, still carrying water from Lake Biwa. Most tourists walk right past it. The moss-covered arches with cherry trees above is one of the most photogenic spots in Kyoto that almost nobody knows about.</div>
+<div class="tip">💡 <strong>2-min detour:</strong> Walk through the giant Sanmon gate (free), then right — the aqueduct is there. This is the end of your Philosopher's Path walk before the taxi to Smart Coffee.</div>
+</div>
+</div>
+
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🏨</span><span class="t-label">FROM</span><span class="t-value">Umekoji Potel (hotel)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Ginkaku-ji Bridge (north end of Philosopher's Path)</span></div>
@@ -154,7 +168,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="addr-box" onclick="copyAddr('銀閣寺橋 哲学の道 北端')"><strong>銀閣寺橋 哲学の道 北端</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0272,135.7983&travelmode=driving" target="_blank">📍 Maps</a>
 </span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~45 min leisurely, 2km)</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Then</span><span class="t-value">Walk south along the path toward Nanzen-ji (~45 min leisurely, 2km) — stop at the Suirokaku aqueduct at the end</span></div>
 </div>
 
 <!-- 8:00 AM BREAKFAST -->
@@ -190,37 +204,23 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </span></div>
 </div>
 
-<!-- 9:10 AM KINKAKU-JI -->
-<div class="time-block"><span class="clock">🏯</span> 9:10 – 10:15 AM · Kinkaku-ji (Golden Pavilion)</div>
+<!-- 9:00 AM NISHIKI — moved before Kinkaku-ji: Smart Coffee and Nishiki are 5 min walk apart! -->
+<div class="time-block"><span class="clock">🍢</span> 9:00 – 10:15 AM · Nishiki Market Street Food Crawl</div>
 
-<div class="img-card">
-<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/800px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg')">
-<div class="img-title">Kinkaku-ji — Golden Pavilion<small>鹿苑寺 金閣 · ¥500 entry · Opens 9am</small></div>
-</div>
-<div class="img-body">
-<div class="desc">Gold-leaf pavilion reflected in its mirror pond. Arrive right at 9am opening before tour buses. Walk-through takes 30–45 min through the garden circuit. Your entry ticket doubles as a calligraphy charm.</div>
-</div>
-</div>
+<div class="save-badge"><span>💰</span> <strong>Route optimization:</strong> Smart Coffee → Nishiki is a 5-min walk (same block). Old route went Kinkaku-ji first then backtracked here — wasting ¥1,800 and 30 min.</div>
 
-<div class="transport-card">
+<div class="transport-card walk-card">
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Smart Coffee (Teramachi-Sanjo)</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Kinkaku-ji</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,600 · 15 min <em>(no direct train — taxi is the move)</em></span></div>
-<div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
-<div class="addr-box" onclick="copyAddr('京都市北区金閣寺町1')"><strong>京都市北区金閣寺町1</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0394,135.7292&travelmode=driving" target="_blank">📍 Maps</a>
-</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Nishiki Market (west entrance)</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value"><strong>5 min — no taxi!</strong> Head south on Teramachi-dori. Nishiki-koji is the first major cross-street. Same block.</span></div>
 </div>
-
-<!-- 10:30 AM NISHIKI -->
-<div class="time-block"><span class="clock">🍢</span> 10:30 – 12:00 PM · Nishiki Market Street Food Crawl</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/800px-Nishiki_Ichiba_by_matsuyuki.jpg')">
-<div class="img-title">Nishiki Market<small>錦市場 · 400 years old · 100+ stalls</small></div>
+<div class="img-title">Nishiki Market<small>錦市場 · 400 years old · 100+ stalls · Best before 10:30am</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Five blocks of Kyoto's 400-year-old kitchen. Fresh yuba, Kyo-tsukemono pickles, matcha warabi mochi — things you literally cannot find outside Kyoto. Best 10–11am before the crush.</div>
+<div class="desc">Five blocks of Kyoto's 400-year-old kitchen. Fresh yuba, Kyo-tsukemono pickles, matcha warabi mochi — things you literally cannot find outside Kyoto. Going at 9am means you're here before the tourist crush — by 11am it's shoulder-to-shoulder.</div>
 <div class="tip">⚠️ <strong>Rule:</strong> No eating while walking. Buy, step aside, eat, then move on.</div>
 <div class="dishes">
 <div class="dishes-title">🍴 Must-eat street food</div>
@@ -234,19 +234,39 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </div>
 </div>
 
+<div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
+
+<!-- 10:30 AM KINKAKU-JI -->
+<div class="time-block"><span class="clock">🏯</span> 10:30 – 11:30 AM · Kinkaku-ji (Golden Pavilion)</div>
+
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Kinkaku-ji</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Nishiki Market (east entrance)</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,800 · 15 min</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Nishiki Market</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Kinkaku-ji</span></div>
+<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,600 · 15 min <em>(one NW trip only — no backtrack)</em></span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
-<div class="addr-box" onclick="copyAddr('錦市場 東入口 京都市中京区')"><strong>錦市場 東入口 京都市中京区</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0050,135.7649&travelmode=driving" target="_blank">📍 Maps</a>
+<div class="addr-box" onclick="copyAddr('京都市北区金閣寺町1')"><strong>京都市北区金閣寺町1</strong><span class="copy-icon">tap to copy</span></div>
+<a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=35.0394,135.7292&travelmode=driving" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
-<div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/800px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg')">
+<div class="img-title">Kinkaku-ji — Golden Pavilion<small>鹿苑寺 金閣 · ¥500 entry · Opens 9am · Busier after 10:30 but still great</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Gold-leaf pavilion reflected in its mirror pond. Arriving at 10:30am (after the early crowd) is a fair trade for saving a ¥1,800 backtrack taxi from Nishiki. Walk-through takes 30–45 min through the garden circuit. Your entry ticket doubles as a calligraphy charm.</div>
+<div class="tip">💡 <strong>Matcha stop:</strong> At the exit, Sekkatei teahouse sells matcha + wagashi on a tatami deck overlooking a secondary pond. ¥600. Very few tourists find it.</div>
+</div>
+</div>
 
 <!-- 12:00 PM LUNCH -->
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Kinkaku-ji</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Lunch (central Kyoto or Okazaki — en route to Fushimi)</span></div>
+<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,600–1,800 · 15 min toward central</span></div>
+<div class="t-row"><span class="t-icon">💡</span><span class="t-label">Tip</span><span class="t-value">Rantan ramen and enen gyoza are near Nishiki (easy ¥1,600 taxi). Okutan Nanzenji is in Okazaki — a beautiful detour on the way east toward Fushimi.</span></div>
+</div>
+
 <div class="time-block"><span class="clock">🍴</span> 12:00 – 1:00 PM · Lunch — Pick One</div>
 
 <div class="card">
@@ -257,7 +277,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="card-name">Chuka-Soba Rantan</div>
 <div class="card-jp">中華そば らんたん · Near Nishiki</div>
 <div class="card-desc">Kyoto's highest-rated ramen. Clear chicken-shoyu broth, thin wavy noodles. 10 seats, line down the street. Only location.</div>
-<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🚶 5 min from Nishiki</span></div>
+<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🚶 5 min from Nishiki area</span></div>
 </div>
 </div>
 </div>
@@ -271,8 +291,8 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="card-info">
 <div class="card-name">Okutan Nanzenji — Japan's Oldest Restaurant</div>
 <div class="card-jp">奥丹南禅寺 · Yudofu (tofu hotpot) in a 400-year-old garden</div>
-<div class="card-desc">Yudofu (silken tofu in kombu dashi) is THE Kyoto dish — and this is THE place. Tatami seating overlooking a garden.</div>
-<div class="card-meta"><span class="meta-pill">¥3,000–4,000</span><span class="meta-pill">🚕 ~¥800 from Nishiki</span></div>
+<div class="card-desc">Yudofu (silken tofu in kombu dashi) is THE Kyoto dish — and this is THE place. Tatami seating overlooking a garden. Bonus: it's in Nanzen-ji, near where you walked this morning.</div>
+<div class="card-meta"><span class="meta-pill">¥3,000–4,000</span><span class="meta-pill">🚕 ~¥1,600 from Kinkaku-ji via Okazaki</span></div>
 </div>
 </div>
 </div>
@@ -307,15 +327,16 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="dish"><strong>Inari sushi</strong> — sweet fried tofu pockets with sushi rice. Named after this shrine. · ¥200–300</div>
 <div class="dish"><strong>Suzume-yaki</strong> — sparrow/fox-shaped cakes with sweet red bean · ¥200</div>
 <div class="dish"><strong>Grilled rice skewers (yakimochi)</strong> — miso-glazed, perfect hiking fuel · ¥200–400</div>
+<div class="dish"><strong>Udon at Nishimura-ya</strong> — small shop on the approach, handmade noodles in rich dashi · ¥700</div>
 </div>
 </div>
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Nishiki Market area / lunch spot</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Lunch spot (central / Okazaki area)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Fushimi Inari Taisha</span></div>
 <div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,500 · 12 min</span></div>
-<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">OR Train</span><span class="t-value">JR Kyoto Station → Inari (2 stops, 5 min, ¥150) — but station is farther from Nishiki</span></div>
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">OR Train</span><span class="t-value">JR Kyoto Station → Inari (2 stops, 5 min, ¥150) — if you're near Kyoto Station</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('伏見稲荷大社 京都市伏見区深草藪之内町68')"><strong>伏見稲荷大社 京都市伏見区深草藪之内町68</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://www.google.com/maps/dir/?api=1&destination=34.9671,135.7727&travelmode=driving" target="_blank">📍 Maps</a>
@@ -330,7 +351,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="img-title">Kiyomizu-dera — The Stage Temple<small>清水寺 · ¥400 entry · Closes 6pm</small></div>
 </div>
 <div class="img-body">
-<div class="desc">A massive wooden terrace jutting out over a hillside with panoramic views of Kyoto. The main hall was built without a single nail. In late March, cherry trees around the terrace bloom pink against the city skyline. After the temple, walk downhill through Ninen-zaka and Sannen-zaka — Kyoto's most photogenic stone-paved lanes lined with traditional shops.</div>
+<div class="desc">A massive wooden terrace jutting out over a hillside with panoramic views of Kyoto. The main hall was built without a single nail. In late March, cherry trees around the terrace bloom pink against the city skyline. After the temple, walk downhill through Ninen-zaka and Sannen-zaka — Kyoto's most photogenic stone-paved lanes.</div>
 </div>
 </div>
 
@@ -345,6 +366,22 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 </span></div>
 </div>
 
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ninenzaka_Kyoto.jpg/800px-Ninenzaka_Kyoto.jpg');background-color:#8B6914">
+<div class="img-title">Ninen-zaka &amp; Sannen-zaka<small>二年坂・三年坂 · Free · Kyoto's most atmospheric lanes</small></div>
+</div>
+<div class="img-body">
+<div class="desc">After Kiyomizu, walk downhill through these two perfectly preserved Edo-period stone-paved lanes. Traditional machiya townhouses, craft shops, and the most atmospheric walking in all of Kyoto — especially as cherry trees bloom overhead.</div>
+<div class="dishes">
+<div class="dishes-title">🍴 Must-try along the lanes</div>
+<div class="dish"><strong>Gion Tsujiri (祇園辻利)</strong> — matcha parfait from Kyoto's 330-year-old tea brand. On Sannen-zaka. ¥1,200. Don't skip.</div>
+<div class="dish"><strong>Yatsuhashi soft serve</strong> — green tea ice cream in a cinnamon yatsuhashi cone · ¥500</div>
+<div class="dish"><strong>Kiyomizu-yaki pottery</strong> — handmade ceramic charms, sake cups. Most studios ¥500–¥1,500.</div>
+<div class="dish"><strong>Matcha warabi mochi</strong> — jiggly, ice cold. Multiple shops sell it along the route · ¥350</div>
+</div>
+</div>
+</div>
+
 <div class="tip">🚶 <strong>After Kiyomizu:</strong> Walk downhill through Ninen-zaka → Sannen-zaka → Gion (30 min stroll through Kyoto's most atmospheric streets). Free, no taxi needed. This naturally leads to the Kamo River and Pontocho for dinner.</div>
 
 <!-- 5:00 PM GION + KAMO RIVER -->
@@ -357,6 +394,24 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="img-body">
 <div class="desc">Walk through Gion's Hanamikoji-dori — Kyoto's geisha quarter with traditional wooden machiya houses, lanterns, and (if you're lucky) a glimpse of a geiko heading to an evening appointment. Continue west to the Kamo River between Sanjo and Shijo bridges for the sunset. Locals sit on the banks in evenly-spaced pairs — it's a Kyoto tradition.</div>
 </div>
+</div>
+
+<div class="card">
+<span class="card-label label-kyoto">est. 1736 · Gion landmark</span>
+<div class="card-top">
+<div class="card-emoji">🍡</div>
+<div class="card-info">
+<div class="card-name">Kagizen Yoshifusa — Gion Sweets</div>
+<div class="card-jp">鍵善良房 · 祇園花見小路 · Tabelog 3.75</div>
+<div class="card-desc">Kyoto's most celebrated wagashi confectionery, on Hanamikoji-dori since 1736. Their kuzukiri — iced kuzu starch noodles with black sugar syrup — is a Gion institution. Steps from where the geiko walk. Perfect late-afternoon sweet before dinner.</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍴 What to order</div>
+<div class="dish"><strong>Kuzukiri (葛きり)</strong> — iced kuzu noodles + black sugar syrup. Unique to this shop · ¥1,400</div>
+<div class="dish"><strong>Anmitsu (あんみつ)</strong> — seasonal fruits + sweet bean jelly + mochi · ¥900</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in · Closes 6pm</span><span class="meta-pill">Hanamikoji, Gion</span></div>
 </div>
 
 <div class="transport-card">
@@ -451,14 +506,24 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="img-title">Arashiyama Bamboo Grove<small>嵐山 竹林の小径 · Free · Empty before 9am</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Towering bamboo tunnels filtering morning light into green-gold shafts. At 7:30am you'll practically own it. Walk through, cross Togetsukyo Bridge, then stroll the main street as stalls open (~8:30–9am).</div>
+<div class="desc">Towering bamboo tunnels filtering morning light into green-gold shafts. At 7:30am you'll practically own it. Walk through, then cross the Togetsukyo Bridge and stroll the main street as stalls open (~8:30–9am).</div>
 <div class="dishes">
 <div class="dishes-title">🍴 Arashiyama street food (stalls open ~8:30–9am)</div>
 <div class="dish"><strong>Matcha soft serve / matcha croquette</strong> · ¥350–500</div>
 <div class="dish"><strong>Tofu soft serve</strong> — creamy, mild with kinako powder · ¥400</div>
 <div class="dish"><strong>Yuba croquette</strong> — crispy shell, creamy tofu skin inside · ¥300</div>
 <div class="dish"><strong>Dango (3-colour mochi skewers)</strong> — grilled, sweet soy glaze · ¥250</div>
+<div class="dish"><strong>Ayu (sweetfish) skewers at riverside stalls</strong> — salt-grilled, Arashiyama specialty · ¥600</div>
 </div>
+</div>
+</div>
+
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Togetsukyo_Bridge%2C_Arashiyama%2C_Kyoto.jpg/800px-Togetsukyo_Bridge%2C_Arashiyama%2C_Kyoto.jpg');background-color:#4a6741">
+<div class="img-title">Togetsukyo Bridge — "Moon Crossing" Bridge<small>渡月橋 · Free · Cherry trees on both banks in late March</small></div>
+</div>
+<div class="img-body">
+<div class="desc">After the bamboo grove, walk to Togetsukyo — the iconic arched bridge over the Oi River framed by cherry-covered mountains. In late March, the sakura trees lining both riverbanks are in full bloom. The view looking west toward the mountains at morning light is one of the best cherry blossom photos in Japan. Five minutes from the bamboo grove.</div>
 </div>
 </div>
 
@@ -540,9 +605,30 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="card-meta"><span class="meta-pill">¥1,200–1,800</span><span class="meta-pill">Walk-in (15–20 min wait)</span><span class="meta-pill">🚶 1 min from Byodo-in</span></div>
 </div>
 
+<div class="option-or"><span>OR — THE WORLD'S OLDEST TEA HOUSE</span></div>
+
+<div class="card">
+<span class="card-label label-kyoto">est. 1160 · 26 generations</span>
+<div class="card-top">
+<div class="card-emoji">🏯</div>
+<div class="card-info">
+<div class="card-name">Tsuen — World's Oldest Tea House</div>
+<div class="card-jp">通圓 · 宇治橋東詰 · Guinness World Records</div>
+<div class="card-desc">Established in 1160 — that's 200 years before the Mongols invaded Japan. The same family has run this tea house for 26 generations, perched at the east end of Uji Bridge. Guinness-recognized as the world's oldest tea house. Matcha ground in-house on centuries-old stone mills.</div>
+</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🍵 What to order</div>
+<div class="dish"><strong>Matcha set (抹茶セット)</strong> — ceremonial matcha + seasonal wagashi sweet · ¥900</div>
+<div class="dish"><strong>Uji matcha soft serve</strong> — intensely bitter-sweet, first-flush Uji tea · ¥500</div>
+<div class="dish"><strong>Tsuen soba (通円そば)</strong> — matcha soba, handmade · ¥1,100</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥500–1,100</span><span class="meta-pill">Walk-in</span><span class="meta-pill">🌉 East end of Uji Bridge</span></div>
+</div>
+
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">JR Uji Station</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Byodo-in Temple → Nakamura Tokichi</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Byodo-in Temple → Nakamura Tokichi or Tsuen</span></div>
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">10 min along the charming Uji approach street (tea shops + free samples the whole way)</span></div>
 </div>
 
@@ -673,6 +759,22 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <div class="card-jp">Uji · Matcha everything</div>
 <div class="card-meta"><span class="meta-pill">¥1,200–1,800</span><span class="meta-pill">Walk-in · Uji</span></div>
 </div></div></div>
+
+<div class="card">
+<span class="card-label label-kyoto">est. 1736 · Gion</span>
+<div class="card-top"><div class="card-emoji">🍡</div><div class="card-info">
+<div class="card-name">Kagizen Yoshifusa</div>
+<div class="card-jp">Tabelog 3.75 · Kuzukiri + wagashi · Gion</div>
+<div class="card-meta"><span class="meta-pill">¥900–1,400</span><span class="meta-pill">Walk-in · On Hanamikoji</span></div>
+</div></div></div>
+
+<div class="card">
+<span class="card-label label-kyoto">est. 1160 · Guinness</span>
+<div class="card-top"><div class="card-emoji">🏯</div><div class="card-info">
+<div class="card-name">Tsuen Tea House</div>
+<div class="card-jp">通圓 · World's oldest · Uji Bridge</div>
+<div class="card-meta"><span class="meta-pill">¥500–1,100</span><span class="meta-pill">Walk-in · Uji</span></div>
+</div></div></div>
 </div>
 </div>
 
@@ -725,7 +827,7 @@ function copyAddr(text){navigator.clipboard.writeText(text).then(()=>{const t=ev
 <strong>📅 When to buy:</strong><br>
 • Day 2 Nishiki area: LuLuLun masks at any drugstore<br>
 • Day 3 Arashiyama (9:15am): Momohada Cosme<br>
-• Day 3 Uji: Matcha souvenirs from Nakamura Tokichi shops<br>
+• Day 3 Uji: Matcha souvenirs from Nakamura Tokichi or Tsuen shops<br>
 • Day 3 Kyoto Station (12:40pm): Yatsuhashi + Kyoto Baum + KitKats + remaining LuLuLun
 </div>
 </div>
@@ -744,5 +846,24 @@ Kyoto Complete Guide · Alex Thomas · March 2026<br>
 Images: Wikimedia Commons (CC) · Data: Yelp · Tabelog · TripAdvisor · Michelin · r/JapanTravel
 </div>
 
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js', {scope: './'}).then(reg => {
+    reg.addEventListener('updatefound', () => {
+      const newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          const b = document.createElement('div');
+          b.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2d1a00;color:#f5d78e;padding:12px 24px;border-radius:10px;z-index:9999;font-size:.85rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.35);white-space:nowrap';
+          b.textContent = '✨ Updated guide available — tap to refresh';
+          b.onclick = () => window.location.reload();
+          document.body.appendChild(b);
+        }
+      });
+    });
+  });
+}
+</script>
 </body>
 </html>
