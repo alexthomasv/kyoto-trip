@@ -317,7 +317,6 @@ const ACTIVITIES=[
   {id:'act-kiyomizu',name:'Kiyomizu-dera',lat:34.9949,lng:135.7850,r:250},
   {id:'act-gion',name:'Gion + Kamo River',lat:35.0036,lng:135.7756,r:200},
   {id:'act-dinner',name:'Dinner Pontocho',lat:35.0050,lng:135.7700,r:150},
-  {id:'act-fushimi-inari',name:'Fushimi Inari',lat:34.9671,lng:135.7727,r:200},
   {id:'act-shinpuku',name:'Shinpuku Saikan',lat:34.9875,lng:135.7590,r:150}
 ];
 const HOTEL={lat:34.9882,lng:135.7485};
@@ -551,7 +550,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 
 <div class="nav">
 <a href="#day2">Day 2 Full Day</a>
-<a href="#day3">Day 3 Arashiyama + Uji</a>
+<a href="#day3">Day 3 Cherry + Arashiyama + Uji + Osaka</a>
 <a href="#streetfood">Street Food</a>
 <a href="#restaurants">Restaurants</a>
 <a href="#shopping">Shopping</a>
@@ -585,8 +584,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <span class="track-dot" id="prog-4" title="Kiyomizu-dera"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-5" title="Gion"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-6" title="Dinner"></span><span class="track-dot-line"></span>
-<span class="track-dot" id="prog-7" title="Fushimi Inari"></span><span class="track-dot-line"></span>
-<span class="track-dot" id="prog-8" title="Shinpuku"></span>
+<span class="track-dot" id="prog-7" title="Shinpuku"></span>
 </div>
 <button class="track-copy" id="track-copy-btn" onclick="copyStatus()">📋 Copy Status for Claude</button>
 <div class="track-accuracy" id="track-accuracy"></div>
@@ -604,11 +602,10 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <tr><td>Kinkaku-ji → Nishiki Market</td><td class="rt-mode">🚌 Bus 59</td><td>30 min ↓S</td><td>¥230</td></tr>
 <tr><td>Lunch → Kiyomizu-dera</td><td class="rt-mode">🚕 Taxi</td><td>10 min</td><td>¥800</td></tr>
 <tr><td>Kiyomizu → Gion → Pontocho</td><td class="rt-mode">🚶 Walk</td><td>25 min</td><td>Free</td></tr>
-<tr><td>Pontocho → Fushimi Inari</td><td class="rt-mode">🚃 Keihan</td><td>10 min</td><td>¥220</td></tr>
-<tr><td>Fushimi Inari → Shinpuku</td><td class="rt-mode">🚃 JR</td><td>2 min</td><td>¥150</td></tr>
+<tr><td>Pontocho → Shinpuku</td><td class="rt-mode">🚕 GO Taxi</td><td>8 min</td><td>¥1,000</td></tr>
 </table>
 <div class="route-total">
-<span>Total transit: ~1h 40min</span>
+<span>Total transit: ~1h 30min</span>
 <span>Total cost: ~¥5,200</span>
 </div>
 </div>
@@ -1172,78 +1169,6 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">2 min — Pontocho runs parallel to the river. Cross the bridge and you're there.</span></div>
 </div>
 
-<details class="food-nearby">
-<summary>⛩️ Fushimi Inari food spots (2 picks)</summary>
-<div class="food-nearby-inner">
-
-<div class="img-card">
-<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a2/Inarizushi_by_jetalone.jpg')">
-<div class="img-title">Nezameya — Inari Sushi Since the 1540s<small>祢ざめ家 · At shrine base · Walk-in</small></div>
-</div>
-<div class="img-body">
-<div class="desc">Operating since the Sengoku period (~1540). Said to have been visited by Toyotomi Hideyoshi. Eating the fox god's favorite food at the fox god's shrine.</div>
-<div class="dishes">
-<div class="dishes-title">🦊 Top 3</div>
-<div class="dish"><strong>Inari sushi</strong> — sweet tofu pouches with rice, named after this shrine</div>
-<div class="dish"><strong>Unagi don</strong> — grilled freshwater eel over rice, Fushimi specialty</div>
-<div class="dish"><strong>Saba sushi</strong> — Kyoto-style pressed mackerel</div>
-</div>
-<div class="card-meta"><span class="meta-pill">¥800–2,500</span><span class="meta-pill">Walk-in</span>
-<a class="maps-link" href="https://www.yelp.com/search?find_desc=Nezameya+Fushimi+Inari&find_loc=Kyoto" target="_blank">⭐ Yelp</a>
-<a class="maps-link" href="https://maps.apple.com/?q=Nezameya+Fushimi+Inari+Kyoto&ll=34.9672,135.7720" target="_blank">📍 Maps</a></div>
-</div>
-</div>
-
-<div class="card">
-<div class="card-top">
-<div class="card-emoji">☕</div>
-<div class="card-info">
-<div class="card-name">Vermillion Cafe</div>
-<div class="card-jp">バーミリオンカフェ · At shrine entrance · Walk-in</div>
-<div class="card-desc">Beautiful modern cafe run by an Australian-Japanese couple. Terrace overlooks the shrine approach. Perfect for recharging.</div>
-<div class="dishes">
-<div class="dishes-title">☕ Top 3</div>
-<div class="dish"><strong>Matcha espresso latte</strong> — Uji matcha, specialty quality</div>
-<div class="dish"><strong>Inari curry</strong> — house curry, warmly spiced</div>
-<div class="dish"><strong>French toast set</strong> — thick-cut, custard-soaked</div>
-</div>
-<div class="card-meta"><span class="meta-pill">¥600–1,500</span><span class="meta-pill">Walk-in · Tabelog 3.6</span>
-<a class="maps-link" href="https://www.yelp.com/search?find_desc=Vermillion+Cafe+Fushimi+Inari&find_loc=Kyoto" target="_blank">⭐ Yelp</a></div>
-</div>
-</div>
-</div>
-
-</div>
-</details>
-
-<!-- 5:45 PM FUSHIMI INARI (EVENING VISIT) -->
-<div class="time-block" id="act-fushimi-inari"><span class="step-num">STEP 8</span><span class="clock">⛩️</span> 5:45 – 6:30 PM · Fushimi Inari</div>
-
-<div class="img-card">
-<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/800px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg')">
-<div class="img-title">Fushimi Inari — Senbon Torii Tunnel<small>伏見稲荷大社 千本鳥居 · Free · Open 24 hours</small></div>
-</div>
-<div class="img-body">
-<div class="desc">THE most iconic image of Japan — thousands of vermillion torii gates tunneling up a mountainside. Evening visit: the shrine is open 24 hours, and golden hour light through the gates is magical. Far fewer crowds than midday — you may get the tunnel almost to yourself. Walk the main Senbon Torii tunnel (the iconic double-row gates), snap photos in the vermillion corridor, and head back. 45 min is perfect for the gates experience without the full mountain hike.</div>
-<div class="tip">📸 <strong>Photo tip:</strong> Evening light filtering through the gates creates a warm, atmospheric glow. Fewer visitors means cleaner shots without waiting. The shrine lanterns begin lighting up as dusk falls.</div>
-<div class="dishes">
-<div class="dishes-title">🍴 Approach street food (grab on the way in/out)</div>
-<div class="dish"><strong>Inari sushi</strong> — sweet fried tofu pockets with sushi rice. Named after this shrine. · ¥200–300</div>
-<div class="dish"><strong>Suzume-yaki</strong> — sparrow/fox-shaped cakes with sweet red bean · ¥200</div>
-<div class="dish"><strong>Grilled rice skewers (yakimochi)</strong> — miso-glazed, great snack · ¥200–400</div>
-</div>
-</div>
-</div>
-
-<div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Pontocho / Gion-Shijo Station</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Fushimi Inari Taisha</span></div>
-<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Keihan Train</span><span class="t-value">Gion-Shijo → Fushimi Inari · ~10 min · ¥220</span></div>
-<div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
-<div class="addr-box" onclick="copyAddr('伏見稲荷大社 京都市伏見区深草藪之内町68')"><strong>伏見稲荷大社 京都市伏見区深草藪之内町68</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://maps.apple.com/?ll=34.9671,135.7727&q=Fushimi+Inari+Taisha" target="_blank">📍 Maps</a>
-</span></div>
-</div>
 
 <details class="food-nearby">
 <summary>🍜 Kyoto Station food (Shinpuku's rival + more)</summary>
@@ -1275,7 +1200,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM — <strong>Kyoto Baum (ばあむ)</strong> at Kyoto Station! Shinpuku is right by the station. Hit The Cube / Isetan B1 before or after ramen. Matcha baumkuchen in calligraphy box. ¥1,400–2,000. Also grab remaining LuLuLun masks here if not bought at Nishiki.</div>
 
 <!-- ~6:45 PM LATE RAMEN -->
-<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 9</span><span class="clock">🌙</span> ~6:45 PM · Shinpuku Saikan</div>
+<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 8</span><span class="clock">🌙</span> ~6:45 PM · Shinpuku Saikan</div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1938 · Only in Kyoto</span>
@@ -1291,9 +1216,9 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Fushimi Inari</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Pontocho / Dinner area</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Shinpuku Saikan (near Kyoto Station)</span></div>
-<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">JR Train</span><span class="t-value">JR Inari → Kyoto Station · 1 stop · 2 min · ¥150</span></div>
+<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,000 · 8 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('新福菜館本店 京都市下京区東塩小路向畑町569')"><strong>新福菜館本店 京都市下京区東塩小路向畑町569</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?q=%E6%96%B0%E7%A6%8F%E8%8F%9C%E9%A4%A8%E6%9C%AC%E5%BA%97+Shinpuku+Saikan+Kyoto" target="_blank">📍 Maps</a>
@@ -1309,25 +1234,49 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="section" id="day3">
 <div class="section-title">
 <span class="icon">🎋</span>
-<h2>Day 3 — Tue, March 24 · Arashiyama + Uji → Osaka</h2>
-<span class="sub">Two bucket-list side trips before your train</span>
+<h2>Day 3 — Tue, March 24 · Cherry Tree + Arashiyama + Uji → Osaka</h2>
+<span class="sub">Ancient cherry tree, bamboo grove, matcha capital, then Osaka</span>
 </div>
 
 <div class="clothes-card">
-<div class="clothes-title">👔 What to Wear Tomorrow</div>
+<div class="clothes-title">👔 What to Wear Today</div>
 <div class="clothes-body">
 <span class="meta-pill">8–17°C (46–63°F)</span> <span class="meta-pill">Cool dawn in Arashiyama</span><br><br>
-<strong>Outfit:</strong> Warmer layer for dawn bamboo grove (~8°C at 7:30 AM), can remove later. Comfortable shoes again<br>
+<strong>Outfit:</strong> Warmer layer for dawn bamboo grove (~8°C at 7:00 AM), can remove later. Comfortable shoes again<br>
 <strong>Footwear:</strong> Same sneakers (temples + walking + Uji stroll)<br>
 <strong>Bag:</strong> Tote bag or packable bag for Kyoto Station souvenir speed run<br>
 <strong>Extras:</strong> Compact umbrella, phone battery pack
 </div>
 </div>
 
+<!-- 7:00 AM TOJI CHERRY TREE -->
+<div class="time-block"><span class="step-num">STEP 1</span><span class="clock">🌸</span> 7:00 – 7:30 AM · Toji Temple — 120-Year-Old Weeping Cherry</div>
+
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Toji_Kyoto06n4500.jpg/800px-Toji_Kyoto06n4500.jpg')">
+<div class="img-title">Toji Temple — Giant Shidarezakura<small>東寺 枝垂れ桜 · 120+ years old · 13m tall</small></div>
+</div>
+<div class="img-body">
+<div class="desc">THE famous old cherry tree near Umekoji — a 120+ year-old weeping cherry (shidarezakura) in front of Japan's tallest wooden pagoda. Late March is prime bloom time. The branches cascade dramatically downward. One of the most iconic cherry blossom photos in all of Kyoto. Only 15 min walk from the hotel.</div>
+<div class="tip">📸 <strong>Photo tip:</strong> The pagoda + weeping cherry combo is the shot. Early morning light is gorgeous and fewer people. They also do night illuminations if you missed it last night.</div>
+</div>
+</div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">FROM</span><span class="t-value">Umekoji Potel</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Toji Temple</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">~15 min southeast (through Kyoto Station area)</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Entry</span><span class="t-value">¥500 (grounds open from 8am, but the tree is visible from outside earlier)</span></div>
+<div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
+<div class="addr-box" onclick="copyAddr('東寺 京都市南区九条町1')"><strong>東寺 京都市南区九条町1</strong><span class="copy-icon">tap to copy</span></div>
+<a class="maps-link" href="https://maps.apple.com/?q=Toji+Temple+Kyoto&ll=34.9804,135.7477" target="_blank">📍 Maps</a>
+</span></div>
+</div>
+
 <div class="tip">⏰ <strong>Tight but doable.</strong> Early Arashiyama → Momohada Cosme → train to Uji → Byodo-in + matcha → Kyoto Station souvenirs → lunch → Osaka ~2pm.</div>
 
 <!-- 7:30 ARASHIYAMA -->
-<div class="time-block"><span class="clock">🎋</span> 7:30 – 9:00 AM · Arashiyama Bamboo Grove</div>
+<div class="time-block"><span class="step-num">STEP 2</span><span class="clock">🎋</span> 7:45 – 9:00 AM · Arashiyama Bamboo Grove</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Arashiyama_013.jpg/800px-Arashiyama_013.jpg')">
@@ -1374,7 +1323,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 9:15 MOMOHADA -->
-<div class="time-block"><span class="clock">💄</span> 9:15 – 9:40 AM · Momohada Cosme</div>
+<div class="time-block"><span class="step-num">STEP 3</span><span class="clock">💄</span> 9:15 – 9:40 AM · Momohada Cosme</div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Momohada Cosme</strong> sakura face wash + konjac sponges. ¥350 each. Quick 15-min stop.</div>
 
@@ -1401,7 +1350,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 9:45 TRAIN TO UJI -->
-<div class="time-block"><span class="clock">🚃</span> 9:45 – 10:45 AM · Train to Uji</div>
+<div class="time-block"><span class="step-num">STEP 4</span><span class="clock">🚃</span> 9:45 – 10:45 AM · Train to Uji</div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Step 1</span><span class="t-value">JR Saga-Arashiyama → Kyoto Station (17 min, ¥240)</span></div>
@@ -1411,7 +1360,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 10:45 UJI -->
-<div class="time-block"><span class="clock">⛩</span> 10:45 AM – 12:15 PM · Uji — Matcha Capital of Japan</div>
+<div class="time-block"><span class="step-num">STEP 5</span><span class="clock">⛩</span> 10:45 AM – 12:15 PM · Uji — Matcha Capital</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg/800px-Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg')">
@@ -1448,7 +1397,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 12:20 BACK TO KYOTO -->
-<div class="time-block"><span class="clock">🚃</span> 12:20 PM · Back to Kyoto Station</div>
+<div class="time-block"><span class="step-num">STEP 6</span><span class="clock">🚃</span> 12:20 PM · Back to Kyoto Station</div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">JR Nara Line Uji → Kyoto · 18 min · ¥250 · IC card</span></div>
@@ -1456,7 +1405,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 12:40 SOUVENIRS -->
-<div class="time-block"><span class="clock">🛍</span> 12:40 – 1:15 PM · Kyoto Station Souvenir Speed Run</div>
+<div class="time-block"><span class="step-num">STEP 7</span><span class="clock">🛍</span> 12:40 – 1:15 PM · Souvenirs + Mom's List</div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Nama Yatsuhashi (生八つ橋)</strong> matcha + cinnamon with red bean. Otabe or Shogoin brand. ¥600–1,200/box.</div>
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Kyoto Baum (ばあむ)</strong> matcha baumkuchen in calligraphy box. ¥1,400–2,000.</div>
@@ -1475,7 +1424,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 1:15 LUNCH + TRAIN -->
-<div class="time-block"><span class="clock">🍜</span> 1:15 – 1:50 PM · Quick Lunch</div>
+<div class="time-block"><span class="step-num">STEP 8</span><span class="clock">🍜</span> 1:15 – 1:50 PM · Quick Lunch</div>
 
 <div class="card">
 <span class="card-label label-walkin">Ticket machine · 20 min</span>
@@ -1490,12 +1439,132 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 </div>
 
-<div class="time-block"><span class="clock">🚃</span> ~2:00 PM · Kintetsu → Osaka Namba</div>
+<div class="time-block"><span class="step-num">STEP 9</span><span class="clock">🚃</span> ~2:00 PM · Kintetsu → Osaka Namba</div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">Kintetsu Limited Express, Kyoto → Osaka-Namba · 42 min · ~¥1,130</span></div>
 <div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Ticket</span><span class="t-value">Buy at Kintetsu counter in Kyoto Station. Reserved seats.</span></div>
 <div class="t-row"><span class="t-icon">🕐</span><span class="t-label">Arrive</span><span class="t-value">Osaka-Namba ~2:42pm — whole afternoon/evening in Osaka!</span></div>
+</div>
+
+<!-- OSAKA AFTERNOON/EVENING -->
+<div class="time-block"><span class="step-num">STEP 10</span><span class="clock">🐙</span> ~3:00 PM · Arrive Osaka — Dotonbori Food Crawl</div>
+
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Dotonbori_at_night%2C_Osaka.jpg/800px-Dotonbori_at_night%2C_Osaka.jpg')">
+<div class="img-title">Dotonbori — Osaka's Iconic Food Street<small>道頓堀 · 5 min walk from Namba Station</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Neon signs, giant mechanical crabs, the Glico Running Man — and Osaka's best street food all within 500m. You arrive right into the heart of it from Namba Station.</div>
+</div>
+</div>
+
+<div class="tip">🐙 <strong>Osaka = Japan's kitchen.</strong> The route below flows from Dotonbori → Shinsekai → back to Namba. Budget: ~¥5,000 for a full afternoon of eating.</div>
+
+<div class="card">
+<span class="card-label label-top">🐙 Must-eat #1</span>
+<div class="card-top">
+<div class="card-emoji">🐙</div>
+<div class="card-info">
+<div class="card-name">Takoyaki Kukuru — Giant Octopus Takoyaki</div>
+<div class="card-jp">たこ焼きくくる · Dotonbori · Walk-in</div>
+<div class="card-desc">Famous for massive fresh octopus pieces inside crispy-outside, molten-inside balls. The giant red octopus sign marks the spot.</div>
+<div class="dishes">
+<div class="dishes-title">🐙 Top 3</div>
+<div class="dish"><strong>Jumbo takoyaki (ジャンボ)</strong> — massive octopus pieces</div>
+<div class="dish"><strong>Negi-dare takoyaki</strong> — green onion sauce</div>
+<div class="dish"><strong>Regular 8-piece set</strong> — classic style</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥500–900</span><span class="meta-pill">Street-front</span>
+<a class="maps-link" href="https://www.yelp.com/search?find_desc=Takoyaki+Kukuru&find_loc=Osaka" target="_blank">⭐ Yelp</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<span class="card-label label-top">🥞 Must-eat #2</span>
+<div class="card-top">
+<div class="card-emoji">🥞</div>
+<div class="card-info">
+<div class="card-name">Mizuno — Osaka's #1 Okonomiyaki</div>
+<div class="card-jp">美津の · Dotonbori · est. 1945 · Walk-in (queue)</div>
+<div class="card-desc">Consistently ranked #1 okonomiyaki in Osaka. Cooked on the griddle in front of you. Arrive before 4 PM to beat the dinner queue.</div>
+<div class="dishes">
+<div class="dishes-title">🥞 Top 3</div>
+<div class="dish"><strong>Yamaimo-yaki (山芋焼き)</strong> — mountain yam, incredibly fluffy. THE dish.</div>
+<div class="dish"><strong>Mizuno Special Mix</strong> — seafood + pork combo</div>
+<div class="dish"><strong>Negiyaki</strong> — green onion pancake</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥1,000–1,800</span><span class="meta-pill">Walk-in (30-60 min queue)</span>
+<a class="maps-link" href="https://www.yelp.com/search?find_desc=Mizuno+Okonomiyaki&find_loc=Osaka" target="_blank">⭐ Yelp</a></div>
+</div>
+</div>
+</div>
+
+<div class="time-block"><span class="step-num">STEP 11</span><span class="clock">🗼</span> ~5:30 PM · Shinsekai — Retro Osaka + Kushikatsu</div>
+
+<div class="tip">🚇 Subway: Namba → Dobutsuen-mae · 2 stops · 5 min · ¥240</div>
+
+<div class="card">
+<span class="card-label label-top">🍢 Must-eat #3</span>
+<div class="card-top">
+<div class="card-emoji">🍢</div>
+<div class="card-info">
+<div class="card-name">Daruma — Kushikatsu Since 1929</div>
+<div class="card-jp">串かつだるま · Shinsekai · Walk-in</div>
+<div class="card-desc">The godfather of kushikatsu. Deep-fried skewers dipped in communal sauce. Rule #1: NO DOUBLE DIPPING (二度づけ禁止). Iconic angry-chef mascot outside.</div>
+<div class="dishes">
+<div class="dishes-title">🍢 Top 3</div>
+<div class="dish"><strong>Kushikatsu assorted set</strong> — mixed platter, the best intro</div>
+<div class="dish"><strong>Beef kushikatsu (牛串)</strong> — the classic single skewer</div>
+<div class="dish"><strong>Renkon + shiso</strong> — lotus root and perilla leaf</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥100–200/skewer</span><span class="meta-pill">Sets ¥1,000–1,500</span>
+<a class="maps-link" href="https://www.yelp.com/search?find_desc=Daruma+Kushikatsu+Shinsekai&find_loc=Osaka" target="_blank">⭐ Yelp</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🗼</div>
+<div class="card-info">
+<div class="card-name">Tsutenkaku Tower + Jan Jan Yokocho</div>
+<div class="card-jp">通天閣 · ジャンジャン横丁 · Shinsekai district</div>
+<div class="card-desc">Osaka's retro Eiffel-Tower-inspired landmark. Walk the neon-lit streets, peek into old-school shogi parlors, soak in pure vintage Osaka character.</div>
+<div class="card-meta"><span class="meta-pill">Tower ¥900</span><span class="meta-pill">Streets are free</span></div>
+</div>
+</div>
+</div>
+
+<div class="time-block"><span class="step-num">STEP 12</span><span class="clock">🌃</span> ~7:30 PM · Dotonbori at Night + Dessert</div>
+
+<div class="tip">🚇 Subway back: Dobutsuen-mae → Namba · 2 stops · ¥240</div>
+
+<div class="card">
+<span class="card-label label-top">🍰 Must-eat #4</span>
+<div class="card-top">
+<div class="card-emoji">🍰</div>
+<div class="card-info">
+<div class="card-name">Rikuro Ojisan — Jiggly Cheesecake</div>
+<div class="card-jp">りくろーおじさんの店 · Namba · Walk-in (queue)</div>
+<div class="card-desc">THE Osaka souvenir. A fluffy soufflé cheesecake stamped fresh in front of you. The smiling old man logo is iconic. Queue moves fast.</div>
+<div class="card-meta"><span class="meta-pill">¥965/whole cake</span><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://www.yelp.com/search?find_desc=Rikuro+Ojisan+Cheesecake&find_loc=Osaka" target="_blank">⭐ Yelp</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🌃</div>
+<div class="card-info">
+<div class="card-name">Dotonbori Night Walk</div>
+<div class="card-jp">道頓堀 · Neon at its best after dark</div>
+<div class="card-desc">Walk the canal, photo the Glico Running Man, ride the Don Quijote Ferris wheel (¥600). Then hit Shinsaibashi arcade or America-mura for bars and vintage shops.</div>
+<div class="card-meta"><span class="meta-pill">Free</span><span class="meta-pill">Ferris wheel ¥600</span><span class="meta-pill">Best after 8 PM</span></div>
+</div>
+</div>
 </div>
 
 </div>
