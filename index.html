@@ -827,8 +827,12 @@ function generateStatus(){
     msg+='Location unknown';
   }
   msg+=' | '+time+' JST';
-  const stepIdx=trackState.completed.length+1;
-  msg+=' | Day 2 Step '+Math.min(stepIdx,8);
+  const jstD=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const dayNum=(jstD.getMonth()===2&&jstD.getDate()===23)?2:(jstD.getMonth()===2&&jstD.getDate()===24)?3:0;
+  const dayLabel=dayNum?'Day '+dayNum:'';
+  const activeSteps=SCHEDULE.filter(s=>s.day===dayNum);
+  const doneInDay=activeSteps.filter(s=>trackState.completed.includes(s.id)).length;
+  if(dayLabel) msg+=' | '+dayLabel+' Step '+(doneInDay+1)+'/'+activeSteps.length;
 
   if(doneNames.length) msg+='\nDone: '+doneNames.join(', ');
   if(skippedNames.length) msg+='\nSkipped: '+skippedNames.join(', ');
@@ -947,16 +951,43 @@ document.addEventListener('DOMContentLoaded',function(){
       if(el) el.classList.add('step-done');
     }
   });
-  // Auto-complete all Day 2 steps (Day 2 is done)
-  const day2Ids=['act-philosophers-path','act-kinkakuji','act-nishiki','act-lunch','act-kiyomizu','act-gion','act-dinner','act-shinpuku'];
-  day2Ids.forEach(id=>{
-    if(!trackState.completed.includes(id)){
-      trackState.completed.push(id);
-    }
-    const el=document.getElementById(id);
-    if(el) el.classList.add('step-done');
-  });
-  localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+
+  // ═══ AUTO-DAY DETECTION (JST) ═══
+  const jstNow=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const jstDate=jstNow.getDate();
+  const jstMonth=jstNow.getMonth()+1; // 1-indexed
+  // Day 2 = March 23, Day 3 = March 24
+  const tripDay=(jstMonth===3&&jstDate===23)?2:(jstMonth===3&&jstDate===24)?3:
+    (jstMonth===3&&jstDate>24)?'after':(jstMonth>3)?'after':'before';
+
+  const day2El=document.getElementById('day2');
+  const day3El=document.getElementById('day3');
+  const routeEl=document.getElementById('route-optimizer');
+
+  if(tripDay===2){
+    // Day 2 active: show Day 2 open, collapse Day 3
+    if(day2El&&day2El.tagName==='DETAILS') day2El.open=true;
+    if(day3El) day3El.style.display='none';
+  } else if(tripDay===3||tripDay==='after'){
+    // Day 3 active (or trip over): collapse Day 2, show Day 3
+    const day2Ids=['act-philosophers-path','act-kinkakuji','act-nishiki','act-lunch','act-kiyomizu','act-gion','act-dinner','act-shinpuku'];
+    day2Ids.forEach(id=>{
+      if(!trackState.completed.includes(id)) trackState.completed.push(id);
+      const el=document.getElementById(id);
+      if(el) el.classList.add('step-done');
+    });
+    localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+    if(day2El&&day2El.tagName==='DETAILS') day2El.open=false;
+  } else {
+    // Before trip: show everything
+    if(day2El&&day2El.tagName==='DETAILS') day2El.open=true;
+  }
+
+  // Update hero subtitle with current day
+  const heroSub=document.querySelector('.hero p:first-of-type');
+  if(tripDay===2&&heroSub) heroSub.innerHTML='<strong>Today: Day 2</strong> · Full Day Kyoto';
+  else if(tripDay===3&&heroSub) heroSub.innerHTML='<strong>Today: Day 3</strong> · Cherry Tree → Arashiyama → Uji → Osaka';
+
   // Pre-check purchased items
   if(!shoppingState.includes('yatsuhashi')){
     shoppingState.push('yatsuhashi');
@@ -1053,21 +1084,24 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<!-- ROUTE OPTIMIZER -->
+<!-- ROUTE OPTIMIZER — DAY 3 -->
 <div class="route-card" id="route-optimizer">
-<div class="route-title">🗺️ Optimized Route — north first, then sweep south</div>
+<div class="route-title">🗺️ Day 3 Route — Cherry tree → Arashiyama → Uji → Osaka</div>
 <table class="route-table">
 <tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
-<tr><td>Hotel → Ginkaku-ji ✓</td><td class="rt-mode">🚕 Taxi</td><td>15 min</td><td>¥1,800</td></tr>
-<tr><td>Ginkaku-ji → Kinkaku-ji</td><td class="rt-mode">🚕 Taxi</td><td>25 min</td><td>¥2,200</td></tr>
-<tr><td>Kinkaku-ji → Nishiki Market</td><td class="rt-mode">🚌 Bus 59</td><td>30 min ↓S</td><td>¥230</td></tr>
-<tr><td>Lunch → Kiyomizu-dera</td><td class="rt-mode">🚕 Taxi</td><td>10 min</td><td>¥800</td></tr>
-<tr><td>Kiyomizu → Gion → Pontocho</td><td class="rt-mode">🚶 Walk</td><td>25 min</td><td>Free</td></tr>
-<tr><td>Pontocho → Shinpuku</td><td class="rt-mode">🚕 GO Taxi</td><td>8 min</td><td>¥1,000</td></tr>
+<tr><td>Hotel → Toji Temple</td><td class="rt-mode">🚶 Walk</td><td>15 min</td><td>Free</td></tr>
+<tr><td>Toji → Arashiyama</td><td class="rt-mode">🚕 Taxi</td><td>15 min</td><td>¥1,500</td></tr>
+<tr><td>Arashiyama → Momohada</td><td class="rt-mode">🚶 Walk</td><td>5 min</td><td>Free</td></tr>
+<tr><td>Saga-Arashiyama → Kyoto Stn</td><td class="rt-mode">🚃 JR</td><td>17 min</td><td>¥240</td></tr>
+<tr><td>Kyoto Stn → JR Uji</td><td class="rt-mode">🚃 Nara Line</td><td>18 min</td><td>¥250</td></tr>
+<tr><td>Uji → Kyoto Stn</td><td class="rt-mode">🚃 Nara Line</td><td>18 min</td><td>¥250</td></tr>
+<tr><td>Kyoto → Osaka-Namba</td><td class="rt-mode">🚃 Kintetsu</td><td>42 min</td><td>¥1,130</td></tr>
+<tr><td>Namba → Shinsekai</td><td class="rt-mode">🚇 Subway</td><td>5 min</td><td>¥240</td></tr>
+<tr><td>Shinsekai → Namba</td><td class="rt-mode">🚇 Subway</td><td>5 min</td><td>¥240</td></tr>
 </table>
 <div class="route-total">
-<span>Total transit: ~1h 30min</span>
-<span>Total cost: ~¥5,200</span>
+<span>Total transit: ~2h 20min</span>
+<span>Total cost: ~¥3,850</span>
 </div>
 </div>
 
