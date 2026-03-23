@@ -1,0 +1,1089 @@
+[
+  {
+    "place": {
+      "name": "Tsukimochiya Naomasa \u2014 Legendary Warabi Mochi",
+      "name_jp": "\u6708\u9905\u5bb6\u76f4\u6b63",
+      "area": "Teramachi",
+      "lat": null,
+      "lng": null,
+      "step": "Step 2 (Kinkaku-ji)",
+      "yelp_query": "Tsukimochiya Naomasa",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u6708\u9905\u5bb6\u76f4\u6b63 Teramachi",
+          "Tsukimochiya Naomasa \u2014 Legendary Warabi Mochi Teramachi"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Musashi Sushi",
+      "name_jp": "\u3080\u3055\u3057\u5bff\u53f8",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 2 (Kinkaku-ji)",
+      "yelp_query": "Musashi Sushi",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "Sushinomusashi, \u4e09\u6761\u901a, \u897f\u5927\u6587\u5b57\u753a, \u77f3\u6a4b\u753a, \u4e2d\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 604-8005, \u65e5\u672c",
+        "lat": 35.0089233,
+        "lng": 135.7687696,
+        "distance_from_listed": "N/A",
+        "type": "restaurant",
+        "query_used": "\u3080\u3055\u3057\u5bff\u53f8 "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Donguri",
+      "name_jp": "\u3069\u3093\u3050\u308a",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 2 (Kinkaku-ji)",
+      "yelp_query": "Donguri",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u3069\u3093\u3050\u308a ",
+          "Donguri "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Chuka-Soba Rantan",
+      "name_jp": "\u4e2d\u83ef\u305d\u3070 \u3089\u3093\u305f\u3093",
+      "area": "Near Nishiki",
+      "lat": 35.0045,
+      "lng": 135.766,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4e2d\u83ef\u305d\u3070 \u3089\u3093\u305f\u3093 Near Nishiki",
+          "Chuka-Soba Rantan Near Nishiki"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Okutan Nanzenji \u2014 Japan's Oldest Restaurant",
+      "name_jp": "\u5965\u4e39\u5357\u7985\u5bfa",
+      "area": "Yudofu (tofu hotpot) in a 400-year-old garden",
+      "lat": 35.009,
+      "lng": 135.762,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u5965\u4e39\u5357\u7985\u5bfa Yudofu (tofu hotpot) in a 400-year-old garden",
+          "Okutan Nanzenji \u2014 Japan's Oldest Restaurant Yudofu (tofu hotpot) in a 400-year-old garden"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Kyoto Gyoza enen",
+      "name_jp": "\u4eac\u90fd\u304e\u3087\u3046\u3056 \u3048\u3093\u3048\u3093",
+      "area": "",
+      "lat": 35.009,
+      "lng": 135.762,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4eac\u90fd\u304e\u3087\u3046\u3056 \u3048\u3093\u3048\u3093 ",
+          "Kyoto Gyoza enen "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Honke Owariya",
+      "name_jp": "\u672c\u5bb6\u5c3e\u5f35\u5c4b",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "Honke Owariya",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u672c\u5bb6\u5c3e\u5f35\u5c4b, \u8eca\u5c4b\u753a\u901a, \u4e8c\u6761\u6bbf\u753a, \u897f\u4e5d\u8ed2\u753a, \u4e2d\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 604-0836, \u65e5\u672c",
+        "lat": 35.0127481,
+        "lng": 135.7601451,
+        "distance_from_listed": "N/A",
+        "type": "restaurant",
+        "query_used": "\u672c\u5bb6\u5c3e\u5f35\u5c4b "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Honke Tagoto",
+      "name_jp": "\u672c\u5bb6\u305f\u3054\u7530",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "Honke Tagoto",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u672c\u5bb6\u305f\u3054\u7530 ",
+          "Honke Tagoto "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Menbakaichidai",
+      "name_jp": "\u3081\u3093\u99ac\u9e7f\u4e00\u4ee3",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "Menbakaichidai",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u3081\u3093\u99ac\u9e7f\u4e00\u4ee3, \u4e38\u592a\u753a\u901a, \u6b66\u885b\u9663\u753a, \u897f\u4e38\u592a\u753a, \u4e0a\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 602-8134, \u65e5\u672c",
+        "lat": 35.0176781,
+        "lng": 135.7476438,
+        "distance_from_listed": "N/A",
+        "type": "restaurant",
+        "query_used": "\u3081\u3093\u99ac\u9e7f\u4e00\u4ee3 "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Yojiya Cafe",
+      "name_jp": "\u3088\u30fc\u3058\u3084\u30ab\u30d5\u30a7",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "Yojiya Cafe",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "Yojiya Cafe, \u6afb\u6a4b, \u9e7f\u30b1\u8c37\u5bfa\u30ce\u524d\u753a, \u5ca1\u5d0e\u5929\u738b\u753a, \u5de6\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 606-8412, \u65e5\u672c",
+        "lat": 35.0220437,
+        "lng": 135.7947264,
+        "distance_from_listed": "N/A",
+        "type": "cafe",
+        "query_used": "Yojiya Cafe "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Omen Kodai-ji",
+      "name_jp": "\u304a\u3081\u3093\u9ad8\u53f0\u5bfa\u5e97",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 4 (Lunch)",
+      "yelp_query": "Omen Kodai-ji",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u304a\u3081\u3093\u9ad8\u53f0\u5bfa\u5e97 ",
+          "Omen Kodai-ji "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2462 Kasagiya \u2014 Warabi Mochi (est. 1914)",
+      "name_jp": "\u304b\u3055\u304e\u5c4b",
+      "area": "\u4e09\u5e74\u5742",
+      "lat": 34.9982,
+      "lng": 135.7808,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u304b\u3055\u304e\u5c4b \u4e09\u5e74\u5742",
+          "\u2462 Kasagiya \u2014 Warabi Mochi (est. 1914) \u4e09\u5e74\u5742"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2465 Kagizen Yoshifusa \u2014 Kuzukiri (est. 1789)",
+      "name_jp": "\u9375\u5584\u826f\u623f",
+      "area": "\u7947\u5712\u56db\u6761",
+      "lat": 35.004,
+      "lng": 135.7755,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u9375\u5584\u826f\u623f \u7947\u5712\u56db\u6761",
+          "\u2465 Kagizen Yoshifusa \u2014 Kuzukiri (est. 1789) \u7947\u5712\u56db\u6761"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Menami \u2014 Late-Night Gion Locals' Spot",
+      "name_jp": "\u3081\u306a\u307f",
+      "area": "Gion",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "Menami Udon Gion",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u3081\u306a\u307f Gion",
+          "Menami \u2014 Late-Night Gion Locals' Spot Gion"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2460 Shichimiya Honpo",
+      "name_jp": "\u4e03\u5473\u5bb6\u672c\u8217",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "\u2460 Shichimiya Honpo",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u4e03\u5473\u5bb6\u672c\u8217, \u6e05\u6c34\u4e8c\u4e01\u76ee, \u6771\u5c71\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 605-0862, \u65e5\u672c",
+        "lat": 34.9962415,
+        "lng": 135.7807649,
+        "distance_from_listed": "N/A",
+        "type": "spices",
+        "query_used": "\u4e03\u5473\u5bb6\u672c\u8217 "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2461 Kanshundo",
+      "name_jp": "\u7518\u6625\u5802",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "\u2461 Kanshundo",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u7518\u6625\u5802 ",
+          "\u2461 Kanshundo "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2463 Nanaya",
+      "name_jp": "\u306a\u306a\u3084\u4eac\u90fd",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "\u2463 Nanaya",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "Gelato Nanaya, \u9752\u5c71\u901a\u308a, \u6e0b\u8c37\u4e8c\u4e01\u76ee, \u6e0b\u8c37, \u6e0b\u8c37\u533a, \u6771\u4eac\u90fd, 150-0002, \u65e5\u672c",
+        "lat": 35.6603501,
+        "lng": 139.7075627,
+        "distance_from_listed": "N/A",
+        "type": "cafe",
+        "query_used": "\u306a\u306a\u3084\u4eac\u90fd "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2464 Issen Yoshoku",
+      "name_jp": "\u58f9\u92ad\u6d0b\u98df",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "\u2464 Issen Yoshoku",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u99c5\u524d, \u990a\u7236\u5e02, \u5175\u5eab\u770c, 667-0004, \u65e5\u672c",
+        "lat": 35.4158916,
+        "lng": 134.7805272,
+        "distance_from_listed": "N/A",
+        "type": "neighbourhood",
+        "query_used": "\u58f9\u92ad\u6d0b\u98df "
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "\u2466 Gion Tsujiri",
+      "name_jp": "\u7947\u5712\u8fbb\u5229",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Kiyomizu-dera)",
+      "yelp_query": "\u2466 Gion Tsujiri",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u7947\u5712\u8fbb\u5229 ",
+          "\u2466 Gion Tsujiri "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Kyomachiya Obanzai Kohaku",
+      "name_jp": "\u4eac\u753a\u5bb6\u304a\u3070\u3093\u3056\u3044 \u3053\u306f\u304f",
+      "area": "\u5148\u6597\u753a",
+      "lat": null,
+      "lng": null,
+      "step": "Step 7 (Dinner)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4eac\u753a\u5bb6\u304a\u3070\u3093\u3056\u3044 \u3053\u306f\u304f \u5148\u6597\u753a",
+          "Kyomachiya Obanzai Kohaku \u5148\u6597\u753a"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Wagyu Sukiyaki Panga",
+      "name_jp": "\u548c\u725b\u3059\u304d\u713c\u304d \u30d1\u30f3\u30ac",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 7 (Dinner)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u548c\u725b\u3059\u304d\u713c\u304d \u30d1\u30f3\u30ac ",
+          "Wagyu Sukiyaki Panga "
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Gion Duck Noodles \u2014 Kyoto Duck Ramen",
+      "name_jp": "\u304e\u3092\u3093\u9d28\u5ddd\u30cc\u30fc\u30c9\u30eb",
+      "area": "Gion",
+      "lat": null,
+      "lng": null,
+      "step": "Step 7 (Dinner)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u304e\u3092\u3093\u9d28\u5ddd\u30cc\u30fc\u30c9\u30eb Gion",
+          "Gion Duck Noodles \u2014 Kyoto Duck Ramen Gion"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Honke Daiichi Asahi \u2014 THE Other Kyoto Station Ramen",
+      "name_jp": "\u672c\u5bb6\u7b2c\u4e00\u65ed",
+      "area": "Literally next door to Shinpuku",
+      "lat": null,
+      "lng": null,
+      "step": "Step 7 (Dinner)",
+      "yelp_query": "Honke Daiichi Asahi Ramen",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u672c\u5bb6\u7b2c\u4e00\u65ed Literally next door to Shinpuku",
+          "Honke Daiichi Asahi \u2014 THE Other Kyoto Station Ramen Literally next door to Shinpuku"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Shinpuku Saikan",
+      "name_jp": "\u65b0\u798f\u83dc\u9928\u672c\u5e97",
+      "area": "Tabelog 3.70",
+      "lat": null,
+      "lng": null,
+      "step": "Step 8 (Shinpuku Saikan)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u65b0\u798f\u83dc\u9928\u672c\u5e97 Tabelog 3.70",
+          "Shinpuku Saikan Tabelog 3.70"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Inoda Coffee \u2014 Kyoto's Legendary Kissaten",
+      "name_jp": "\u30a4\u30ce\u30c0\u30b3\u30fc\u30d2 \u672c\u5e97",
+      "area": "est. 1940",
+      "lat": 35.005,
+      "lng": 135.762,
+      "step": "Step 1 (Toji Cherry Tree)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u30a4\u30ce\u30c0\u30b3\u30fc\u30d2\u672c\u5e97, \u583a\u753a\u901a, \u83ca\u5c4b\u753a, \u4e2d\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 604-8111, \u65e5\u672c",
+        "lat": 35.0080944,
+        "lng": 135.7631906,
+        "distance_from_listed": "368m",
+        "type": "cafe",
+        "query_used": "\u30a4\u30ce\u30c0\u30b3\u30fc\u30d2 \u672c\u5e97 est. 1940"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Kyoto Station Bakeries",
+      "name_jp": "\u4eac\u90fd\u99c5",
+      "area": "Sizuya / Shinpuku bagels",
+      "lat": null,
+      "lng": null,
+      "step": "Step 1 (Toji Cherry Tree)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4eac\u90fd\u99c5 Sizuya / Shinpuku bagels",
+          "Kyoto Station Bakeries Sizuya / Shinpuku bagels"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Arashiyama Yoshimura \u2014 Soba with Togetsukyo Views",
+      "name_jp": "\u5d50\u5c71\u3088\u3057\u3080\u3089",
+      "area": "\u6e21\u6708\u6a4b",
+      "lat": 35.0173,
+      "lng": 135.6717,
+      "step": "Step 2 (Arashiyama)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u5d50\u5c71\u3088\u3057\u3080\u3089 \u6e21\u6708\u6a4b",
+          "Arashiyama Yoshimura \u2014 Soba with Togetsukyo Views \u6e21\u6708\u6a4b"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "% Arabica Arashiyama",
+      "name_jp": "\u30a2\u30e9\u30d3\u30ab \u5d50\u5c71",
+      "area": "Togetsukyo Bridge views",
+      "lat": 35.0145,
+      "lng": 135.678,
+      "step": "Step 3 (Momohada Cosme)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u30a2\u30e9\u30d3\u30ab \u5d50\u5c71 Togetsukyo Bridge views",
+          "% Arabica Arashiyama Togetsukyo Bridge views"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Arashiyama Rilakkuma Cha-ya",
+      "name_jp": "\u5d50\u5c71\u308a\u3089\u3063\u304f\u307e\u8336\u623f",
+      "area": "Matcha + dango",
+      "lat": null,
+      "lng": null,
+      "step": "Step 3 (Momohada Cosme)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u5d50\u5c71\u308a\u3089\u3063\u304f\u307e\u8336\u623f Matcha + dango",
+          "Arashiyama Rilakkuma Cha-ya Matcha + dango"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Nakamura Tokichi Honten",
+      "name_jp": "\u4e2d\u6751\u85e4\u5409\u672c\u5e97",
+      "area": "\u5b87\u6cbb",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Uji + Byodo-in)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u4e2d\u6751\u85e4\u5409\u672c\u5e97, 10, \u5b87\u6cbb\u6dc0\u7dda\u65e7\u9053, \u5b87\u6cbb, \u5b87\u6cbb\u5e02, \u4eac\u90fd\u5e9c, 611-0021, \u65e5\u672c",
+        "lat": 34.8894104,
+        "lng": 135.8017106,
+        "distance_from_listed": "N/A",
+        "type": "cafe",
+        "query_used": "\u4e2d\u6751\u85e4\u5409\u672c\u5e97 \u5b87\u6cbb"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Tsuen Tea \u2014 World's Oldest Tea Shop",
+      "name_jp": "\u901a\u5712",
+      "area": "est. 1160",
+      "lat": 34.8895,
+      "lng": 135.8078,
+      "step": "Step 5 (Uji + Byodo-in)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u901a\u5712 est. 1160",
+          "Tsuen Tea \u2014 World's Oldest Tea Shop est. 1160"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Taihoan \u2014 Matcha Ceremony Experience",
+      "name_jp": "\u5bfe\u9cf3\u5eb5",
+      "area": "Uji City tea room",
+      "lat": 34.8897,
+      "lng": 135.808,
+      "step": "Step 5 (Uji + Byodo-in)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u5bfe\u9cf3\u5eb5 Uji City tea room",
+          "Taihoan \u2014 Matcha Ceremony Experience Uji City tea room"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Masuda Chaho \u2014 Matcha Soba + Inari Set",
+      "name_jp": "\u5897\u7530\u8336\u8217",
+      "area": "Uji approach street",
+      "lat": null,
+      "lng": null,
+      "step": "Step 5 (Uji + Byodo-in)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u5897\u7530\u8336\u8217 Uji approach street",
+          "Masuda Chaho \u2014 Matcha Soba + Inari Set Uji approach street"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Nakamuraya \u2014 Kyoto Station Onigiri",
+      "name_jp": "\u4e2d\u6751\u5c4b",
+      "area": "Porta underground",
+      "lat": null,
+      "lng": null,
+      "step": "Step 7 (Souvenirs)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4e2d\u6751\u5c4b Porta underground",
+          "Nakamuraya \u2014 Kyoto Station Onigiri Porta underground"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Kyoto Ramen Koji",
+      "name_jp": "\u4eac\u90fd\u62c9\u9eba\u5c0f\u8def",
+      "area": "Kyoto Station 10F",
+      "lat": null,
+      "lng": null,
+      "step": "Step 8 (Quick Lunch)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4eac\u90fd\u62c9\u9eba\u5c0f\u8def Kyoto Station 10F",
+          "Kyoto Ramen Koji Kyoto Station 10F"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Takoyaki Kukuru \u2014 Giant Octopus Takoyaki",
+      "name_jp": "\u305f\u3053\u713c\u304d\u304f\u304f\u308b",
+      "area": "Dotonbori",
+      "lat": null,
+      "lng": null,
+      "step": "Step 10 (Dotonbori Food Crawl)",
+      "yelp_query": "Takoyaki Kukuru",
+      "yelp_loc": "Osaka",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u305f\u3053\u713c\u304d\u304f\u304f\u308b Dotonbori",
+          "Takoyaki Kukuru \u2014 Giant Octopus Takoyaki Dotonbori",
+          "Takoyaki Kukuru \u2014 Giant Octopus Takoyaki Osaka"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Mizuno \u2014 Osaka's #1 Okonomiyaki",
+      "name_jp": "\u7f8e\u6d25\u306e",
+      "area": "Dotonbori",
+      "lat": null,
+      "lng": null,
+      "step": "Step 10 (Dotonbori Food Crawl)",
+      "yelp_query": "Mizuno Okonomiyaki",
+      "yelp_loc": "Osaka",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u7f8e\u6d25\u306e, 1-4-15, \u9053\u9813\u5800, \u9053\u9813\u5800\u4e00\u4e01\u76ee, \u4e2d\u592e\u533a, \u5927\u962a\u5e02, \u5927\u962a\u5e9c, 542-0071, \u65e5\u672c",
+        "lat": 34.6683721,
+        "lng": 135.5032203,
+        "distance_from_listed": "N/A",
+        "type": "restaurant",
+        "query_used": "\u7f8e\u6d25\u306e Dotonbori"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Daruma \u2014 Kushikatsu Since 1929",
+      "name_jp": "\u4e32\u304b\u3064\u3060\u308b\u307e",
+      "area": "Shinsekai",
+      "lat": null,
+      "lng": null,
+      "step": "Step 11 (Shinsekai Kushikatsu)",
+      "yelp_query": "Daruma Kushikatsu Shinsekai",
+      "yelp_loc": "Osaka",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4e32\u304b\u3064\u3060\u308b\u307e Shinsekai",
+          "Daruma \u2014 Kushikatsu Since 1929 Shinsekai",
+          "Daruma \u2014 Kushikatsu Since 1929 Osaka"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Rikuro Ojisan \u2014 Jiggly Cheesecake",
+      "name_jp": "\u308a\u304f\u308d\u30fc\u304a\u3058\u3055\u3093\u306e\u5e97",
+      "area": "Namba",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "Rikuro Ojisan Cheesecake",
+      "yelp_loc": "Osaka",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u308a\u304f\u308d\u30fc\u304a\u3058\u3055\u3093\u306e\u5e97 Namba",
+          "Rikuro Ojisan \u2014 Jiggly Cheesecake Namba",
+          "Rikuro Ojisan \u2014 Jiggly Cheesecake Osaka"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Nishiki Market (Day 2 \u00b7 10:30am)",
+      "name_jp": "\u9326\u5e02\u5834",
+      "area": "\u4e2d\u4eac\u533a",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u9326\u5e02\u5834, \u9326\u5c0f\u8def\u901a, \u935b\u51b6\u5c4b\u753a, \u6771\u9b5a\u5c4b\u753a, \u4e2d\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 600-8006, \u65e5\u672c",
+        "lat": 35.0050244,
+        "lng": 135.7655699,
+        "distance_from_listed": "N/A",
+        "type": "marketplace",
+        "query_used": "\u9326\u5e02\u5834 \u4e2d\u4eac\u533a"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Fushimi Inari Approach (Day 2 \u00b7 1:30pm)",
+      "name_jp": "\u4f0f\u898b\u7a32\u8377\u5927\u793e",
+      "area": "\u53c2\u9053",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u672c\u6bbf, \u4f0f\u898b\u7a32\u8377\u5927\u793e, \u8868\u53c2\u9053, \u6df1\u8349\u5357\u660e\u753a, \u6df1\u8349\u7a32\u8377\u5fa1\u524d\u753a, \u4f0f\u898b\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 612-0807, \u65e5\u672c",
+        "lat": 34.967173,
+        "lng": 135.7733547,
+        "distance_from_listed": "N/A",
+        "type": "place_of_worship",
+        "query_used": "\u4f0f\u898b\u7a32\u8377\u5927\u793e \u53c2\u9053"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Sannen-zaka / Ninen-zaka Lanes (Day 2 \u00b7 after Kiyomizu)",
+      "name_jp": "\u4e09\u5e74\u5742",
+      "area": "\u4e8c\u5e74\u5742",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "UNVERIFIED",
+    "results": {
+      "osm": {
+        "status": "NOT_FOUND",
+        "source": "OpenStreetMap",
+        "queries_tried": [
+          "\u4e09\u5e74\u5742 \u4e8c\u5e74\u5742",
+          "Sannen-zaka / Ninen-zaka Lanes (Day 2 \u00b7 after Kiyomizu) \u4e8c\u5e74\u5742"
+        ]
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Arashiyama (Day 3 \u00b7 stalls open ~8:30am)",
+      "name_jp": "\u5d50\u5c71",
+      "area": "\u53f3\u4eac\u533a",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "",
+      "yelp_loc": "Kyoto",
+      "source": "card"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u5d50\u5c71, \u5b87\u591a\u91ce\u5d50\u5c71\u5c71\u7530\u7dda, \u5d6f\u5ce8\u5929\u9f8d\u5bfa\u7acb\u77f3\u753a, \u53f3\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 616-0000, \u65e5\u672c",
+        "lat": 35.0152866,
+        "lng": 135.677996,
+        "distance_from_listed": "N/A",
+        "type": "station",
+        "query_used": "\u5d50\u5c71 \u53f3\u4eac\u533a"
+      }
+    }
+  },
+  {
+    "place": {
+      "name": "Nakamura Tokichi",
+      "name_jp": "est. 1854",
+      "area": "",
+      "lat": null,
+      "lng": null,
+      "step": "Step 12 (Dotonbori Night)",
+      "yelp_query": "Nakamura Tokichi",
+      "yelp_loc": "Kyoto",
+      "source": "img-title"
+    },
+    "overall_status": "VERIFIED",
+    "results": {
+      "osm": {
+        "status": "FOUND",
+        "source": "OpenStreetMap",
+        "display_name": "\u4e2d\u6751\u85e4\u5409, 901, \u6771\u5869\u5c0f\u8def\u753a, \u4e0b\u4eac\u533a, \u4eac\u90fd\u5e02, \u4eac\u90fd\u5e9c, 600-8216, \u65e5\u672c",
+        "lat": 34.9860482,
+        "lng": 135.7582531,
+        "distance_from_listed": "N/A",
+        "type": "tea",
+        "query_used": "Nakamura Tokichi "
+      }
+    }
+  }
+]
