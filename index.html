@@ -957,6 +957,11 @@ document.addEventListener('DOMContentLoaded',function(){
     if(el) el.classList.add('step-done');
   });
   localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+  // Pre-check purchased items
+  if(!shoppingState.includes('yatsuhashi')){
+    shoppingState.push('yatsuhashi');
+    localStorage.setItem('kyoto-shopping',JSON.stringify(shoppingState));
+  }
   replanTimes();
   renderShopping();
   renderClaudeTips();
