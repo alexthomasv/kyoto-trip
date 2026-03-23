@@ -6,6 +6,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2d1a00">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Kyoto Complete Guide — Alex Thomas · March 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -210,6 +214,67 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .food-group-title{font-size:.72rem;color:#b89860;text-transform:uppercase;letter-spacing:.5px;text-align:center;padding:6px 0 2px;font-weight:700}
 .food-reset{display:block;margin:4px auto;background:none;border:none;font-size:.68rem;color:#999;cursor:pointer;padding:4px 12px}
 .food-reset:hover{color:#c41a1a}
+
+/* STEP DONE/SKIP BUTTONS */
+.step-actions{margin-left:auto;display:flex;gap:6px;flex-shrink:0}
+.step-btn-done,.step-btn-skip{border:none;border-radius:14px;padding:4px 12px;font-size:.72rem;font-weight:700;cursor:pointer;letter-spacing:.3px}
+.step-btn-done{background:#2d7a4f;color:#fff}
+.step-btn-done:active{background:#1a5a35}
+.step-btn-skip{background:#888;color:#fff}
+.step-btn-skip:active{background:#666}
+.time-block.step-done{opacity:.5}
+.time-block.step-done::after{content:"✓ Done";margin-left:auto;background:#2d7a4f;color:#fff;padding:2px 10px;border-radius:10px;font-size:.68rem}
+.time-block.step-done .step-actions{display:none}
+.time-block.step-skipped{opacity:.4}
+.time-block.step-skipped::after{content:"→ Skipped";margin-left:auto;background:#888;color:#fff;padding:2px 10px;border-radius:10px;font-size:.68rem}
+.time-block.step-skipped .step-actions{display:none}
+
+/* SHOPPING CHECKLIST */
+.shopping-panel{background:#fff;border:2px solid #d4769a;border-radius:12px;margin:14px 0;overflow:hidden}
+.shopping-header{background:linear-gradient(135deg,#d4769a,#e8a0b8);color:#fff;padding:12px 16px;font-weight:700;font-size:.92rem;cursor:pointer;display:flex;align-items:center;gap:8px}
+.shopping-header .shop-count{margin-left:auto;background:rgba(255,255,255,.3);padding:2px 10px;border-radius:10px;font-size:.78rem}
+.shopping-list{padding:8px 0}
+.shopping-item{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #f0e8d8;cursor:pointer;transition:background .2s}
+.shopping-item:last-child{border-bottom:none}
+.shopping-item:active{background:#fdf0f4}
+.shopping-item .shop-check{width:22px;height:22px;border-radius:50%;border:2px solid #d4769a;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;transition:all .2s}
+.shopping-item.bought .shop-check{background:#2d7a4f;border-color:#2d7a4f;color:#fff}
+.shopping-item.bought .shop-item-name{text-decoration:line-through;color:#999}
+.shop-item-name{font-size:.88rem;font-weight:600;color:#333}
+.shop-item-where{font-size:.75rem;color:#888}
+
+/* COUNTDOWN TIMER */
+.countdown-bar{background:rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;margin:8px 0 4px;text-align:center;font-size:.88rem;font-weight:700;transition:all .3s}
+.countdown-bar.green{color:#4caf50}
+.countdown-bar.yellow{color:#ff9800}
+.countdown-bar.red{color:#f44336;animation:pulse-red 1s ease-in-out infinite}
+@keyframes pulse-red{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* CLAUDE TIPS PANEL */
+.claude-panel{background:#fff;border:2px solid #6b5ce7;border-radius:12px;margin:14px 0;overflow:hidden}
+.claude-header{background:linear-gradient(135deg,#6b5ce7,#8b7cf0);color:#fff;padding:12px 16px;font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px}
+.claude-header .claude-ts{margin-left:auto;font-weight:400;font-size:.72rem;opacity:.8}
+.claude-body{padding:12px 16px}
+.claude-input-area{display:flex;gap:8px;margin-bottom:10px}
+.claude-input{flex:1;border:1px solid #ddd;border-radius:8px;padding:10px 12px;font-size:.85rem;font-family:inherit;resize:vertical;min-height:44px;max-height:200px}
+.claude-input:focus{outline:none;border-color:#6b5ce7}
+.claude-submit{background:#6b5ce7;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;align-self:flex-end}
+.claude-submit:active{background:#5a4bd6}
+.claude-tips{list-style:none;padding:0;margin:0}
+.claude-tip-item{padding:10px 12px;border-bottom:1px solid #f0e8f8;font-size:.85rem;color:#333;line-height:1.5}
+.claude-tip-item:last-child{border-bottom:none}
+.claude-tip-item strong{color:#6b5ce7}
+.claude-tip-time{font-size:.7rem;color:#999;margin-top:4px}
+.claude-empty{text-align:center;padding:16px;font-size:.82rem;color:#999}
+.claude-clear{display:block;margin:4px auto;background:none;border:none;font-size:.68rem;color:#999;cursor:pointer;padding:4px 12px}
+.claude-clear:hover{color:#c41a1a}
+
+/* COLLAPSED DAY */
+.day-done-summary{display:flex;align-items:center;gap:10px;padding:14px 20px;background:linear-gradient(135deg,#e8f5ee,#d0eadb);border-radius:10px;cursor:pointer;font-size:.92rem;font-weight:700;color:#1a6b3a;list-style:none;margin-top:20px}
+.day-done-summary::-webkit-details-marker{display:none}
+.day-done-summary .day-done-badge{background:#2d7a4f;color:#fff;padding:3px 10px;border-radius:10px;font-size:.72rem;margin-left:auto}
+details.day-done-wrap[open] .day-done-summary .day-done-badge::after{content:' ▲'}
+details.day-done-wrap:not([open]) .day-done-summary .day-done-badge::after{content:' ▼'}
 </style>
 <script>
 function copyAddr(text){
@@ -252,7 +317,6 @@ function pickFood(el){
     el.classList.add('food-chosen');
     opts.forEach(o=>{if(o!==el) o.classList.add('food-skipped');});
     foodChoices[gid]=el.dataset.foodId||'';
-    // Mark same food type as "already chosen" in other groups
     updateFoodRecs();
   } else {
     delete foodChoices[gid];
@@ -271,10 +335,8 @@ function resetFoodGroup(btn){
 }
 
 function updateFoodRecs(){
-  // Get all chosen food types
   const chosenTypes=[];
   Object.values(foodChoices).forEach(v=>{if(v) chosenTypes.push(v.toLowerCase());});
-  // Mark duplicates in other groups
   document.querySelectorAll('.food-option[data-food-type]').forEach(el=>{
     const t=el.dataset.foodType;
     const gid=el.closest('.food-group')?.dataset.group;
@@ -308,6 +370,296 @@ function restoreFoodChoices(){
   updateFoodRecs();
 }
 
+// ═══ SCHEDULE + REPLAN SYSTEM ═══
+const SCHEDULE=[
+  {id:'act-philosophers-path',name:'Ginkaku-ji',duration:40,transit:25,start:'08:35',day:2},
+  {id:'act-kinkakuji',name:'Kinkaku-ji',duration:40,transit:30,start:'09:40',day:2},
+  {id:'act-nishiki',name:'Nishiki Market',duration:70,transit:0,start:'10:50',day:2},
+  {id:'act-lunch',name:'Lunch',duration:45,transit:10,start:'12:00',day:2},
+  {id:'act-kiyomizu',name:'Kiyomizu-dera',duration:90,transit:0,start:'13:00',day:2},
+  {id:'act-gion',name:'Gion + Kamo River',duration:60,transit:0,start:'14:45',day:2},
+  {id:'act-dinner',name:'Dinner',duration:90,transit:8,start:'16:00',day:2},
+  {id:'act-shinpuku',name:'Shinpuku Saikan',duration:45,transit:0,start:'18:45',day:2},
+  {id:'act-d3-toji',name:'Toji Cherry Tree',duration:30,transit:15,start:'07:00',day:3},
+  {id:'act-d3-arashiyama',name:'Arashiyama',duration:75,transit:5,start:'07:45',day:3},
+  {id:'act-d3-momohada',name:'Momohada Cosme',duration:25,transit:45,start:'09:15',day:3},
+  {id:'act-d3-train-uji',name:'Train to Uji',duration:60,transit:0,start:'09:45',day:3},
+  {id:'act-d3-uji',name:'Uji + Byodo-in',duration:90,transit:18,start:'10:45',day:3},
+  {id:'act-d3-train-back',name:'Back to Kyoto',duration:20,transit:0,start:'12:20',day:3},
+  {id:'act-d3-souvenirs',name:'Souvenirs',duration:35,transit:0,start:'12:40',day:3},
+  {id:'act-d3-lunch',name:'Quick Lunch',duration:35,transit:0,start:'13:15',day:3},
+  {id:'act-d3-osaka-train',name:'Kintetsu to Osaka',duration:42,transit:0,start:'14:00',day:3},
+  {id:'act-d3-dotonbori',name:'Dotonbori Food Crawl',duration:150,transit:10,start:'15:00',day:3},
+  {id:'act-d3-shinsekai',name:'Shinsekai Kushikatsu',duration:120,transit:10,start:'17:30',day:3},
+  {id:'act-d3-night',name:'Dotonbori Night',duration:120,transit:0,start:'19:30',day:3}
+];
+
+let skipState=JSON.parse(localStorage.getItem('kyoto-skip')||'[]');
+
+function parseTime(t){const[h,m]=t.split(':').map(Number);return h*60+m;}
+function formatTime(mins){
+  const h=Math.floor(mins/60)%24,m=mins%60;
+  const ampm=h>=12?'PM':'AM';
+  const h12=h%12||12;
+  return h12+':'+(m<10?'0':'')+m+' '+ampm;
+}
+
+function replanTimes(){
+  const now=new Date();
+  const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const nowMins=jst.getHours()*60+jst.getMinutes();
+  const today=jst.getDate();
+  const currentDay=(today===23)?2:(today===24)?3:2;
+
+  let cursor=null;
+  let aheadBehind=0;
+  let foundFirst=false;
+
+  for(const s of SCHEDULE){
+    const el=document.getElementById(s.id);
+    const timeEl=el?el.querySelector('.time-text'):null;
+    const isDone=trackState.completed.includes(s.id);
+    const isSkipped=skipState.includes(s.id);
+
+    if(isSkipped){
+      if(el){el.classList.add('step-skipped');el.classList.remove('step-done');}
+      continue;
+    }
+    if(isDone){
+      if(el){el.classList.add('step-done');el.classList.remove('step-skipped');}
+      continue;
+    }
+
+    if(!foundFirst){
+      foundFirst=true;
+      const planned=parseTime(s.start);
+      if(s.day===currentDay){
+        cursor=Math.max(nowMins,planned);
+        aheadBehind=planned-cursor;
+      } else {
+        cursor=planned;
+      }
+    }
+
+    if(cursor!==null && timeEl){
+      const endMins=cursor+s.duration;
+      timeEl.textContent=formatTime(cursor)+' – '+formatTime(endMins);
+      cursor=endMins+s.transit;
+    } else if(cursor!==null){
+      cursor+=s.duration+s.transit;
+    }
+  }
+
+  // Update replan banner
+  const tip=document.getElementById('replan-tip');
+  if(tip&&foundFirst){
+    if(aheadBehind>0){
+      tip.innerHTML='⏩ <strong>Running '+Math.abs(aheadBehind)+' min ahead!</strong> Times adjusted.';
+      tip.style.display='';
+    } else if(aheadBehind<-5){
+      tip.innerHTML='⏳ <strong>Running '+Math.abs(aheadBehind)+' min behind.</strong> Times shifted forward.';
+      tip.style.display='';
+    } else {
+      tip.innerHTML='✅ <strong>On schedule.</strong>';
+      tip.style.display='';
+    }
+  }
+}
+
+// ═══ STEP DONE / SKIP ═══
+function stepDone(actId){
+  markDone(actId);
+  const el=document.getElementById(actId);
+  if(el){el.classList.add('step-done');el.classList.remove('step-skipped');}
+  // Also mark adjacent content cards as done
+  let sib=el?el.nextElementSibling:null;
+  while(sib&&!sib.classList.contains('time-block')){
+    sib.classList.add('done');
+    sib=sib.nextElementSibling;
+  }
+  replanTimes();
+  updateTrackingUI();
+  updateCountdown();
+}
+
+function stepSkip(actId){
+  if(!skipState.includes(actId)){
+    skipState.push(actId);
+    localStorage.setItem('kyoto-skip',JSON.stringify(skipState));
+  }
+  // Also mark as completed so GPS tracking skips it
+  if(!trackState.completed.includes(actId)){
+    trackState.completed.push(actId);
+    localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+  }
+  const el=document.getElementById(actId);
+  if(el){el.classList.add('step-skipped');el.classList.remove('step-done');}
+  let sib=el?el.nextElementSibling:null;
+  while(sib&&!sib.classList.contains('time-block')){
+    sib.classList.add('done');
+    sib=sib.nextElementSibling;
+  }
+  replanTimes();
+  updateTrackingUI();
+  updateCountdown();
+}
+
+// ═══ SHOPPING CHECKLIST ═══
+const SHOPPING=[
+  {id:'yatsuhashi',name:'Nama Yatsuhashi (生八つ橋)',where:'Kinkaku-ji / Kiyomizu lanes / Kyoto Station'},
+  {id:'baum',name:'Kyoto Baum (ばあむ)',where:'Kyoto Station The Cube / Isetan B1'},
+  {id:'lululun',name:'LuLuLun Face Masks (京都限定)',where:'Drugstore near Nishiki / Kyoto Station'},
+  {id:'momohada',name:'Momohada Cosme (桃肌こすめ)',where:'Arashiyama Randen Station'}
+];
+let shoppingState=JSON.parse(localStorage.getItem('kyoto-shopping')||'[]');
+
+function toggleBuy(itemId){
+  const idx=shoppingState.indexOf(itemId);
+  if(idx===-1) shoppingState.push(itemId);
+  else shoppingState.splice(idx,1);
+  localStorage.setItem('kyoto-shopping',JSON.stringify(shoppingState));
+  renderShopping();
+}
+
+function renderShopping(){
+  const list=document.getElementById('shopping-list');
+  const count=document.getElementById('shop-count');
+  if(!list) return;
+  count.textContent=shoppingState.length+'/'+SHOPPING.length+' bought';
+  list.innerHTML=SHOPPING.map(item=>{
+    const bought=shoppingState.includes(item.id);
+    return '<div class="shopping-item'+(bought?' bought':'')+'" onclick="toggleBuy(\''+item.id+'\')">'+
+      '<span class="shop-check">'+(bought?'✓':'')+'</span>'+
+      '<div><div class="shop-item-name">'+item.name+'</div>'+
+      '<div class="shop-item-where">'+item.where+'</div></div></div>';
+  }).join('');
+  // Also update must-buy badges
+  document.querySelectorAll('.must-buy').forEach(badge=>{
+    SHOPPING.forEach(item=>{
+      if(shoppingState.includes(item.id) && badge.textContent.toLowerCase().includes(item.name.split('(')[0].trim().toLowerCase().slice(0,8))){
+        badge.style.background='linear-gradient(135deg,#2d7a4f,#4caf50)';
+        if(!badge.querySelector('.bought-tag')){
+          const tag=document.createElement('span');
+          tag.className='bought-tag';
+          tag.style.cssText='margin-left:auto;background:rgba(255,255,255,.3);padding:2px 8px;border-radius:8px;font-size:.7rem';
+          tag.textContent='✓ Bought';
+          badge.appendChild(tag);
+        }
+      }
+    });
+  });
+}
+
+// ═══ COUNTDOWN TIMER ═══
+function updateCountdown(){
+  const bar=document.getElementById('countdown-bar');
+  if(!bar) return;
+  const now=new Date();
+  const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const nowMins=jst.getHours()*60+jst.getMinutes();
+
+  // Find next non-done, non-skipped activity
+  let nextAct=null;
+  let nextIdx=-1;
+  for(let i=0;i<SCHEDULE.length;i++){
+    if(!trackState.completed.includes(SCHEDULE[i].id)&&!skipState.includes(SCHEDULE[i].id)){
+      nextAct=SCHEDULE[i];nextIdx=i;break;
+    }
+  }
+
+  if(!nextAct){
+    bar.textContent='All activities complete!';
+    bar.className='countdown-bar green';
+    return;
+  }
+
+  // Find the one after next to calculate departure time
+  let afterNext=null;
+  for(let i=nextIdx+1;i<SCHEDULE.length;i++){
+    if(!trackState.completed.includes(SCHEDULE[i].id)&&!skipState.includes(SCHEDULE[i].id)){
+      afterNext=SCHEDULE[i];break;
+    }
+  }
+
+  if(!afterNext){
+    bar.textContent='Last stop: '+nextAct.name+' — enjoy!';
+    bar.className='countdown-bar green';
+    return;
+  }
+
+  const departMins=parseTime(nextAct.start)+nextAct.duration;
+  const minsLeft=departMins-nowMins;
+
+  if(minsLeft>60){
+    bar.textContent='Leave for '+afterNext.name+' in '+Math.floor(minsLeft/60)+'h '+minsLeft%60+'m';
+    bar.className='countdown-bar green';
+  } else if(minsLeft>15){
+    bar.textContent='Leave in '+minsLeft+' min → '+afterNext.name;
+    bar.className='countdown-bar green';
+  } else if(minsLeft>5){
+    bar.textContent='Leave in '+minsLeft+' min → '+afterNext.name;
+    bar.className='countdown-bar yellow';
+  } else if(minsLeft>0){
+    bar.textContent='Leave NOW ('+minsLeft+' min) → '+afterNext.name;
+    bar.className='countdown-bar red';
+  } else {
+    bar.textContent='Should have left '+Math.abs(minsLeft)+' min ago → '+afterNext.name;
+    bar.className='countdown-bar red';
+  }
+}
+
+// ═══ CLAUDE TIPS SYSTEM ═══
+let claudeTips=JSON.parse(localStorage.getItem('kyoto-claude-tips')||'[]');
+
+function submitClaudeTip(){
+  const input=document.getElementById('claude-input');
+  const text=input.value.trim();
+  if(!text) return;
+  const now=new Date();
+  const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
+  const ts=jst.toLocaleTimeString('en-US',{timeZone:'Asia/Tokyo',hour:'numeric',minute:'2-digit'})+' JST';
+  // Parse into individual tips (split on numbered lists, bullet points, or double newlines)
+  const tips=text.split(/(?:\n\s*(?:\d+[\.\)]\s*|[-•]\s*)|\n\n)/).map(t=>t.trim()).filter(t=>t.length>10);
+  if(tips.length===0) tips.push(text);
+  const entry={tips:tips,ts:ts,raw:text};
+  claudeTips.unshift(entry);
+  if(claudeTips.length>10) claudeTips=claudeTips.slice(0,10);
+  localStorage.setItem('kyoto-claude-tips',JSON.stringify(claudeTips));
+  input.value='';
+  renderClaudeTips();
+}
+
+function clearClaudeTips(){
+  claudeTips=[];
+  localStorage.removeItem('kyoto-claude-tips');
+  renderClaudeTips();
+}
+
+function renderClaudeTips(){
+  const container=document.getElementById('claude-tips-list');
+  const tsEl=document.getElementById('claude-last-update');
+  if(!container) return;
+  if(claudeTips.length===0){
+    container.innerHTML='<div class="claude-empty">Share your status to Claude, then paste the response here for quick-reference tips.</div>';
+    if(tsEl) tsEl.textContent='';
+    return;
+  }
+  if(tsEl) tsEl.textContent='Updated '+claudeTips[0].ts;
+  let html='<ul class="claude-tips">';
+  // Show latest batch of tips
+  const latest=claudeTips[0];
+  latest.tips.forEach(tip=>{
+    // Bold text before first colon or dash for structure
+    const styled=tip.replace(/^([^:–—\n]{3,30}[:\-–—])/,'<strong>$1</strong>');
+    html+='<li class="claude-tip-item">'+styled+'</li>';
+  });
+  html+='</ul>';
+  if(claudeTips.length>1){
+    html+='<button class="claude-clear" onclick="clearClaudeTips()">Clear all tips</button>';
+  }
+  container.innerHTML=html;
+}
+
 // ═══ GPS TRACKING SYSTEM ═══
 const ACTIVITIES=[
   {id:'act-philosophers-path',name:"Ginkaku-ji",lat:35.0270,lng:135.7982,r:200},
@@ -332,7 +684,7 @@ function haversine(lat1,lon1,lat2,lon2){
 
 function getNextActivity(){
   for(let i=0;i<ACTIVITIES.length;i++){
-    if(!trackState.completed.includes(ACTIVITIES[i].id)) return {act:ACTIVITIES[i],idx:i};
+    if(!trackState.completed.includes(ACTIVITIES[i].id)&&!skipState.includes(ACTIVITIES[i].id)) return {act:ACTIVITIES[i],idx:i};
   }
   return null;
 }
@@ -342,8 +694,8 @@ function formatDist(m){
 }
 
 function estimateTime(m){
-  const walkMin=Math.round(m/80); // ~80m/min walking
-  const taxiMin=Math.round(m/400); // ~400m/min in city taxi
+  const walkMin=Math.round(m/80);
+  const taxiMin=Math.round(m/400);
   if(m<500) return '~'+walkMin+' min walk';
   return '~'+walkMin+' min walk · ~'+Math.max(taxiMin,5)+' min taxi';
 }
@@ -400,7 +752,6 @@ function updateTrackingUI(){
   gLabel.textContent='GPS active · ±'+acc+'m';
   accEl.textContent='Lat '+trackState.pos.lat.toFixed(4)+' · Lng '+trackState.pos.lng.toFixed(4)+' · Accuracy ±'+acc+'m';
 
-  // Find nearest known place for status banner
   const nearest=nearestKnownPlace(trackState.pos.lat,trackState.pos.lng);
   if(nearest.dist<150){
     statusLoc.textContent='At '+nearest.name;
@@ -419,16 +770,15 @@ function updateTrackingUI(){
     const d=haversine(trackState.pos.lat,trackState.pos.lng,a.lat,a.lng);
     if(d<a.r){
       markDone(a.id);
+      replanTimes();
     }
   }
 
-  // Next activity info
   const next=getNextActivity();
   if(!next){
     nextName.textContent='All done! 🎉';
     nextDist.textContent='Day 2 complete';
     nextEta.textContent='';
-    // Mark current dot
     return;
   }
 
@@ -437,11 +787,6 @@ function updateTrackingUI(){
   nextDist.textContent=formatDist(dist)+' away';
   nextEta.textContent=estimateTime(dist);
 
-  // Highlight current dot
-  const curDot=document.getElementById('prog-'+next.idx);
-  if(curDot) curDot.classList.add('current');
-
-  // Update progress dots
   ACTIVITIES.forEach((a,i)=>{
     const dot=document.getElementById('prog-'+i);
     if(!dot) return;
@@ -455,15 +800,24 @@ function updateTrackingUI(){
   });
 }
 
+// ═══ ENHANCED STATUS + WEB SHARE ═══
 function generateStatus(){
   const now=new Date();
   const jst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));
   const time=jst.toLocaleTimeString('en-US',{timeZone:'Asia/Tokyo',hour:'numeric',minute:'2-digit'});
-  const done=trackState.completed.map(id=>{
-    const a=ACTIVITIES.find(x=>x.id===id);
+  const doneIds=trackState.completed.filter(id=>!skipState.includes(id));
+  const doneNames=doneIds.map(id=>{
+    const a=ACTIVITIES.find(x=>x.id===id)||SCHEDULE.find(x=>x.id===id);
     return a?a.name:'';
   }).filter(Boolean);
+  const skippedNames=skipState.map(id=>{
+    const a=SCHEDULE.find(x=>x.id===id);
+    return a?a.name:'';
+  }).filter(Boolean);
+
   const next=getNextActivity();
+  const remaining=SCHEDULE.filter(s=>!trackState.completed.includes(s.id)&&!skipState.includes(s.id)).map(s=>s.name);
+
   let msg='📍 ';
   if(trackState.pos){
     const nearest=nearestKnownPlace(trackState.pos.lat,trackState.pos.lng);
@@ -473,28 +827,63 @@ function generateStatus(){
     msg+='Location unknown';
   }
   msg+=' | '+time+' JST';
-  if(done.length) msg+=' | Done: '+done.join(', ');
-  if(next) {
-    const dist=trackState.pos?formatDist(haversine(trackState.pos.lat,trackState.pos.lng,next.act.lat,next.act.lng)):'?';
-    msg+=' | Next: '+next.act.name+' ('+dist+')';
-  }
+  const stepIdx=trackState.completed.length+1;
+  msg+=' | Day 2 Step '+Math.min(stepIdx,8);
+
+  if(doneNames.length) msg+='\nDone: '+doneNames.join(', ');
+  if(skippedNames.length) msg+='\nSkipped: '+skippedNames.join(', ');
+  if(remaining.length>0) msg+='\nNext: '+remaining.slice(0,4).join(' → ');
+
+  // Shopping status
+  const bought=shoppingState.length;
+  const need=SHOPPING.filter(s=>!shoppingState.includes(s.id)).map(s=>s.name.split('(')[0].trim());
+  msg+='\nShopping: '+bought+'/'+SHOPPING.length+(need.length?' (need: '+need.join(', ')+')':' — all bought!');
+
+  // Lunch/dinner choices
+  if(foodChoices.lunch){
+    const lunchName=document.querySelector('.food-option[data-food-id="'+foodChoices.lunch+'"] .card-name, .food-option[data-food-id="'+foodChoices.lunch+'"] .img-title');
+    if(lunchName) msg+='\nLunch: '+lunchName.textContent.split('—')[0].trim();
+  } else { msg+='\nLunch: not chosen yet'; }
+  if(foodChoices.dinner){
+    const dinnerName=document.querySelector('.food-option[data-food-id="'+foodChoices.dinner+'"] .card-name, .food-option[data-food-id="'+foodChoices.dinner+'"] .img-title');
+    if(dinnerName) msg+='\nDinner: '+dinnerName.textContent.split('—')[0].trim();
+  } else { msg+='\nDinner: not chosen yet'; }
+
+  // Replan delta
+  const tip=document.getElementById('replan-tip');
+  if(tip) msg+='\nSchedule: '+tip.textContent.trim();
+
+  // Claude optimization prompt
+  msg+='\n\n---\nBased on my current status above, give me 2-3 short tips: optimal route tweaks, food recs near my current/next stop, or things to skip/prioritize given the time. Keep each tip to 1-2 sentences. Focus on what I should do RIGHT NOW or in the next 30 min.';
+
   return msg;
 }
 
-function copyStatus(){
+function shareStatus(){
   const btn=document.getElementById('track-copy-btn');
   const msg=generateStatus();
+
+  if(navigator.share){
+    navigator.share({title:'Kyoto Trip Status',text:msg}).catch(()=>{});
+    return;
+  }
+
+  // Fallback to clipboard
   if(navigator.clipboard&&window.isSecureContext){
     navigator.clipboard.writeText(msg).then(()=>{
       btn.textContent='✓ Copied!';btn.classList.add('track-copy-done');
-      setTimeout(()=>{btn.textContent='📋 Copy Status for Claude';btn.classList.remove('track-copy-done');},2000);
+      setTimeout(()=>{btn.textContent=shareLabel();btn.classList.remove('track-copy-done');},2000);
     });
   } else {
     fallbackCopy(msg,()=>{
       btn.textContent='✓ Copied!';btn.classList.add('track-copy-done');
-      setTimeout(()=>{btn.textContent='📋 Copy Status for Claude';btn.classList.remove('track-copy-done');},2000);
+      setTimeout(()=>{btn.textContent=shareLabel();btn.classList.remove('track-copy-done');},2000);
     });
   }
+}
+
+function shareLabel(){
+  return navigator.share?'📤 Share Status':'📋 Copy Status';
 }
 
 function startTracking(){
@@ -503,7 +892,6 @@ function startTracking(){
     document.getElementById('gps-dot').className='gps-dot off';
     return;
   }
-  // Restore completed state
   trackState.completed.forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.classList.add('done');
@@ -528,15 +916,60 @@ function startTracking(){
 }
 
 function resetTracking(){
-  if(confirm('Reset all progress? This clears completed activities.')){
+  if(confirm('Reset all progress? This clears completed activities, skips, and shopping.')){
     trackState.completed=[];
+    skipState=[];
+    shoppingState=[];
     localStorage.removeItem('kyoto-done');
-    ACTIVITIES.forEach(a=>{const el=document.getElementById(a.id);if(el)el.classList.remove('done');});
+    localStorage.removeItem('kyoto-skip');
+    localStorage.removeItem('kyoto-shopping');
+    document.querySelectorAll('.time-block').forEach(el=>{el.classList.remove('step-done','step-skipped');});
+    document.querySelectorAll('.done').forEach(el=>el.classList.remove('done'));
     updateTrackingUI();
+    replanTimes();
+    renderShopping();
+    updateCountdown();
   }
 }
 
-document.addEventListener('DOMContentLoaded',function(){updateClock();setInterval(updateClock,60000);startTracking();restoreFoodChoices();});
+document.addEventListener('DOMContentLoaded',function(){
+  updateClock();setInterval(updateClock,60000);
+  startTracking();restoreFoodChoices();
+  // Restore skip state visuals
+  skipState.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.classList.add('step-skipped');}
+  });
+  // Restore done state visuals for step-done
+  trackState.completed.forEach(id=>{
+    if(!skipState.includes(id)){
+      const el=document.getElementById(id);
+      if(el) el.classList.add('step-done');
+    }
+  });
+  // Auto-complete all Day 2 steps (Day 2 is done)
+  const day2Ids=['act-philosophers-path','act-kinkakuji','act-nishiki','act-lunch','act-kiyomizu','act-gion','act-dinner','act-shinpuku'];
+  day2Ids.forEach(id=>{
+    if(!trackState.completed.includes(id)){
+      trackState.completed.push(id);
+    }
+    const el=document.getElementById(id);
+    if(el) el.classList.add('step-done');
+  });
+  localStorage.setItem('kyoto-done',JSON.stringify(trackState.completed));
+  replanTimes();
+  renderShopping();
+  renderClaudeTips();
+  updateCountdown();
+  setInterval(updateCountdown,60000);
+  // Set share button label
+  const btn=document.getElementById('track-copy-btn');
+  if(btn) btn.textContent=shareLabel();
+  // Register service worker
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  }
+});
 </script>
 </head>
 <body>
@@ -575,6 +1008,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="track-next-name" id="track-next-name">Waiting for location...</div>
 <div class="track-next-dist" id="track-next-dist"></div>
 <div class="track-next-eta" id="track-next-eta">Enable location access on your phone</div>
+<div class="countdown-bar green" id="countdown-bar"></div>
 </div>
 <div class="track-progress">
 <span class="track-dot" id="prog-0" title="Ginkaku-ji"></span><span class="track-dot-line"></span>
@@ -586,11 +1020,33 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <span class="track-dot" id="prog-6" title="Dinner"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-7" title="Shinpuku"></span>
 </div>
-<button class="track-copy" id="track-copy-btn" onclick="copyStatus()">📋 Copy Status for Claude</button>
+<button class="track-copy" id="track-copy-btn" onclick="shareStatus()">📤 Share Status</button>
 <div class="track-accuracy" id="track-accuracy"></div>
 </div>
 
 <div class="container">
+
+<!-- SHOPPING CHECKLIST -->
+<div class="shopping-panel">
+<div class="shopping-header" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'">
+🛍 Mom's Shopping List <span class="shop-count" id="shop-count">0/4 bought</span>
+</div>
+<div class="shopping-list" id="shopping-list"></div>
+</div>
+
+<!-- CLAUDE TIPS -->
+<div class="claude-panel">
+<div class="claude-header">
+🤖 Claude's Tips <span class="claude-ts" id="claude-last-update"></span>
+</div>
+<div class="claude-body">
+<div class="claude-input-area">
+<textarea class="claude-input" id="claude-input" placeholder="Paste Claude's response here..." rows="2"></textarea>
+<button class="claude-submit" onclick="submitClaudeTip()">Save</button>
+</div>
+<div id="claude-tips-list"></div>
+</div>
+</div>
 
 <!-- ROUTE OPTIMIZER -->
 <div class="route-card" id="route-optimizer">
@@ -613,15 +1069,17 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <!-- ═══════════════════════════════════════════ -->
 <!-- DAY 2 — MONDAY MARCH 23 — FULL DAY KYOTO -->
 <!-- ═══════════════════════════════════════════ -->
-<div class="section" id="day2">
+<details class="day-done-wrap" id="day2">
+<summary class="day-done-summary">✅ Day 2 — Mon, March 23 · Full Day Kyoto <span class="day-done-badge">Completed</span></summary>
+<div class="section">
 <div class="section-title">
 <span class="icon">🌸</span>
 <h2>Day 2 — Mon, March 23 · Full Day Kyoto</h2>
 <span class="sub">5 iconic landmarks + food</span>
 </div>
 
-<div class="replanned-tip">
-⏳ <strong>Replanned 9:45 AM</strong> — Route fully optimized: north temples first, then sweep south. Kiyomizu moved before Fushimi Inari to eliminate backtracking. Fushimi Inari at golden hour — fewer crowds, atmospheric.
+<div class="replanned-tip" id="replan-tip">
+✅ <strong>On schedule.</strong>
 </div>
 
 <div class="clothes-card">
@@ -636,7 +1094,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- ~8:35 AM GINKAKU-JI -->
-<div class="time-block" id="act-philosophers-path"><span class="step-num">STEP 1</span><span class="clock">🏯</span> ~8:35 – 9:15 AM · Ginkaku-ji (Silver Pavilion)</div>
+<div class="time-block" id="act-philosophers-path"><span class="step-num">STEP 1</span><span class="clock">🏯</span> <span class="time-text">8:35 AM – 9:15 AM</span> · Ginkaku-ji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-philosophers-path')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-philosophers-path')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ginkakuji_02.jpg/800px-Ginkakuji_02.jpg')">
@@ -658,7 +1116,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 9:20 AM KINKAKU-JI — DO BOTH NORTH TEMPLES -->
-<div class="time-block" id="act-kinkakuji"><span class="step-num">STEP 2</span><span class="clock">🏯</span> ~9:40 – 10:20 AM · Kinkaku-ji (Golden Pavilion)</div>
+<div class="time-block" id="act-kinkakuji"><span class="step-num">STEP 2</span><span class="clock">🏯</span> <span class="time-text">9:40 AM – 10:20 AM</span> · Kinkaku-ji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-kinkakuji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-kinkakuji')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/800px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg')">
@@ -758,7 +1216,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </details>
 
 <!-- 11:35 AM NISHIKI -->
-<div class="time-block" id="act-nishiki"><span class="step-num">STEP 3</span><span class="clock">🍢</span> 10:50 AM – 12:00 PM · Nishiki Market</div>
+<div class="time-block" id="act-nishiki"><span class="step-num">STEP 3</span><span class="clock">🍢</span> <span class="time-text">10:50 AM – 12:00 PM</span> · Nishiki Market<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-nishiki')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-nishiki')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/800px-Nishiki_Ichiba_by_matsuyuki.jpg')">
@@ -794,7 +1252,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
 
 <!-- 12:50 PM LUNCH -->
-<div class="time-block" id="act-lunch"><span class="step-num">STEP 4</span><span class="clock">🍴</span> 12:00 – 12:45 PM · Lunch — Tap to Choose</div>
+<div class="time-block" id="act-lunch"><span class="step-num">STEP 4</span><span class="clock">🍴</span> <span class="time-text">12:00 PM – 12:45 PM</span> · Lunch<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-lunch')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-lunch')">Skip →</button></span></div>
 
 <div class="food-group" data-group="lunch">
 <div class="food-group-title">👆 Tap a card to choose your lunch</div>
@@ -927,7 +1385,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </details>
 
 <!-- 1:00 PM KIYOMIZU-DERA -->
-<div class="time-block" id="act-kiyomizu"><span class="step-num">STEP 5</span><span class="clock">🏯</span> 1:00 – 2:30 PM · Kiyomizu-dera + Lanes</div>
+<div class="time-block" id="act-kiyomizu"><span class="step-num">STEP 5</span><span class="clock">🏯</span> <span class="time-text">1:00 PM – 2:30 PM</span> · Kiyomizu-dera<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-kiyomizu')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-kiyomizu')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/800px-Kiyomizu.jpg')">
@@ -1084,7 +1542,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </details>
 
 <!-- 2:45 PM GION + KAMO RIVER -->
-<div class="time-block" id="act-gion"><span class="step-num">STEP 6</span><span class="clock">🌅</span> 2:45 – 3:45 PM · Gion + Kamo River</div>
+<div class="time-block" id="act-gion"><span class="step-num">STEP 6</span><span class="clock">🌅</span> <span class="time-text">2:45 PM – 3:45 PM</span> · Gion + Kamo River<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-gion')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-gion')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/800px-150124_Gion_Kyoto_Japan01s3.jpg')">
@@ -1102,7 +1560,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 4:00 PM DINNER -->
-<div class="time-block" id="act-dinner"><span class="step-num">STEP 7</span><span class="clock">🍴</span> 4:00 – 5:30 PM · Dinner — Tap to Choose</div>
+<div class="time-block" id="act-dinner"><span class="step-num">STEP 7</span><span class="clock">🍴</span> <span class="time-text">4:00 PM – 5:30 PM</span> · Dinner<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-dinner')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-dinner')">Skip →</button></span></div>
 
 <div class="food-group" data-group="dinner">
 <div class="food-group-title">👆 Tap a card to choose your dinner</div>
@@ -1200,7 +1658,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM — <strong>Kyoto Baum (ばあむ)</strong> at Kyoto Station! Shinpuku is right by the station. Hit The Cube / Isetan B1 before or after ramen. Matcha baumkuchen in calligraphy box. ¥1,400–2,000. Also grab remaining LuLuLun masks here if not bought at Nishiki.</div>
 
 <!-- ~6:45 PM LATE RAMEN -->
-<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 8</span><span class="clock">🌙</span> ~6:45 PM · Shinpuku Saikan</div>
+<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 8</span><span class="clock">🌙</span> <span class="time-text">6:45 PM – 7:30 PM</span> · Shinpuku Saikan<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-shinpuku')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-shinpuku')">Skip →</button></span></div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1938 · Only in Kyoto</span>
@@ -1227,6 +1685,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 </div>
+</details>
 
 <!-- ═══════════════════════════════════════════════ -->
 <!-- DAY 3 — TUESDAY MARCH 24 — ARASHIYAMA + UJI  -->
@@ -1250,7 +1709,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 7:00 AM TOJI CHERRY TREE -->
-<div class="time-block"><span class="step-num">STEP 1</span><span class="clock">🌸</span> 7:00 – 7:30 AM · Toji Temple — 120-Year-Old Weeping Cherry</div>
+<div class="time-block" id="act-d3-toji"><span class="step-num">STEP 1</span><span class="clock">🌸</span> <span class="time-text">7:00 AM – 7:30 AM</span> · Toji Cherry Tree<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-toji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-toji')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Toji_Kyoto06n4500.jpg/800px-Toji_Kyoto06n4500.jpg')">
@@ -1276,7 +1735,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="tip">⏰ <strong>Tight but doable.</strong> Early Arashiyama → Momohada Cosme → train to Uji → Byodo-in + matcha → Kyoto Station souvenirs → lunch → Osaka ~2pm.</div>
 
 <!-- 7:30 ARASHIYAMA -->
-<div class="time-block"><span class="step-num">STEP 2</span><span class="clock">🎋</span> 7:45 – 9:00 AM · Arashiyama Bamboo Grove</div>
+<div class="time-block" id="act-d3-arashiyama"><span class="step-num">STEP 2</span><span class="clock">🎋</span> <span class="time-text">7:45 AM – 9:00 AM</span> · Arashiyama<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-arashiyama')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-arashiyama')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Arashiyama_013.jpg/800px-Arashiyama_013.jpg')">
@@ -1323,7 +1782,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 9:15 MOMOHADA -->
-<div class="time-block"><span class="step-num">STEP 3</span><span class="clock">💄</span> 9:15 – 9:40 AM · Momohada Cosme</div>
+<div class="time-block" id="act-d3-momohada"><span class="step-num">STEP 3</span><span class="clock">💄</span> <span class="time-text">9:15 AM – 9:40 AM</span> · Momohada Cosme<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-momohada')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-momohada')">Skip →</button></span></div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Momohada Cosme</strong> sakura face wash + konjac sponges. ¥350 each. Quick 15-min stop.</div>
 
@@ -1350,7 +1809,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 9:45 TRAIN TO UJI -->
-<div class="time-block"><span class="step-num">STEP 4</span><span class="clock">🚃</span> 9:45 – 10:45 AM · Train to Uji</div>
+<div class="time-block" id="act-d3-train-uji"><span class="step-num">STEP 4</span><span class="clock">🚃</span> <span class="time-text">9:45 AM – 10:45 AM</span> · Train to Uji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-uji')">Skip →</button></span></div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Step 1</span><span class="t-value">JR Saga-Arashiyama → Kyoto Station (17 min, ¥240)</span></div>
@@ -1360,7 +1819,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 10:45 UJI -->
-<div class="time-block"><span class="step-num">STEP 5</span><span class="clock">⛩</span> 10:45 AM – 12:15 PM · Uji — Matcha Capital</div>
+<div class="time-block" id="act-d3-uji"><span class="step-num">STEP 5</span><span class="clock">⛩</span> <span class="time-text">10:45 AM – 12:15 PM</span> · Uji + Byodo-in<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-uji')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg/800px-Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg')">
@@ -1397,7 +1856,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 12:20 BACK TO KYOTO -->
-<div class="time-block"><span class="step-num">STEP 6</span><span class="clock">🚃</span> 12:20 PM · Back to Kyoto Station</div>
+<div class="time-block" id="act-d3-train-back"><span class="step-num">STEP 6</span><span class="clock">🚃</span> <span class="time-text">12:20 PM – 12:40 PM</span> · Back to Kyoto<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-back')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-back')">Skip →</button></span></div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">JR Nara Line Uji → Kyoto · 18 min · ¥250 · IC card</span></div>
@@ -1405,7 +1864,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 12:40 SOUVENIRS -->
-<div class="time-block"><span class="step-num">STEP 7</span><span class="clock">🛍</span> 12:40 – 1:15 PM · Souvenirs + Mom's List</div>
+<div class="time-block" id="act-d3-souvenirs"><span class="step-num">STEP 7</span><span class="clock">🛍</span> <span class="time-text">12:40 PM – 1:15 PM</span> · Souvenirs<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-souvenirs')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-souvenirs')">Skip →</button></span></div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Nama Yatsuhashi (生八つ橋)</strong> matcha + cinnamon with red bean. Otabe or Shogoin brand. ¥600–1,200/box.</div>
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Kyoto Baum (ばあむ)</strong> matcha baumkuchen in calligraphy box. ¥1,400–2,000.</div>
@@ -1424,7 +1883,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 1:15 LUNCH + TRAIN -->
-<div class="time-block"><span class="step-num">STEP 8</span><span class="clock">🍜</span> 1:15 – 1:50 PM · Quick Lunch</div>
+<div class="time-block" id="act-d3-lunch"><span class="step-num">STEP 8</span><span class="clock">🍜</span> <span class="time-text">1:15 PM – 1:50 PM</span> · Quick Lunch<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-lunch')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-lunch')">Skip →</button></span></div>
 
 <div class="card">
 <span class="card-label label-walkin">Ticket machine · 20 min</span>
@@ -1439,7 +1898,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 </div>
 
-<div class="time-block"><span class="step-num">STEP 9</span><span class="clock">🚃</span> ~2:00 PM · Kintetsu → Osaka Namba</div>
+<div class="time-block" id="act-d3-osaka-train"><span class="step-num">STEP 9</span><span class="clock">🚃</span> <span class="time-text">2:00 PM – 2:42 PM</span> · Kintetsu to Osaka<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-osaka-train')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-osaka-train')">Skip →</button></span></div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">Kintetsu Limited Express, Kyoto → Osaka-Namba · 42 min · ~¥1,130</span></div>
@@ -1448,7 +1907,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- OSAKA AFTERNOON/EVENING -->
-<div class="time-block"><span class="step-num">STEP 10</span><span class="clock">🐙</span> ~3:00 PM · Arrive Osaka — Dotonbori Food Crawl</div>
+<div class="time-block" id="act-d3-dotonbori"><span class="step-num">STEP 10</span><span class="clock">🐙</span> <span class="time-text">3:00 PM – 5:30 PM</span> · Dotonbori Food Crawl<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-dotonbori')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-dotonbori')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Dotonbori_at_night%2C_Osaka.jpg/800px-Dotonbori_at_night%2C_Osaka.jpg')">
@@ -1501,7 +1960,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 </div>
 
-<div class="time-block"><span class="step-num">STEP 11</span><span class="clock">🗼</span> ~5:30 PM · Shinsekai — Retro Osaka + Kushikatsu</div>
+<div class="time-block" id="act-d3-shinsekai"><span class="step-num">STEP 11</span><span class="clock">🗼</span> <span class="time-text">5:30 PM – 7:30 PM</span> · Shinsekai Kushikatsu<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-shinsekai')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-shinsekai')">Skip →</button></span></div>
 
 <div class="tip">🚇 Subway: Namba → Dobutsuen-mae · 2 stops · 5 min · ¥240</div>
 
@@ -1537,7 +1996,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 </div>
 
-<div class="time-block"><span class="step-num">STEP 12</span><span class="clock">🌃</span> ~7:30 PM · Dotonbori at Night + Dessert</div>
+<div class="time-block" id="act-d3-night"><span class="step-num">STEP 12</span><span class="clock">🌃</span> <span class="time-text">7:30 PM – 9:30 PM</span> · Dotonbori Night<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-night')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-night')">Skip →</button></span></div>
 
 <div class="tip">🚇 Subway back: Dobutsuen-mae → Namba · 2 stops · ¥240</div>
 
