@@ -312,7 +312,6 @@ function restoreFoodChoices(){
 const ACTIVITIES=[
   {id:'act-philosophers-path',name:"Ginkaku-ji",lat:35.0270,lng:135.7982,r:200},
   {id:'act-kinkakuji',name:'Kinkaku-ji',lat:35.0394,lng:135.7292,r:150},
-  {id:'act-smart-coffee',name:'Smart Coffee',lat:35.0088,lng:135.7685,r:100},
   {id:'act-nishiki',name:'Nishiki Market',lat:35.0050,lng:135.7650,r:150},
   {id:'act-lunch',name:'Lunch',lat:35.0055,lng:135.7645,r:200},
   {id:'act-fushimi-inari',name:'Fushimi Inari',lat:34.9671,lng:135.7727,r:200},
@@ -580,8 +579,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 <div class="track-progress">
 <span class="track-dot" id="prog-0" title="Ginkaku-ji"></span><span class="track-dot-line"></span>
-<span class="track-dot" id="prog-1" title="Smart Coffee"></span><span class="track-dot-line"></span>
-<span class="track-dot" id="prog-2" title="Kinkaku-ji"></span><span class="track-dot-line"></span>
+<span class="track-dot" id="prog-1" title="Kinkaku-ji"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-3" title="Nishiki Market"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-4" title="Lunch"></span><span class="track-dot-line"></span>
 <span class="track-dot" id="prog-5" title="Fushimi Inari"></span><span class="track-dot-line"></span>
@@ -603,8 +601,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
 <tr><td>Hotel → Ginkaku-ji ✓</td><td class="rt-mode">🚕 Taxi</td><td>15 min</td><td>¥1,800</td></tr>
 <tr><td>Ginkaku-ji → Kinkaku-ji</td><td class="rt-mode">🚕 Taxi</td><td>25 min</td><td>¥2,200</td></tr>
-<tr><td>Kinkaku-ji → Smart Coffee</td><td class="rt-mode">🚕 Taxi</td><td>15 min ↓SE</td><td>¥1,600</td></tr>
-<tr><td>Smart Coffee → Nishiki</td><td class="rt-mode">🚶 Walk</td><td>5 min ↓</td><td>Free</td></tr>
+<tr><td>Kinkaku-ji → Nishiki Market</td><td class="rt-mode">🚌 Bus 59</td><td>30 min ↓S</td><td>¥230</td></tr>
 <tr><td>Lunch → Fushimi Inari</td><td class="rt-mode">🚕 Taxi</td><td>12 min ↓S</td><td>¥1,500</td></tr>
 <tr><td>Fushimi → Kiyomizu-dera</td><td class="rt-mode">🚕 Taxi</td><td>10 min ↑NE</td><td>¥1,200</td></tr>
 <tr><td>Kiyomizu → Gion → Pontocho</td><td class="rt-mode">🚶 Walk</td><td>25 min ↓</td><td>Free</td></tr>
@@ -612,7 +609,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </table>
 <div class="route-total">
 <span>Total transit: ~1h 55min</span>
-<span>Total cost: ~¥9,300</span>
+<span>Total cost: ~¥7,930</span>
 </div>
 </div>
 
@@ -627,7 +624,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <div class="replanned-tip">
-⏳ <strong>Replanned 9:15 AM</strong> — Route optimized: both north temples first (Ginkaku-ji ✓ → Kinkaku-ji), then sweep south all day. No backtracking. Smart Coffee + Nishiki on the way down. Fushimi Inari → Kiyomizu → Gion → dinner, all flowing south/east.
+⏳ <strong>Replanned 9:45 AM</strong> — Ginkaku-ji ✓, ate near temple. Skipped Smart Coffee. Kinkaku-ji next → then sweep south: Nishiki Market → lunch → Fushimi Inari → Kiyomizu/Higashiyama → Gion → dinner → Shinpuku.
 </div>
 
 <div class="clothes-card">
@@ -685,38 +682,6 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </span></div>
 </div>
 
-<!-- 10:35 AM SMART COFFEE — ON THE WAY SOUTH -->
-<div class="time-block" id="act-smart-coffee"><span class="step-num">STEP 3</span><span class="clock">☕</span> 10:35 – 11:05 AM · Smart Coffee — Breakfast</div>
-
-<div class="card">
-<span class="card-label label-kyoto">est. 1932 · Kyoto institution</span>
-<div class="card-top">
-<div class="card-emoji">☕</div>
-<div class="card-info">
-<div class="card-name">Smart Coffee — Main Store</div>
-<div class="card-jp">スマート珈琲店 · Teramachi-Sanjo · est. 1932</div>
-<div class="card-desc">Kyoto's most iconic kissaten, unchanged since 1932. Dark wood, jazz on vinyl, hand-drip coffee. Right on the way south from Kinkaku-ji to Nishiki — no detour needed.</div>
-<div class="dishes">
-<div class="dishes-title">🍴 What to order</div>
-<div class="dish"><strong>Hotcakes (ホットケーキ)</strong> — thick, fluffy, golden with butter + maple · ¥700</div>
-<div class="dish"><strong>Tamago Sando (たまごサンド)</strong> — legendary thick egg sandwich · ¥650</div>
-<div class="dish"><strong>Hand-drip coffee</strong> — roasted in-house since 1932 · ¥500</div>
-</div>
-<div class="card-meta"><span class="meta-pill">¥1,000–1,500</span><span class="meta-pill">30 min sit-down</span><span class="meta-pill">Cash only</span></div>
-</div>
-</div>
-</div>
-
-<div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Kinkaku-ji</span></div>
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Smart Coffee (Teramachi-Sanjo) — on the way south</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,600 · 15 min southeast (toward Nishiki, no backtracking)</span></div>
-<div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
-<div class="addr-box" onclick="copyAddr('京都市中京区寺町通三条上ル天性寺前町537')"><strong>京都市中京区寺町通三条上ル天性寺前町537</strong><span class="copy-icon">tap to copy</span></div>
-<a class="maps-link" href="https://maps.apple.com/?q=Smart+Coffee+%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E7%8F%88%E7%90%B2%E5%BA%97+Kyoto" target="_blank">📍 Maps</a>
-</span></div>
-</div>
-
 <details class="food-nearby">
 <summary>🍵 Kinkaku-ji exit snacks (matcha soft serve + gold leaf)</summary>
 <div class="food-nearby-inner">
@@ -733,7 +698,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </details>
 
 <!-- 11:35 AM NISHIKI -->
-<div class="time-block" id="act-nishiki"><span class="step-num">STEP 4</span><span class="clock">🍢</span> 11:10 AM – 12:20 PM · Nishiki Market</div>
+<div class="time-block" id="act-nishiki"><span class="step-num">STEP 3</span><span class="clock">🍢</span> 10:50 AM – 12:00 PM · Nishiki Market</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/800px-Nishiki_Ichiba_by_matsuyuki.jpg')">
@@ -769,7 +734,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — Pick up <strong>Kyoto LuLuLun face masks (京都限定)</strong> at any drugstore near Nishiki (Matsumoto Kiyoshi / Daikoku Drug). ¥1,760/pack.</div>
 
 <!-- 12:50 PM LUNCH -->
-<div class="time-block" id="act-lunch"><span class="step-num">STEP 5</span><span class="clock">🍴</span> 12:20 – 1:00 PM · Lunch — Tap to Choose</div>
+<div class="time-block" id="act-lunch"><span class="step-num">STEP 4</span><span class="clock">🍴</span> 12:00 – 12:45 PM · Lunch — Tap to Choose</div>
 
 <div class="food-group" data-group="lunch">
 <div class="food-group-title">👆 Tap a card to choose your lunch</div>
@@ -857,7 +822,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 1:50 PM FUSHIMI INARI (SENBON TORII ONLY) -->
-<div class="time-block" id="act-fushimi-inari"><span class="step-num">STEP 6</span><span class="clock">⛩️</span> 1:15 – 2:00 PM · Fushimi Inari</div>
+<div class="time-block" id="act-fushimi-inari"><span class="step-num">STEP 5</span><span class="clock">⛩️</span> 1:00 – 1:45 PM · Fushimi Inari</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/800px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg')">
@@ -886,7 +851,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 2:45 PM KIYOMIZU-DERA -->
-<div class="time-block" id="act-kiyomizu"><span class="step-num">STEP 7</span><span class="clock">🏯</span> 2:15 – 3:45 PM · Kiyomizu-dera + Lanes</div>
+<div class="time-block" id="act-kiyomizu"><span class="step-num">STEP 6</span><span class="clock">🏯</span> 2:00 – 3:30 PM · Kiyomizu-dera + Lanes</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/800px-Kiyomizu.jpg')">
@@ -999,7 +964,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </details>
 
 <!-- 4:30 PM GION + KAMO RIVER -->
-<div class="time-block" id="act-gion"><span class="step-num">STEP 8</span><span class="clock">🌅</span> 4:00 – 5:00 PM · Gion + Kamo River</div>
+<div class="time-block" id="act-gion"><span class="step-num">STEP 7</span><span class="clock">🌅</span> 3:45 – 4:45 PM · Gion + Kamo River</div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/800px-150124_Gion_Kyoto_Japan01s3.jpg')">
@@ -1017,7 +982,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 5:30 PM DINNER -->
-<div class="time-block" id="act-dinner"><span class="step-num">STEP 9</span><span class="clock">🍴</span> 5:00 – 6:30 PM · Dinner — Tap to Choose</div>
+<div class="time-block" id="act-dinner"><span class="step-num">STEP 8</span><span class="clock">🍴</span> 5:00 – 6:30 PM · Dinner — Tap to Choose</div>
 
 <div class="food-group" data-group="dinner">
 <div class="food-group-title">👆 Tap a card to choose your dinner</div>
@@ -1085,7 +1050,7 @@ document.addEventListener('DOMContentLoaded',function(){updateClock();setInterva
 </div>
 
 <!-- 7:10 PM LATE RAMEN -->
-<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 10</span><span class="clock">🌙</span> ~6:45 PM · Shinpuku Saikan</div>
+<div class="time-block" id="act-shinpuku"><span class="step-num">STEP 9</span><span class="clock">🌙</span> ~6:45 PM · Shinpuku Saikan</div>
 
 <div class="card">
 <span class="card-label label-kyoto">est. 1938 · Only in Kyoto</span>
