@@ -380,18 +380,24 @@ const SCHEDULE=[
   {id:'act-gion',name:'Gion + Kamo River',duration:60,transit:0,start:'14:45',day:2},
   {id:'act-dinner',name:'Dinner',duration:90,transit:8,start:'16:00',day:2},
   {id:'act-shinpuku',name:'Shinpuku Saikan',duration:45,transit:0,start:'18:45',day:2},
-  {id:'act-d3-toji',name:'Toji Cherry Tree',duration:30,transit:15,start:'07:00',day:3},
-  {id:'act-d3-arashiyama',name:'Arashiyama',duration:75,transit:5,start:'07:45',day:3},
-  {id:'act-d3-momohada',name:'Momohada Cosme',duration:25,transit:45,start:'09:15',day:3},
-  {id:'act-d3-train-uji',name:'Train to Uji',duration:60,transit:0,start:'09:45',day:3},
-  {id:'act-d3-uji',name:'Uji + Byodo-in',duration:90,transit:18,start:'10:45',day:3},
-  {id:'act-d3-train-back',name:'Back to Kyoto',duration:20,transit:0,start:'12:20',day:3},
-  {id:'act-d3-souvenirs',name:'Souvenirs',duration:35,transit:0,start:'12:40',day:3},
-  {id:'act-d3-lunch',name:'Quick Lunch',duration:35,transit:0,start:'13:15',day:3},
-  {id:'act-d3-osaka-train',name:'Kintetsu to Osaka',duration:42,transit:0,start:'14:00',day:3},
-  {id:'act-d3-dotonbori',name:'Dotonbori Food Crawl',duration:150,transit:10,start:'15:00',day:3},
+  {id:'act-d3-toji',name:'Toji Cherry Tree',duration:30,transit:0,start:'07:00',day:3},
+  {id:'act-d3-luggage',name:'Luggage → Kyoto Stn Locker',duration:35,transit:10,start:'07:30',day:3},
+  {id:'act-d3-arashiyama',name:'Arashiyama',duration:75,transit:15,start:'08:30',day:3},
+  {id:'act-d3-momohada',name:'Momohada Cosme',duration:25,transit:0,start:'09:45',day:3},
+  {id:'act-d3-train-uji',name:'Train to Uji',duration:45,transit:0,start:'10:15',day:3},
+  {id:'act-d3-uji',name:'Uji + Byodo-in',duration:90,transit:0,start:'11:00',day:3},
+  {id:'act-d3-train-back',name:'Back to Kyoto',duration:20,transit:5,start:'12:35',day:3},
+  {id:'act-d3-souvenirs',name:'Souvenirs + Grab Luggage',duration:30,transit:0,start:'13:00',day:3},
+  {id:'act-d3-lunch',name:'Quick Lunch',duration:30,transit:0,start:'13:30',day:3},
+  {id:'act-d3-osaka-train',name:'Kintetsu to Osaka',duration:42,transit:10,start:'14:10',day:3},
+  {id:'act-d3-dotonbori',name:'Dotonbori Food Crawl',duration:130,transit:10,start:'15:10',day:3},
   {id:'act-d3-shinsekai',name:'Shinsekai Kushikatsu',duration:120,transit:10,start:'17:30',day:3},
-  {id:'act-d3-night',name:'Dotonbori Night',duration:120,transit:0,start:'19:30',day:3}
+  {id:'act-d3-night',name:'Dotonbori Night',duration:120,transit:0,start:'19:30',day:3},
+  {id:'act-d4-hozenji',name:'Hozenji Temple + Yokocho',duration:30,transit:0,start:'08:30',day:4},
+  {id:'act-d4-castle',name:'Osaka Castle Park',duration:60,transit:20,start:'11:15',day:4},
+  {id:'act-d4-umeda',name:'Umeda Food — Hanadako + Kiji',duration:60,transit:15,start:'12:30',day:4},
+  {id:'act-d4-skybuilding',name:'Umeda Sky Building',duration:40,transit:5,start:'13:30',day:4},
+  {id:'act-d4-train-suwa',name:'Train to Suwa',duration:240,transit:15,start:'14:30',day:4}
 ];
 
 let skipState=JSON.parse(localStorage.getItem('kyoto-skip')||'[]');
@@ -1020,6 +1026,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="nav">
 <a href="#day2">Day 2 Full Day</a>
 <a href="#day3">Day 3 Cherry + Arashiyama + Uji + Osaka</a>
+<a href="#day4">Day 4 Osaka + Suwa</a>
 <a href="#streetfood">Street Food</a>
 <a href="#restaurants">Restaurants</a>
 <a href="#shopping">Shopping</a>
@@ -1086,11 +1093,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <!-- ROUTE OPTIMIZER — DAY 3 -->
 <div class="route-card" id="route-optimizer">
-<div class="route-title">🗺️ Day 3 Route — Cherry tree → Arashiyama → Uji → Osaka</div>
+<div class="route-title">🗺️ Day 3 Route — Cherry tree → Luggage drop → Arashiyama → Uji → Osaka</div>
 <table class="route-table">
 <tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
 <tr><td>Hotel → Toji Temple</td><td class="rt-mode">🚶 Walk</td><td>15 min</td><td>Free</td></tr>
-<tr><td>Toji → Arashiyama</td><td class="rt-mode">🚕 Taxi</td><td>15 min</td><td>¥1,500</td></tr>
+<tr><td>Toji → Hotel (grab luggage)</td><td class="rt-mode">🚶 Walk</td><td>15 min</td><td>Free</td></tr>
+<tr><td>Hotel → Kyoto Stn (locker)</td><td class="rt-mode">🚶 Walk</td><td>10 min</td><td>¥700</td></tr>
+<tr><td>Kyoto Stn → Saga-Arashiyama</td><td class="rt-mode">🚃 JR</td><td>17 min</td><td>¥240</td></tr>
 <tr><td>Arashiyama → Momohada</td><td class="rt-mode">🚶 Walk</td><td>5 min</td><td>Free</td></tr>
 <tr><td>Saga-Arashiyama → Kyoto Stn</td><td class="rt-mode">🚃 JR</td><td>17 min</td><td>¥240</td></tr>
 <tr><td>Kyoto Stn → JR Uji</td><td class="rt-mode">🚃 Nara Line</td><td>18 min</td><td>¥250</td></tr>
@@ -1100,8 +1109,8 @@ document.addEventListener('DOMContentLoaded',function(){
 <tr><td>Shinsekai → Namba</td><td class="rt-mode">🚇 Subway</td><td>5 min</td><td>¥240</td></tr>
 </table>
 <div class="route-total">
-<span>Total transit: ~2h 20min</span>
-<span>Total cost: ~¥3,850</span>
+<span>Total transit: ~2h 47min</span>
+<span>Total cost: ~¥3,290</span>
 </div>
 </div>
 
@@ -1771,7 +1780,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </span></div>
 </div>
 
-<div class="tip">⏰ <strong>Tight but doable.</strong> Early Arashiyama → Momohada Cosme → train to Uji → Byodo-in + matcha → Kyoto Station souvenirs → lunch → Osaka ~2pm.</div>
+<div class="tip">⏰ <strong>Tight but doable.</strong> Toji → grab luggage → Kyoto Station locker → Arashiyama → Momohada → Uji → Kyoto Station souvenirs + grab bags → lunch → Osaka ~3pm.</div>
 
 <details class="food-nearby">
 <summary>☕ Near Toji — early morning options (if gates aren't open yet)</summary>
@@ -1807,15 +1816,69 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </details>
 
-<!-- 7:30 ARASHIYAMA -->
-<div class="time-block" id="act-d3-arashiyama"><span class="step-num">STEP 2</span><span class="clock">🎋</span> <span class="time-text">7:45 AM – 9:00 AM</span> · Arashiyama<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-arashiyama')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-arashiyama')">Skip →</button></span></div>
+<!-- 7:30 LUGGAGE DROP -->
+<div class="time-block" id="act-d3-luggage"><span class="step-num">STEP 2</span><span class="clock">🧳</span> <span class="time-text">7:30 AM – 8:15 AM</span> · Luggage → Kyoto Stn Locker<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-luggage')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-luggage')">Skip →</button></span></div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Toji → Umekoji Potel · ~15 min northwest</span></div>
+<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Hotel</span><span class="t-value">Grab luggage, check out · ~10 min</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Umekoji → Kyoto Station · ~10 min east</span></div>
+<div class="t-row"><span class="t-icon">🔑</span><span class="t-label">Locker</span><span class="t-value">Coin lockers at Kyoto Station central exit · ¥400–700 · Large bags OK</span></div>
+</div>
+
+<div class="tip">🧳 <strong>Locker tip:</strong> Large coin lockers (¥700) are on B1 near the Kintetsu gate — you'll pass right by them when catching the Osaka train later. IC card or coins. Stash everything, travel light to Arashiyama + Uji.</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🎫</div>
+<div class="card-info">
+<div class="card-name">Get Tickets While You're Here</div>
+<div class="card-jp">京都駅 · Do this now to save time later</div>
+<div class="card-desc">You're at Kyoto Station — sort out all your train tickets now while you're right next to the machines.</div>
+<div class="dishes">
+<div class="dishes-title">🎫 Step-by-step</div>
+<div class="dish"><strong>1. IC card (ICOCA)</strong> — buy or top up at any JR green ticket machine in the central concourse (English available, press flag icon). You need this for JR trains today: Arashiyama ¥240, Uji ¥250 each way. Tap to enter, tap to exit — that's it</div>
+<div class="dish"><strong>2. Kintetsu to Osaka — buy the express surcharge ticket</strong> — from JR central exit, walk southwest past Isetan dept store toward the Kintetsu gate on B1 (~3 min). Look for the <strong>Limited Express ticket machines</strong> (特急券発売機) to the RIGHT of the Kintetsu turnstiles. Press English → Osaka-Namba → pick ~2:10 PM → pick seat → pay (cash or IC card). You get a paper ticket — keep it safe</div>
+<div class="dish"><strong>What you'll have:</strong> IC card (for the base fare, tap at turnstile) + paper Limited Express ticket (reserved seat, show to conductor). Both needed at the exit gate in Namba — tap IC card AND insert paper ticket into the slot at the same time</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🚃</div>
+<div class="card-info">
+<div class="card-name">Kintetsu to Osaka — How It Works</div>
+<div class="card-jp">近鉄特急 · Two-ticket system explained</div>
+<div class="card-desc">Kintetsu uses a two-ticket system. Don't worry — it's simpler than it sounds.</div>
+<div class="dishes">
+<div class="dishes-title">🎫 The two tickets</div>
+<div class="dish"><strong>Ticket 1 — Base fare (乗車券)</strong> — ¥760. Your IC card handles this automatically. Just tap at the turnstile to enter and exit</div>
+<div class="dish"><strong>Ticket 2 — Limited Express surcharge (特急券)</strong> — ¥520. This is the reserved seat paper ticket you bought at the machine. All seats are reserved, no standing</div>
+<div class="dish"><strong>Total: ~¥1,280</strong> for a comfy reserved seat. Transfer at Yamato-Saidaiji (大和西大寺) to a second Limited Express to Namba — your ticket covers both legs</div>
+</div>
+<div class="dishes">
+<div class="dishes-title">🚉 At the gates</div>
+<div class="dish"><strong>Entering at Kyoto:</strong> Tap IC card on the reader at the Kintetsu turnstile. Walk through. Your paper express ticket is NOT needed here</div>
+<div class="dish"><strong>Exiting at Osaka-Namba:</strong> Insert the paper express ticket into the gate slot AND tap your IC card on the reader — do both at the same time. Gate opens, both are processed</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥1,280 total</span><span class="meta-pill">All seats reserved</span><span class="meta-pill">~55 min with transfer</span></div>
+</div>
+</div>
+</div>
+
+<div class="tip">💡 <strong>Simpler alternative:</strong> Skip the Limited Express entirely. Take a Kintetsu <strong>Rapid Express (急行)</strong> — just tap your IC card, no special ticket needed, no reservation. Runs every 10–15 min. Takes ~1h 10min to Namba with one transfer. Same platform, same gate. Only difference: no reserved seat, slightly slower. ¥760 total.</div>
+
+<!-- 8:30 ARASHIYAMA -->
+<div class="time-block" id="act-d3-arashiyama"><span class="step-num">STEP 3</span><span class="clock">🎋</span> <span class="time-text">8:30 AM – 9:45 AM</span> · Arashiyama<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-arashiyama')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-arashiyama')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Arashiyama_013.jpg/800px-Arashiyama_013.jpg')">
 <div class="img-title">Arashiyama Bamboo Grove<small>嵐山 竹林の小径 · Free · Empty before 9am</small></div>
 </div>
 <div class="img-body">
-<div class="desc">Towering bamboo tunnels filtering morning light into green-gold shafts. At 7:30am you'll practically own it. Walk through, cross Togetsukyo Bridge, then stroll the main street as stalls open (~8:30–9am).</div>
+<div class="desc">Towering bamboo tunnels filtering morning light into green-gold shafts. At 8:30am it's still quiet — crowds build after 9:30. Walk through, cross Togetsukyo Bridge, then stroll the main street as stalls open.</div>
 <div class="dishes">
 <div class="dishes-title">🍴 Arashiyama street food (stalls open ~8:30–9am)</div>
 <div class="dish"><strong>Matcha soft serve / matcha croquette</strong> · ¥350–500</div>
@@ -1833,7 +1896,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="card-info">
 <div class="card-name">Arashiyama Yoshimura — Soba with Togetsukyo Views</div>
 <div class="card-jp">嵐山よしむら · 渡月橋 · Tabelog 3.48</div>
-<div class="card-desc">Handmade buckwheat soba right on the Togetsukyo Bridge, with floor-to-ceiling windows over the river and mountains. If stalls aren't open when you arrive at 7:30am, this is a perfect 9am breakfast/brunch spot after the bamboo grove. Classic Arashiyama dining.</div>
+<div class="card-desc">Handmade buckwheat soba right on the Togetsukyo Bridge, with floor-to-ceiling windows over the river and mountains. Opens at 9am — perfect brunch spot after the bamboo grove. Classic Arashiyama dining.</div>
 <div class="dishes">
 <div class="dishes-title">🍴 What to order</div>
 <div class="dish"><strong>Zaru soba</strong> — cold buckwheat noodles + dipping broth · ¥1,200</div>
@@ -1845,17 +1908,75 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">FROM</span><span class="t-value">Umekoji Potel (hotel)</span></div>
+<div class="t-row"><span class="t-icon">🚉</span><span class="t-label">FROM</span><span class="t-value">Kyoto Station (luggage now in locker!)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Arashiyama Bamboo Grove</span></div>
-<div class="t-row"><span class="t-icon">🚕</span><span class="t-label">GO Taxi</span><span class="t-value">~¥1,500 · 15 min</span></div>
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">JR</span><span class="t-value">JR Sagano Line → Saga-Arashiyama · 17 min · ¥240 · IC card</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Station → Bamboo Grove · 10 min</span></div>
 <div class="t-row"><span class="t-icon">📋</span><span class="t-label">Address</span><span class="t-value">
 <div class="addr-box" onclick="copyAddr('嵐山 竹林の小径 京都市右京区')"><strong>嵐山 竹林の小径 京都市右京区</strong><span class="copy-icon">tap to copy</span></div>
 <a class="maps-link" href="https://maps.apple.com/?ll=35.0173,135.6717&q=Arashiyama+Bamboo+Grove" target="_blank">📍 Maps</a>
 </span></div>
 </div>
 
-<!-- 9:15 MOMOHADA -->
-<div class="time-block" id="act-d3-momohada"><span class="step-num">STEP 3</span><span class="clock">💄</span> <span class="time-text">9:15 AM – 9:40 AM</span> · Momohada Cosme<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-momohada')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-momohada')">Skip →</button></span></div>
+<!-- 9:45 MOMOHADA -->
+
+<details class="food-nearby">
+<summary>🍴 More food near Arashiyama (5 discovered)</summary>
+<div class="food-nearby-inner">
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Fukawaya_late_Taisho_era.jpg/960px-Fukawaya_late_Taisho_era.jpg')">
+<div class="img-title">亀山屋<small> · Arashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Arashiyama</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=%E4%BA%80%E5%B1%B1%E5%B1%8B&ll=35.013405,135.672364" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Oriental_seeds%2C_1931_-_the_Oriental_Seed_Co._%28IA_CAT31336661%29.pdf/page1-960px-Oriental_seeds%2C_1931_-_the_Oriental_Seed_Co._%28IA_CAT31336661%29.pdf.jpg')">
+<div class="img-title">らんざん<small> · Arashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Arashiyama</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=%E3%82%89%E3%82%93%E3%81%96%E3%82%93&ll=35.013899,135.674428" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%AF%E5%B3%A8%E2%86%92%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1_%E5%B5%AF%E5%B3%A8%E9%87%8E13%E5%8F%B7.jpg/960px-%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%AF%E5%B3%A8%E2%86%92%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1_%E5%B5%AF%E5%B3%A8%E9%87%8E13%E5%8F%B7.jpg')">
+<div class="img-title">嵯峨野<small> · Arashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Arashiyama</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=%E5%B5%AF%E5%B3%A8%E9%87%8E&ll=35.014548,135.674786" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Age_manju_at_Takemura%2C_Kanda%2C_Tokyo.jpg/960px-Age_manju_at_Takemura%2C_Kanda%2C_Tokyo.jpg')">
+<div class="img-title">Takemura<small> · Arashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Arashiyama</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Takemura&ll=35.017471,135.6768553" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Yudofu_%2813238048184%29.jpg/960px-Yudofu_%2813238048184%29.jpg')">
+<div class="img-title">Shoraian<small> · Arashiyama · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Arashiyama</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Shoraian&ll=35.0144404,135.6701313" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+</details>
+<div class="time-block" id="act-d3-momohada"><span class="step-num">STEP 4</span><span class="clock">💄</span> <span class="time-text">9:45 AM – 10:10 AM</span> · Momohada Cosme<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-momohada')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-momohada')">Skip →</button></span></div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Momohada Cosme</strong> sakura face wash + konjac sponges. ¥350 each. Quick 15-min stop.</div>
 
@@ -1910,8 +2031,8 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </details>
 
-<!-- 9:45 TRAIN TO UJI -->
-<div class="time-block" id="act-d3-train-uji"><span class="step-num">STEP 4</span><span class="clock">🚃</span> <span class="time-text">9:45 AM – 10:45 AM</span> · Train to Uji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-uji')">Skip →</button></span></div>
+<!-- 10:15 TRAIN TO UJI -->
+<div class="time-block" id="act-d3-train-uji"><span class="step-num">STEP 5</span><span class="clock">🚃</span> <span class="time-text">10:15 AM – 11:00 AM</span> · Train to Uji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-uji')">Skip →</button></span></div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Step 1</span><span class="t-value">JR Saga-Arashiyama → Kyoto Station (17 min, ¥240)</span></div>
@@ -1920,8 +2041,8 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="t-row"><span class="t-icon">💴</span><span class="t-label">Total</span><span class="t-value">~45 min · ¥490 combined · IC card for both</span></div>
 </div>
 
-<!-- 10:45 UJI -->
-<div class="time-block" id="act-d3-uji"><span class="step-num">STEP 5</span><span class="clock">⛩</span> <span class="time-text">10:45 AM – 12:15 PM</span> · Uji + Byodo-in<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-uji')">Skip →</button></span></div>
+<!-- 11:00 UJI -->
+<div class="time-block" id="act-d3-uji"><span class="step-num">STEP 6</span><span class="clock">⛩</span> <span class="time-text">11:00 AM – 12:30 PM</span> · Uji + Byodo-in<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-uji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-uji')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg/800px-Phoenix_Hall%2C_Byodo-in%2C_November_2016_-01.jpg')">
@@ -1998,16 +2119,18 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </details>
 
-<!-- 12:20 BACK TO KYOTO -->
-<div class="time-block" id="act-d3-train-back"><span class="step-num">STEP 6</span><span class="clock">🚃</span> <span class="time-text">12:20 PM – 12:40 PM</span> · Back to Kyoto<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-back')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-back')">Skip →</button></span></div>
+<!-- 12:35 BACK TO KYOTO -->
+<div class="time-block" id="act-d3-train-back"><span class="step-num">STEP 7</span><span class="clock">🚃</span> <span class="time-text">12:35 PM – 12:55 PM</span> · Back to Kyoto<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-train-back')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-train-back')">Skip →</button></span></div>
 
 <div class="transport-card">
 <div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">JR Nara Line Uji → Kyoto · 18 min · ¥250 · IC card</span></div>
-<div class="t-row"><span class="t-icon">🕐</span><span class="t-label">Arrive</span><span class="t-value">Kyoto Station ~12:40pm</span></div>
+<div class="t-row"><span class="t-icon">🕐</span><span class="t-label">Arrive</span><span class="t-value">Kyoto Station ~12:55pm</span></div>
 </div>
 
-<!-- 12:40 SOUVENIRS -->
-<div class="time-block" id="act-d3-souvenirs"><span class="step-num">STEP 7</span><span class="clock">🛍</span> <span class="time-text">12:40 PM – 1:15 PM</span> · Souvenirs<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-souvenirs')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-souvenirs')">Skip →</button></span></div>
+<!-- 1:00 SOUVENIRS + GRAB LUGGAGE -->
+<div class="time-block" id="act-d3-souvenirs"><span class="step-num">STEP 8</span><span class="clock">🛍</span> <span class="time-text">1:00 PM – 1:30 PM</span> · Souvenirs + Grab Luggage<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-souvenirs')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-souvenirs')">Skip →</button></span></div>
+
+<div class="tip">🧳 <strong>Grab luggage from locker now.</strong> The B1 lockers are right by the Kintetsu gate — pick up bags on the way to souvenirs, then head straight to lunch + Osaka train.</div>
 
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Nama Yatsuhashi (生八つ橋)</strong> matcha + cinnamon with red bean. Otabe or Shogoin brand. ¥600–1,200/box.</div>
 <div class="must-buy"><span class="mb-icon">🛑</span> MOM'S LIST — <strong>Kyoto Baum (ばあむ)</strong> matcha baumkuchen in calligraphy box. ¥1,400–2,000.</div>
@@ -2054,8 +2177,8 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </details>
 
-<!-- 1:15 LUNCH + TRAIN -->
-<div class="time-block" id="act-d3-lunch"><span class="step-num">STEP 8</span><span class="clock">🍜</span> <span class="time-text">1:15 PM – 1:50 PM</span> · Quick Lunch<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-lunch')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-lunch')">Skip →</button></span></div>
+<!-- 1:30 LUNCH + TRAIN -->
+<div class="time-block" id="act-d3-lunch"><span class="step-num">STEP 9</span><span class="clock">🍜</span> <span class="time-text">1:30 PM – 2:00 PM</span> · Quick Lunch<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-lunch')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-lunch')">Skip →</button></span></div>
 
 <div class="card">
 <span class="card-label label-walkin">Ticket machine · 20 min</span>
@@ -2070,16 +2193,17 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<div class="time-block" id="act-d3-osaka-train"><span class="step-num">STEP 9</span><span class="clock">🚃</span> <span class="time-text">2:00 PM – 2:42 PM</span> · Kintetsu to Osaka<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-osaka-train')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-osaka-train')">Skip →</button></span></div>
+<div class="time-block" id="act-d3-osaka-train"><span class="step-num">STEP 10</span><span class="clock">🚃</span> <span class="time-text">2:10 PM – 2:52 PM</span> · Kintetsu to Osaka<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-osaka-train')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-osaka-train')">Skip →</button></span></div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">Kintetsu Limited Express, Kyoto → Osaka-Namba · 42 min · ~¥1,130</span></div>
-<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Ticket</span><span class="t-value">Buy at Kintetsu counter in Kyoto Station. Reserved seats.</span></div>
-<div class="t-row"><span class="t-icon">🕐</span><span class="t-label">Arrive</span><span class="t-value">Osaka-Namba ~2:42pm — whole afternoon/evening in Osaka!</span></div>
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Train</span><span class="t-value">Kintetsu Limited Express, Kyoto → Yamato-Saidaiji → Osaka-Namba · ~55 min · ¥1,280</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Ticket</span><span class="t-value">Already bought this morning! IC card tap at gate + paper express ticket. Reserved seats. Luggage OK on board.</span></div>
+<div class="t-row"><span class="t-icon">🔄</span><span class="t-label">Transfer</span><span class="t-value">Quick same-platform transfer at Yamato-Saidaiji (大和西大寺) — follow signs for Namba</span></div>
+<div class="t-row"><span class="t-icon">🕐</span><span class="t-label">Arrive</span><span class="t-value">Osaka-Namba ~3:05pm — whole afternoon/evening in Osaka!</span></div>
 </div>
 
 <!-- OSAKA AFTERNOON/EVENING -->
-<div class="time-block" id="act-d3-dotonbori"><span class="step-num">STEP 10</span><span class="clock">🐙</span> <span class="time-text">3:00 PM – 5:30 PM</span> · Dotonbori Food Crawl<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-dotonbori')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-dotonbori')">Skip →</button></span></div>
+<div class="time-block" id="act-d3-dotonbori"><span class="step-num">STEP 11</span><span class="clock">🐙</span> <span class="time-text">3:10 PM – 5:30 PM</span> · Dotonbori Food Crawl<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-dotonbori')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-dotonbori')">Skip →</button></span></div>
 
 <div class="img-card">
 <div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Dotonbori_at_night%2C_Osaka.jpg/800px-Dotonbori_at_night%2C_Osaka.jpg')">
@@ -2132,7 +2256,44 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<div class="time-block" id="act-d3-shinsekai"><span class="step-num">STEP 11</span><span class="clock">🗼</span> <span class="time-text">5:30 PM – 7:30 PM</span> · Shinsekai Kushikatsu<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-shinsekai')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-shinsekai')">Skip →</button></span></div>
+
+<details class="food-nearby">
+<summary>🍴 More food near Dotonbori (3 discovered)</summary>
+<div class="food-nearby-inner">
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Unjha_umiya_mandir.jpg/960px-Unjha_umiya_mandir.jpg')">
+<div class="img-title">Umiya Cafe<small> · Dotonbori · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Dotonbori</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Umiya%20Cafe&ll=34.6693815,135.4974217" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/NDL845533_%E7%99%BA%E6%98%8E%E7%94%BB%E8%AB%87_part1.pdf/page1-960px-NDL845533_%E7%99%BA%E6%98%8E%E7%94%BB%E8%AB%87_part1.pdf.jpg')">
+<div class="img-title">珈琲艇 CABIN<small> · Dotonbori · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Dotonbori</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=%E7%8F%88%E7%90%B2%E8%89%87%20CABIN&ll=34.6693309,135.4966662" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/15/Kanidoraku-kanban.JPG')">
+<div class="img-title">Kanidoraku<small>かに道楽 · Dotonbori · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Dotonbori</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Kanidoraku&ll=34.6688634,135.5015017" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+</details>
+<div class="time-block" id="act-d3-shinsekai"><span class="step-num">STEP 12</span><span class="clock">🗼</span> <span class="time-text">5:30 PM – 7:30 PM</span> · Shinsekai Kushikatsu<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-shinsekai')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-shinsekai')">Skip →</button></span></div>
 
 <div class="tip">🚇 Subway: Namba → Dobutsuen-mae · 2 stops · 5 min · ¥240</div>
 
@@ -2168,7 +2329,54 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<div class="time-block" id="act-d3-night"><span class="step-num">STEP 12</span><span class="clock">🌃</span> <span class="time-text">7:30 PM – 9:30 PM</span> · Dotonbori Night<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-night')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-night')">Skip →</button></span></div>
+
+<details class="food-nearby">
+<summary>🍴 More food near Shinsekai (4 discovered)</summary>
+<div class="food-nearby-inner">
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Fish_lined_up_at_a_fresh_fish_store_at_Tezukayama%2C_Osaka%2C_Japan%2C_February_2024_-_7017.jpg/960px-Fish_lined_up_at_a_fresh_fish_store_at_Tezukayama%2C_Osaka%2C_Japan%2C_February_2024_-_7017.jpg')">
+<div class="img-title">Tsukegamo Udon<small> · Shinsekai · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Shinsekai</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Tsukegamo%20Udon&ll=34.6520945,135.5048293" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Ramen_Kiou_Old_Taste.jpg/960px-Ramen_Kiou_Old_Taste.jpg')">
+<div class="img-title">Ramen Kiou<small> · Shinsekai · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Shinsekai</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Ramen%20Kiou&ll=34.6543759,135.5050868" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_M%C3%A9gha_D%C3%BAta_or_Cloud_Messenger%2C_H._H._Wilson%2C_ed._2.djvu/page1-960px-The_M%C3%A9gha_D%C3%BAta_or_Cloud_Messenger%2C_H._H._Wilson%2C_ed._2.djvu.jpg')">
+<div class="img-title">Koshu Men<small> · Shinsekai · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Shinsekai</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Koshu%20Men&ll=34.6549121,135.5053611" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/HK_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E4%BF%A1%E5%BE%B7%E4%B8%AD%E5%BF%83_Shun_Tak_Centre_%E7%99%BD%E7%86%8A%E5%92%96%E5%96%B1_Shirokuma_Japanese_Restaurant_name_sign_Mar-2013_shop_wall.JPG/960px-HK_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E4%BF%A1%E5%BE%B7%E4%B8%AD%E5%BF%83_Shun_Tak_Centre_%E7%99%BD%E7%86%8A%E5%92%96%E5%96%B1_Shirokuma_Japanese_Restaurant_name_sign_Mar-2013_shop_wall.JPG')">
+<div class="img-title">Shirokuma Restaurant<small> · Shinsekai · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Local restaurant near Shinsekai</div>
+<div class="card-meta"><span class="meta-pill">Walk-in</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Shirokuma%20Restaurant&ll=34.6495887,135.5075881" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+</details>
+<div class="time-block" id="act-d3-night"><span class="step-num">STEP 13</span><span class="clock">🌃</span> <span class="time-text">7:30 PM – 9:30 PM</span> · Dotonbori Night<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d3-night')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d3-night')">Skip →</button></span></div>
 
 <div class="tip">🚇 Subway back: Dobutsuen-mae → Namba · 2 stops · ¥240</div>
 
@@ -2197,6 +2405,264 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAY 4 — WEDNESDAY MARCH 25 — OSAKA → SUWA     -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section" id="day4">
+<div class="section-title">
+<span class="icon">🐙</span>
+<h2>Day 4 — Wed, March 25 · Osaka Food Legends → Train to Suwa</h2>
+<span class="sub">Temple, castle, best takoyaki + okonomiyaki, then Nagano</span>
+</div>
+
+<div class="clothes-card">
+<div class="clothes-title">👔 What to Wear Today</div>
+<div class="clothes-body">
+<span class="meta-pill">10–18°C (50–64°F)</span> <span class="meta-pill">Sunny, mild</span><br><br>
+<strong>Outfit:</strong> Light layers — t-shirt + light jacket. You'll be walking + on trains all day<br>
+<strong>Footwear:</strong> Sneakers (Osaka Castle park walking)<br>
+<strong>Bag:</strong> Keep luggage in coin locker until departure. Daypack only for the morning<br>
+<strong>Extras:</strong> Phone battery pack, IC card charged
+</div>
+</div>
+
+<div class="route-card">
+<div class="route-title">🗺️ Day 4 Route — Namba → Castle → Umeda → Shin-Osaka → Nagoya → Suwa</div>
+<table class="route-table">
+<tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
+<tr><td>Dormy Inn → Hozenji</td><td class="rt-mode">🚶 Walk</td><td>2 min</td><td>Free</td></tr>
+<tr><td>Namba → Tanimachi 4-chome</td><td class="rt-mode">🚇 Subway</td><td>10 min</td><td>¥280</td></tr>
+<tr><td>Osaka Castle → Umeda</td><td class="rt-mode">🚇 Subway</td><td>15 min</td><td>¥280</td></tr>
+<tr><td>Umeda → Namba (grab luggage)</td><td class="rt-mode">🚇 Midosuji</td><td>10 min</td><td>¥240</td></tr>
+<tr><td>Namba → Shin-Osaka</td><td class="rt-mode">🚇 Midosuji</td><td>15 min</td><td>¥280</td></tr>
+<tr><td>Shin-Osaka → Nagoya</td><td class="rt-mode">🚄 Nozomi</td><td>50 min</td><td>¥6,880</td></tr>
+<tr><td>Nagoya → Shiojiri</td><td class="rt-mode">🚃 Shinano LE</td><td>~2h</td><td>¥5,700</td></tr>
+<tr><td>Shiojiri → Kami-Suwa</td><td class="rt-mode">🚃 JR Local</td><td>15 min</td><td>¥420</td></tr>
+</table>
+<div class="route-total">
+<span>Total transit: ~4h 30min</span>
+<span>Total cost: ~¥14,080</span>
+</div>
+</div>
+
+<div class="tip">💡 <strong>Money saver:</strong> Buy a through-ticket (通し切符) at the JR counter in Shin-Osaka — "Shin-Osaka kara Kami-Suwa made" — the base fare is calculated over the full distance and may save ¥1,000+. Non-reserved Shinkansen + Shinano is fine for a weekday.</div>
+
+<!-- 8:30 HOZENJI -->
+<div class="time-block" id="act-d4-hozenji"><span class="step-num">STEP 1</span><span class="clock">⛩</span> <span class="time-text">8:30 AM – 9:00 AM</span> · Hozenji Temple + Yokocho<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-hozenji')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-hozenji')">Skip →</button></span></div>
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Hozenji_Yokocho_in_201409.JPG/960px-Hozenji_Yokocho_in_201409.JPG')">
+<div class="img-title">Hozenji Yokocho — Osaka's Hidden Alley<small>法善寺横丁 · 2 min from Dotonbori · Free</small></div>
+</div>
+<div class="img-body">
+<div class="desc">An 80-meter stone-paved alley with 60+ traditional restaurants just steps from Namba. At the center: the Mizukake Fudo statue — a Buddhist guardian covered in thick green moss from decades of water-splashing. Splash water and make a wish. Quiet and atmospheric in the morning.</div>
+<div class="dishes">
+<div class="dishes-title">⛩ What to do</div>
+<div class="dish"><strong>Splash water on the moss statue</strong> — tradition for good luck (romance, health, business)</div>
+<div class="dish"><strong>Walk the alley</strong> — stone path, lanterns, old Osaka atmosphere. Most restaurants open for dinner, but the alley itself is beautiful anytime</div>
+<div class="dish"><strong>Meoto Zenzai (夫婦善哉)</strong> — sweet red bean soup served as 2 bowls (couples tradition). A dessert institution if open</div>
+</div>
+<div class="card-meta"><span class="meta-pill">Free</span><span class="meta-pill">🚶 2 min from Dotonbori</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Hozenji+Yokocho+Osaka&ll=34.6682,135.5022" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+
+<div class="tip">☕ <strong>Breakfast:</strong> Dormy Inn has buffet breakfast included. Or walk 5 min to <strong>Komeda's Coffee</strong> (コメダ珈琲店) — any drink = FREE Morning Set (thick toast + egg). Opens 7 AM. Multiple branches near Namba.</div>
+
+<!-- CHECKOUT + LUGGAGE -->
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">9:00–11:00</span><span class="t-value">Back to Dormy Inn — onsen, pack, checkout by 11:00</span></div>
+<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Luggage</span><span class="t-value">Store at Namba Station coin locker (¥400–700) or ask Dormy Inn front desk to hold bags</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Next</span><span class="t-value">Midosuji Line Namba → Honmachi, transfer Chuo Line → Tanimachi 4-chome · ~15 min · ¥280</span></div>
+</div>
+
+<!-- 11:15 OSAKA CASTLE -->
+<div class="time-block" id="act-d4-castle"><span class="step-num">STEP 2</span><span class="clock">🏯</span> <span class="time-text">11:15 AM – 12:15 PM</span> · Osaka Castle Park<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-castle')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-castle')">Skip →</button></span></div>
+
+<div class="img-card">
+<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Osaka_Castle_03bs3200.jpg/960px-Osaka_Castle_03bs3200.jpg')">
+<div class="img-title">Osaka Castle — Toyotomi Hideyoshi's Fortress<small>大阪城 · Park free · Tower ¥1,200</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Japan's most famous castle, surrounded by moats and 3,000 cherry trees. The exterior and park are the real draw — walk the stone walls, cross the moat bridges, photograph the tower. Inside is a concrete reconstruction with a museum (skip if short on time). Cherry buds should be swelling in late March.</div>
+<div class="card-meta"><span class="meta-pill">Park: free</span><span class="meta-pill">Tower: ¥1,200</span><span class="meta-pill">🚶 10 min from station</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Osaka+Castle&ll=34.6873,135.5262" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+
+<div class="tip">⏰ <strong>Time-saving tip:</strong> Walk the park + moat for photos (free, 45 min) and skip the museum inside unless you love feudal history. The 1,200 yen tower entry + 30 min queue isn't worth it on a tight schedule. The best shot is from the southwest corner across the inner moat.</div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Osaka Castle Park</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Shin-Umeda Shokudogai (Umeda)</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Tanimachi Line: Tanimachi 4-chome → Higashi-Umeda · 10 min · ¥280</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Higashi-Umeda → Shin-Umeda Shokudogai · 5 min (under the train tracks)</span></div>
+</div>
+
+<!-- 12:30 UMEDA FOOD -->
+<div class="time-block" id="act-d4-umeda"><span class="step-num">STEP 3</span><span class="clock">🐙</span> <span class="time-text">12:30 PM – 1:30 PM</span> · Umeda Food — Hanadako + Kiji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-umeda')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-umeda')">Skip →</button></span></div>
+
+<div class="tip">🔥 <strong>Two Michelin legends in ONE alley.</strong> Shin-Umeda Shokudogai (新梅田食道街) is a retro maze of tiny restaurants under the train tracks near JR Osaka Station. Hanadako + Kiji are both here — do both.</div>
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Honkeohtako%27s_takoyaki%2C_Osaka%3B_December_2013_%2802%29.jpg/960px-Honkeohtako%27s_takoyaki%2C_Osaka%3B_December_2013_%2802%29.jpg')">
+<div class="img-title">Hanadako — Osaka's Best Takoyaki<small>はなだこ · Shin-Umeda · Michelin Bib Gourmand</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Custom copper griddle at 250–300°C. Only uses octopus legs — massive raw chunks. Crispy outside, molten inside. Locals queue daily. 5 sauce options.</div>
+<div class="dishes">
+<div class="dishes-title">🐙 What to order</div>
+<div class="dish"><strong>Negi Mayo takoyaki</strong> — their signature. Piled insanely high with green onions + mayo. THE order</div>
+<div class="dish"><strong>Classic takoyaki (5 sauces)</strong> — sauce, ponzu, dashi soy, salt, salted sauce. Try salt for the purist experience</div>
+<div class="dish"><strong>Takosen</strong> — takoyaki pressed between rice crackers. Takeaway-friendly</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥640 / 8 pieces</span><span class="meta-pill">10 AM – 10 PM</span><span class="meta-pill">Queue: 20–40 min</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Hanadako+Takoyaki+Umeda+Osaka&ll=34.7033,135.4983" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+
+<div class="card">
+<span class="card-label label-top">🏆 Michelin Bib Gourmand · est. 1950</span>
+<div class="card-top">
+<div class="card-emoji">🥞</div>
+<div class="card-info">
+<div class="card-name">Kiji — Hidden Umeda Okonomiyaki Legend</div>
+<div class="card-jp">きじ 本店 · Same alley as Hanadako · Closed Sundays</div>
+<div class="card-desc">No signage — you have to know it's there. Founded 1950. Counter seats, watch the master cook. Same Shin-Umeda Shokudogai as Hanadako.</div>
+<div class="dishes">
+<div class="dishes-title">🥞 What to order</div>
+<div class="dish"><strong>Suji-tama (すじ玉)</strong> — beef tendon + egg. Their signature. Crispy outside, impossibly fluffy inside</div>
+<div class="dish"><strong>Modanyaki</strong> — okonomiyaki with yakisoba noodles folded in. Osaka classic</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥1,000–2,000</span><span class="meta-pill">11:30 AM – 9:30 PM</span><span class="meta-pill">Closed Sundays</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Kiji+Okonomiyaki+Umeda+Osaka&ll=34.7031,135.4980" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<details class="food-nearby">
+<summary>🐙 More legendary Osaka food you haven't tried yet</summary>
+<div class="food-nearby-inner">
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🐙</div>
+<div class="card-info">
+<div class="card-name">Aizuya — Where Takoyaki Was Invented (1935)</div>
+<div class="card-jp">会津屋 本店 · Namba branch available</div>
+<div class="card-desc">The birthplace of takoyaki. Eat them plain — NO sauce. Dough is seasoned with dashi. Also try rajioyaki (the beef predecessor that inspired takoyaki).</div>
+<div class="card-meta"><span class="meta-pill">¥600 / 12 pcs</span><span class="meta-pill">No sauce — eat plain!</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Aizuya+Takoyaki+Namba+Osaka&ll=34.6595,135.5058" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🍜</div>
+<div class="card-info">
+<div class="card-name">Dotonbori Imai — Kitsune Udon (est. 1946)</div>
+<div class="card-jp">道頓堀 今井 · Osaka's soul noodle</div>
+<div class="card-desc">Osaka invented kitsune udon. Fat sweet fried tofu on dashi udon. Imai makes broth in 30-serving batches through the day — always fresh.</div>
+<div class="card-meta"><span class="meta-pill">¥700</span><span class="meta-pill">11:30 AM – 9:30 PM · Closed Wed</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Dotonbori+Imai+Osaka&ll=34.6688,135.5035" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🥞</div>
+<div class="card-info">
+<div class="card-name">Mizuno — Michelin-Starred Okonomiyaki</div>
+<div class="card-jp">美津の · Dotonbori · est. 1945</div>
+<div class="card-desc">Michelin star 4 years running. Order the yamaimo-yaki — 90% mountain yam, unbelievably fluffy. Arrive before 11:30 AM to avoid the 40 min queue.</div>
+<div class="card-meta"><span class="meta-pill">¥1,000–2,000</span><span class="meta-pill">11 AM – 10 PM</span><span class="meta-pill">Queue: ~40 min</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Mizuno+Okonomiyaki+Dotonbori+Osaka&ll=34.6688,135.5020" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🦑</div>
+<div class="card-info">
+<div class="card-name">Hanshin Dept Store Ikayaki — Osaka-Only Street Snack</div>
+<div class="card-jp">阪神百貨店 いか焼き · Umeda B1 · NOT grilled squid</div>
+<div class="card-desc">Thin savory pancake with chopped squid + spring onions. Osaka-only. Famous permanent queue in the basement food court. Grab one on your way through Umeda.</div>
+<div class="card-meta"><span class="meta-pill">~¥200</span><span class="meta-pill">Hanshin Dept Store B1</span><span class="meta-pill">Near Hanadako</span></div>
+</div>
+</div>
+</div>
+
+</div>
+</details>
+
+<!-- 1:30 UMEDA SKY BUILDING (optional) -->
+<div class="time-block" id="act-d4-skybuilding"><span class="step-num">STEP 4</span><span class="clock">🏙</span> <span class="time-text">1:30 PM – 2:10 PM</span> · Umeda Sky Building<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-skybuilding')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-skybuilding')">Skip →</button></span></div>
+
+<div class="card">
+<span class="card-label label-rec">Optional · Skip if behind schedule</span>
+<div class="card-top">
+<div class="card-emoji">🏙</div>
+<div class="card-info">
+<div class="card-name">Umeda Sky Building — Floating Garden Observatory</div>
+<div class="card-jp">梅田スカイビル · 空中庭園展望台 · 40F rooftop</div>
+<div class="card-desc">Two towers connected by a floating bridge. Open-air rooftop observatory on the 40th floor with 360-degree views of Osaka. Architecturally striking. Less crowded daytime. 10 min walk from Shin-Umeda Shokudogai.</div>
+<div class="card-meta"><span class="meta-pill">¥1,500</span><span class="meta-pill">9:30 AM – 10:30 PM</span><span class="meta-pill">40 min visit</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Umeda+Sky+Building+Osaka&ll=34.7052,135.4903" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<!-- 2:30 GRAB LUGGAGE + TRAIN TO SUWA -->
+<div class="time-block" id="act-d4-train-suwa"><span class="step-num">STEP 5</span><span class="clock">🚄</span> <span class="time-text">2:30 PM – 6:30 PM</span> · Train to Suwa<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-train-suwa')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-train-suwa')">Skip →</button></span></div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Luggage</span><span class="t-value">Midosuji Line Umeda → Namba (10 min) — grab bags from locker</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Midosuji Line Namba → Shin-Osaka · 15 min · ¥280</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Tickets</span><span class="t-value">JR Ticket Office (みどりの窓口) at Shin-Osaka. Ask for "Shin-Osaka kara Kami-Suwa made" (through-ticket). Non-reserved is fine on a weekday.</span></div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🚄</div>
+<div class="card-info">
+<div class="card-name">Shin-Osaka → Nagoya → Shiojiri → Kami-Suwa</div>
+<div class="card-jp">新大阪 → 名古屋 → 塩尻 → 上諏訪 · 3 trains</div>
+<div class="card-desc">Three trains, two transfers. Easier than it sounds — all JR, same ticket.</div>
+<div class="dishes">
+<div class="dishes-title">🚃 The route (3 legs)</div>
+<div class="dish"><strong>Leg 1 — Tokaido Shinkansen (Nozomi)</strong> · Shin-Osaka → Nagoya · 50 min · Runs every 10 min, non-reserved cars 1–3</div>
+<div class="dish"><strong>Leg 2 — Limited Express Shinano (しなの)</strong> · Nagoya → Shiojiri · ~2h · Hourly departures. Non-reserved cars available. Beautiful mountain scenery through the Kiso Valley</div>
+<div class="dish"><strong>Leg 3 — JR Chuo Line local</strong> · Shiojiri → Kami-Suwa · 15 min · Cross-platform transfer at Shiojiri</div>
+</div>
+<div class="card-meta"><span class="meta-pill">~¥13,200 total</span><span class="meta-pill">~3.5h door-to-door</span><span class="meta-pill">All JR · through-ticket possible</span></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🕐</div>
+<div class="card-info">
+<div class="card-name">Recommended Connections</div>
+<div class="card-jp">Pick based on how much time you want in Osaka</div>
+<div class="dishes">
+<div class="dishes-title">🎯 Best options</div>
+<div class="dish"><strong>Relaxed (recommended)</strong> — Nozomi ~15:00 → Nagoya 15:50 → Shinano 16:00 → Shiojiri 17:55 → Kami-Suwa ~18:10</div>
+<div class="dish"><strong>More Osaka time</strong> — Nozomi ~16:00 → Nagoya 16:50 → Shinano 17:40 → Shiojiri 19:37 → Kami-Suwa ~20:00</div>
+<div class="dish"><strong>Latest safe</strong> — Nozomi ~17:15 → Nagoya 18:05 → Shinano 18:40 → Shiojiri 20:36 → Kami-Suwa ~21:07</div>
+</div>
+<div class="card-meta"><span class="meta-pill">Nozomi: every 10 min</span><span class="meta-pill">Shinano: hourly</span><span class="meta-pill">No advance booking needed</span></div>
+</div>
+</div>
+</div>
+
+<div class="tip">🍱 <strong>Ekiben tip:</strong> Buy a train bento at Shin-Osaka station before boarding! The ekiben shops near the Shinkansen gates have Osaka specialties — look for the takoyaki bento or Osaka pressed sushi (battera). Perfect for the 3h ride.</div>
 
 </div>
 
@@ -2447,7 +2913,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <div class="footer">
 Kyoto Complete Guide · Alex Thomas · March 2026<br>
-Images: Wikimedia Commons (CC) · Data: Yelp · Tabelog · TripAdvisor · Michelin · r/JapanTravel
+Images: Wikimedia Commons (CC) · Data: Yelp · Tabelog · TripAdvisor · Michelin · r/JapanTravel · r/JapanFood
 </div>
 
 </body>

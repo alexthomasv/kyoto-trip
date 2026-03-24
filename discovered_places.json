@@ -1,0 +1,330 @@
+{
+  "version": 1,
+  "last_updated": "2026-03-23T21:00:01.562847+00:00",
+  "places": {
+    "亀山屋-arashiyama": {
+      "slug": "亀山屋-arashiyama",
+      "name": "亀山屋",
+      "name_jp": "",
+      "description": "Local restaurant near Arashiyama",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=%E4%BA%80%E5%B1%B1%E5%B1%8B&ll=35.013405,135.672364",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Fukawaya_late_Taisho_era.jpg/960px-Fukawaya_late_Taisho_era.jpg",
+      "image_alt": "Fukawaya late Taisho era",
+      "lat": 35.013405,
+      "lng": 135.672364,
+      "associated_step_id": "act-d3-arashiyama",
+      "area": "Arashiyama",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:23.836565+00:00"
+      },
+      "added_at": "2026-03-23T20:58:23.841341+00:00",
+      "injected_into_html": true
+    },
+    "らんざん-arashiyama": {
+      "slug": "らんざん-arashiyama",
+      "name": "らんざん",
+      "name_jp": "",
+      "description": "Local restaurant near Arashiyama",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=%E3%82%89%E3%82%93%E3%81%96%E3%82%93&ll=35.013899,135.674428",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Oriental_seeds%2C_1931_-_the_Oriental_Seed_Co._%28IA_CAT31336661%29.pdf/page1-960px-Oriental_seeds%2C_1931_-_the_Oriental_Seed_Co._%28IA_CAT31336661%29.pdf.jpg",
+      "image_alt": "<div class=\"fn\">\nOriental seeds, 1931 / the Oriental Seed Co.</div>",
+      "lat": 35.013899,
+      "lng": 135.674428,
+      "associated_step_id": "act-d3-arashiyama",
+      "area": "Arashiyama",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:26.212010+00:00"
+      },
+      "added_at": "2026-03-23T20:58:26.212095+00:00",
+      "injected_into_html": true
+    },
+    "嵯峨野-arashiyama": {
+      "slug": "嵯峨野-arashiyama",
+      "name": "嵯峨野",
+      "name_jp": "",
+      "description": "Local restaurant near Arashiyama",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=%E5%B5%AF%E5%B3%A8%E9%87%8E&ll=35.014548,135.674786",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%AF%E5%B3%A8%E2%86%92%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1_%E5%B5%AF%E5%B3%A8%E9%87%8E13%E5%8F%B7.jpg/960px-%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%AF%E5%B3%A8%E2%86%92%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1_%E5%B5%AF%E5%B3%A8%E9%87%8E13%E5%8F%B7.jpg",
+      "image_alt": "トロッコ嵯峨→トロッコ亀岡 嵯峨野13号",
+      "lat": 35.014548,
+      "lng": 135.674786,
+      "associated_step_id": "act-d3-arashiyama",
+      "area": "Arashiyama",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:30.086368+00:00"
+      },
+      "added_at": "2026-03-23T20:58:30.089104+00:00",
+      "injected_into_html": true
+    },
+    "takemura-arashiyama": {
+      "slug": "takemura-arashiyama",
+      "name": "Takemura",
+      "name_jp": "",
+      "description": "Local restaurant near Arashiyama",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Takemura&ll=35.017471,135.6768553",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Age_manju_at_Takemura%2C_Kanda%2C_Tokyo.jpg/960px-Age_manju_at_Takemura%2C_Kanda%2C_Tokyo.jpg",
+      "image_alt": "Age manju at Takemura, Kanda, Tokyo",
+      "lat": 35.017471,
+      "lng": 135.6768553,
+      "associated_step_id": "act-d3-arashiyama",
+      "area": "Arashiyama",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:33.042508+00:00"
+      },
+      "added_at": "2026-03-23T20:58:33.042657+00:00",
+      "injected_into_html": true
+    },
+    "shoraian-arashiyama": {
+      "slug": "shoraian-arashiyama",
+      "name": "Shoraian",
+      "name_jp": "",
+      "description": "Local restaurant near Arashiyama",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Shoraian&ll=35.0144404,135.6701313",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Yudofu_%2813238048184%29.jpg/960px-Yudofu_%2813238048184%29.jpg",
+      "image_alt": "Yudofu (13238048184)",
+      "lat": 35.0144404,
+      "lng": 135.6701313,
+      "associated_step_id": "act-d3-arashiyama",
+      "area": "Arashiyama",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:36.439708+00:00"
+      },
+      "added_at": "2026-03-23T20:58:36.439765+00:00",
+      "injected_into_html": true
+    },
+    "umiya-cafe-dotonbori": {
+      "slug": "umiya-cafe-dotonbori",
+      "name": "Umiya Cafe",
+      "name_jp": "",
+      "description": "Local restaurant near Dotonbori",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Umiya%20Cafe&ll=34.6693815,135.4974217",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Unjha_umiya_mandir.jpg/960px-Unjha_umiya_mandir.jpg",
+      "image_alt": "Unjha umiya mandir",
+      "lat": 34.6693815,
+      "lng": 135.4974217,
+      "associated_step_id": "act-d3-dotonbori",
+      "area": "Dotonbori",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:58:58.215230+00:00"
+      },
+      "added_at": "2026-03-23T20:58:58.215366+00:00",
+      "injected_into_html": true
+    },
+    "珈琲艇-cabin-dotonbori": {
+      "slug": "珈琲艇-cabin-dotonbori",
+      "name": "珈琲艇 CABIN",
+      "name_jp": "",
+      "description": "Local restaurant near Dotonbori",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=%E7%8F%88%E7%90%B2%E8%89%87%20CABIN&ll=34.6693309,135.4966662",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/NDL845533_%E7%99%BA%E6%98%8E%E7%94%BB%E8%AB%87_part1.pdf/page1-960px-NDL845533_%E7%99%BA%E6%98%8E%E7%94%BB%E8%AB%87_part1.pdf.jpg",
+      "image_alt": "<div class=\"fn\">\n発明画談</div>",
+      "lat": 34.6693309,
+      "lng": 135.4966662,
+      "associated_step_id": "act-d3-dotonbori",
+      "area": "Dotonbori",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:04.307709+00:00"
+      },
+      "added_at": "2026-03-23T20:59:04.307759+00:00",
+      "injected_into_html": true
+    },
+    "kanidoraku-dotonbori": {
+      "slug": "kanidoraku-dotonbori",
+      "name": "Kanidoraku",
+      "name_jp": "かに道楽",
+      "description": "Local restaurant near Dotonbori",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Kanidoraku&ll=34.6688634,135.5015017",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Kanidoraku-kanban.JPG",
+      "image_alt": "Kanidoraku-kanban",
+      "lat": 34.6688634,
+      "lng": 135.5015017,
+      "associated_step_id": "act-d3-dotonbori",
+      "area": "Dotonbori",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:08.069749+00:00"
+      },
+      "added_at": "2026-03-23T20:59:08.069822+00:00",
+      "injected_into_html": true
+    },
+    "tsukegamo-udon-shinsekai": {
+      "slug": "tsukegamo-udon-shinsekai",
+      "name": "Tsukegamo Udon",
+      "name_jp": "",
+      "description": "Local restaurant near Shinsekai",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Tsukegamo%20Udon&ll=34.6520945,135.5048293",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Fish_lined_up_at_a_fresh_fish_store_at_Tezukayama%2C_Osaka%2C_Japan%2C_February_2024_-_7017.jpg/960px-Fish_lined_up_at_a_fresh_fish_store_at_Tezukayama%2C_Osaka%2C_Japan%2C_February_2024_-_7017.jpg",
+      "image_alt": "Fish lined up at a fresh fish store at Tezukayama, Osaka, Japan, February 2024 - 7017",
+      "lat": 34.6520945,
+      "lng": 135.5048293,
+      "associated_step_id": "act-d3-shinsekai",
+      "area": "Shinsekai",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:22.071459+00:00"
+      },
+      "added_at": "2026-03-23T20:59:22.071486+00:00",
+      "injected_into_html": true
+    },
+    "ramen-kiou-shinsekai": {
+      "slug": "ramen-kiou-shinsekai",
+      "name": "Ramen Kiou",
+      "name_jp": "",
+      "description": "Local restaurant near Shinsekai",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Ramen%20Kiou&ll=34.6543759,135.5050868",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Ramen_Kiou_Old_Taste.jpg/960px-Ramen_Kiou_Old_Taste.jpg",
+      "image_alt": "Ramen Kiou Old Taste",
+      "lat": 34.6543759,
+      "lng": 135.5050868,
+      "associated_step_id": "act-d3-shinsekai",
+      "area": "Shinsekai",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:29.963150+00:00"
+      },
+      "added_at": "2026-03-23T20:59:29.963267+00:00",
+      "injected_into_html": true
+    },
+    "koshu-men-shinsekai": {
+      "slug": "koshu-men-shinsekai",
+      "name": "Koshu Men",
+      "name_jp": "",
+      "description": "Local restaurant near Shinsekai",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Koshu%20Men&ll=34.6549121,135.5053611",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_M%C3%A9gha_D%C3%BAta_or_Cloud_Messenger%2C_H._H._Wilson%2C_ed._2.djvu/page1-960px-The_M%C3%A9gha_D%C3%BAta_or_Cloud_Messenger%2C_H._H._Wilson%2C_ed._2.djvu.jpg",
+      "image_alt": "<div class=\"fn\">\nThe Mégha dúta; or, Cloud messenger, a poem, tr. into Engl. verse, with notes by H.H. Wilson</div>",
+      "lat": 34.6549121,
+      "lng": 135.5053611,
+      "associated_step_id": "act-d3-shinsekai",
+      "area": "Shinsekai",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:35.852121+00:00"
+      },
+      "added_at": "2026-03-23T20:59:35.852171+00:00",
+      "injected_into_html": true
+    },
+    "shirokuma-restaurant-shinsekai": {
+      "slug": "shirokuma-restaurant-shinsekai",
+      "name": "Shirokuma Restaurant",
+      "name_jp": "",
+      "description": "Local restaurant near Shinsekai",
+      "top_dishes": [],
+      "price_range": "",
+      "maps_url": "https://maps.apple.com/?q=Shirokuma%20Restaurant&ll=34.6495887,135.5075881",
+      "yelp_url": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/HK_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E4%BF%A1%E5%BE%B7%E4%B8%AD%E5%BF%83_Shun_Tak_Centre_%E7%99%BD%E7%86%8A%E5%92%96%E5%96%B1_Shirokuma_Japanese_Restaurant_name_sign_Mar-2013_shop_wall.JPG/960px-HK_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E4%BF%A1%E5%BE%B7%E4%B8%AD%E5%BF%83_Shun_Tak_Centre_%E7%99%BD%E7%86%8A%E5%92%96%E5%96%B1_Shirokuma_Japanese_Restaurant_name_sign_Mar-2013_shop_wall.JPG",
+      "image_alt": "HK 上環 Sheung Wan 信德中心 Shun Tak Centre 白熊咖喱 Shirokuma Japanese Restaurant name sign Mar-2013 shop wall",
+      "lat": 34.6495887,
+      "lng": 135.5075881,
+      "associated_step_id": "act-d3-shinsekai",
+      "area": "Shinsekai",
+      "emoji": "🍴",
+      "rating": null,
+      "validation": {
+        "status": "VERIFIED",
+        "sources": [
+          "OpenStreetMap"
+        ],
+        "validated_at": "2026-03-23T20:59:43.461463+00:00"
+      },
+      "added_at": "2026-03-23T20:59:43.461505+00:00",
+      "injected_into_html": true
+    }
+  }
+}

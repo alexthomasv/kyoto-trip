@@ -19,6 +19,15 @@ Usage:
   # Full run: validate + discover for all Day 3 stops
   python3 validate_places.py --full
 
+  # Discover, validate & cache food for ALL itinerary stops
+  python3 validate_places.py --discover-cached
+
+  # Inject cached (un-injected) places into index.html
+  python3 validate_places.py --inject
+
+  # Show cache summary
+  python3 validate_places.py --show-cache
+
   # Validate with Google Places API (needs key)
   GOOGLE_MAPS_API_KEY=xxx python3 validate_places.py --validate
 
@@ -52,8 +61,11 @@ GOOGLE_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json"
 YELP_SEARCH_URL = "https://api.yelp.com/v3/businesses/search"
 YELP_MATCH_URL = "https://api.yelp.com/v3/businesses/matches"
 INDEX_FILE = Path(__file__).parent / "index.html"
+CACHE_FILE = Path(__file__).parent / "discovered_places.json"
+WIKIMEDIA_API = "https://commons.wikimedia.org/w/api.php"
 
 import os
+from datetime import datetime, timezone
 GOOGLE_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY", "")
 YELP_API_KEY = os.environ.get("YELP_API_KEY", "")
 
@@ -628,6 +640,600 @@ def run_full():
     run_discovery()
 
 
+# ─── STEP REFERENCE TABLE ───
+
+DISCOVERY_STEPS = [
+    {"step_id": "act-philosophers-path", "location": "Ginkaku-ji, Kyoto", "lat": 35.0270, "lng": 135.7982, "area": "Ginkaku-ji"},
+    {"step_id": "act-kinkakuji", "location": "Kinkaku-ji, Kyoto", "lat": 35.0394, "lng": 135.7292, "area": "Kinkaku-ji"},
+    {"step_id": "act-nishiki", "location": "Nishiki Market, Kyoto", "lat": 35.0050, "lng": 135.7650, "area": "Nishiki"},
+    {"step_id": "act-lunch", "location": "Nishiki/Shijo, Kyoto", "lat": 35.0055, "lng": 135.7645, "area": "Shijo"},
+    {"step_id": "act-kiyomizu", "location": "Kiyomizu, Kyoto", "lat": 34.9949, "lng": 135.7850, "area": "Kiyomizu"},
+    {"step_id": "act-gion", "location": "Gion, Kyoto", "lat": 35.0036, "lng": 135.7756, "area": "Gion"},
+    {"step_id": "act-dinner", "location": "Pontocho, Kyoto", "lat": 35.0050, "lng": 135.7700, "area": "Pontocho"},
+    {"step_id": "act-shinpuku", "location": "Kyoto Station", "lat": 34.9875, "lng": 135.7590, "area": "Kyoto Station"},
+    {"step_id": "act-d3-toji", "location": "Toji Temple, Kyoto", "lat": 34.9804, "lng": 135.7477, "area": "Toji"},
+    {"step_id": "act-d3-arashiyama", "location": "Arashiyama, Kyoto", "lat": 35.0173, "lng": 135.6717, "area": "Arashiyama"},
+    {"step_id": "act-d3-uji", "location": "Uji, Kyoto", "lat": 34.8895, "lng": 135.8078, "area": "Uji"},
+    {"step_id": "act-d3-souvenirs", "location": "Kyoto Station", "lat": 34.9858, "lng": 135.7588, "area": "Kyoto Station"},
+    {"step_id": "act-d3-lunch", "location": "Kyoto Station", "lat": 34.9858, "lng": 135.7588, "area": "Kyoto Station"},
+    {"step_id": "act-d3-dotonbori", "location": "Dotonbori, Osaka", "lat": 34.6687, "lng": 135.5013, "area": "Dotonbori"},
+    {"step_id": "act-d3-shinsekai", "location": "Shinsekai, Osaka", "lat": 34.6527, "lng": 135.5063, "area": "Shinsekai"},
+    {"step_id": "act-d3-night", "location": "Namba, Osaka", "lat": 34.6687, "lng": 135.5013, "area": "Namba"},
+]
+
+# Steps to skip (transit/shopping, not food-relevant)
+SKIP_STEPS = {"act-d3-momohada", "act-d3-train-uji", "act-d3-train-back", "act-d3-osaka-train"}
+
+# Same-area dedup: assign to the food-specific step, not duplicated
+AREA_PRIMARY_STEP = {
+    "Kyoto Station": "act-d3-lunch",
+    "Dotonbori": "act-d3-dotonbori",
+    "Namba": "act-d3-night",
+}
+
+
+# ─── SLUGIFY ───
+
+def slugify(text):
+    """Create a URL-friendly slug from text."""
+    text = text.lower().strip()
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r'-+', '-', text)
+    return text.strip('-')
+
+
+# ─── WIKIMEDIA IMAGE SEARCH ───
+
+def search_wikimedia_image(query):
+    """Search Wikimedia Commons for a food image by dish name.
+    Returns {"url": "...", "alt": "..."} or None.
+    """
+    # Try progressively broader queries
+    queries = [query]
+    # Add broader fallback: just the dish type
+    words = query.split()
+    if len(words) > 2:
+        queries.append(" ".join(words[:2]))
+    if len(words) > 1:
+        queries.append(words[0])  # single keyword like "takoyaki"
+
+    for q in queries:
+        params = urlencode({
+            "action": "query",
+            "generator": "search",
+            "gsrnamespace": 6,
+            "gsrsearch": q,
+            "gsrlimit": 5,
+            "prop": "imageinfo",
+            "iiprop": "url|extmetadata",
+            "iiurlwidth": 800,
+            "format": "json",
+        })
+        data = _http_get(f"{WIKIMEDIA_API}?{params}")
+        time.sleep(0.5)  # Be polite to Wikimedia
+
+        if "error" in data or "query" not in data:
+            continue
+
+        pages = data.get("query", {}).get("pages", {})
+        for page_id, page in sorted(pages.items()):
+            imageinfo = page.get("imageinfo", [])
+            if not imageinfo:
+                continue
+            info = imageinfo[0]
+            thumb_url = info.get("thumburl") or info.get("url")
+            if not thumb_url:
+                continue
+            # Skip SVGs, icons, logos
+            if any(ext in thumb_url.lower() for ext in ['.svg', 'icon', 'logo', 'flag']):
+                continue
+            # Get description from metadata
+            meta = info.get("extmetadata", {})
+            alt = meta.get("ObjectName", {}).get("value", q)
+            return {"url": thumb_url, "alt": alt}
+
+    return None
+
+
+# ─── CACHE MANAGEMENT ───
+
+def load_cache(filepath=CACHE_FILE):
+    """Load discovered_places.json cache. Returns cache dict."""
+    if not filepath.exists():
+        return {
+            "version": 1,
+            "last_updated": None,
+            "places": {},
+        }
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, dict) or "places" not in data:
+            raise ValueError("Invalid cache format")
+        return data
+    except (json.JSONDecodeError, ValueError):
+        # Backup corrupted file
+        bak = filepath.with_suffix(".json.bak")
+        print(f"  ⚠️  Cache corrupted, backing up to {bak}")
+        import shutil
+        shutil.copy2(filepath, bak)
+        return {"version": 1, "last_updated": None, "places": {}}
+
+
+def save_cache(cache, filepath=CACHE_FILE):
+    """Save cache to discovered_places.json. Preserves all existing entries."""
+    cache["last_updated"] = datetime.now(timezone.utc).isoformat()
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2, ensure_ascii=False)
+    print(f"  💾 Cache saved: {len(cache['places'])} places in {filepath.name}")
+
+
+# ─── FUZZY NAME MATCHING ───
+
+def _normalize_name(name):
+    """Normalize a place name for fuzzy matching."""
+    name = name.lower().strip()
+    name = re.sub(r'[^\w\s]', '', name)
+    name = re.sub(r'\s+', ' ', name)
+    # Remove common suffixes
+    for suffix in ['kyoto', 'osaka', 'japan', 'restaurant', 'cafe']:
+        name = name.replace(suffix, '')
+    return name.strip()
+
+
+def _names_match(name1, name2):
+    """Check if two place names are similar enough to be the same place."""
+    n1 = _normalize_name(name1)
+    n2 = _normalize_name(name2)
+    if n1 == n2:
+        return True
+    # One contains the other
+    if n1 in n2 or n2 in n1:
+        return True
+    # Check word overlap
+    words1 = set(n1.split())
+    words2 = set(n2.split())
+    if len(words1) > 0 and len(words2) > 0:
+        overlap = words1 & words2
+        shorter = min(len(words1), len(words2))
+        if shorter > 0 and len(overlap) / shorter >= 0.6:
+            return True
+    return False
+
+
+def _get_existing_html_names():
+    """Extract all food place names (EN + JP) already in index.html."""
+    places = extract_places_from_html()
+    names = []
+    for p in places:
+        names.append(p["name"])
+        if p.get("name_jp"):
+            names.append(p["name_jp"])
+    return names
+
+# Global chains / uninteresting places to skip
+SKIP_NAMES = {
+    "starbucks", "doutor", "mcdonald", "mcdonalds", "subway",
+    "tully", "tullys", "komeda", "veloce", "cafe veloce",
+    "mos burger", "lotteria", "first kitchen", "yoshinoya",
+    "matsuya", "sukiya", "coco ichibanya", "gusto", "saizeriya",
+    "jonathan", "denny", "dennys",
+}
+
+
+# ─── DISCOVER AND CACHE ───
+
+def _pick_emoji(categories):
+    """Pick an emoji based on food categories."""
+    cats = (categories or "").lower()
+    if "ramen" in cats or "noodle" in cats:
+        return "🍜"
+    if "sushi" in cats:
+        return "🍣"
+    if "cafe" in cats or "coffee" in cats:
+        return "☕"
+    if "bakery" in cats or "bread" in cats:
+        return "🥐"
+    if "curry" in cats:
+        return "🍛"
+    if "udon" in cats or "soba" in cats:
+        return "🍜"
+    if "tempura" in cats:
+        return "🍤"
+    if "takoyaki" in cats or "okonomiyaki" in cats:
+        return "🐙"
+    if "dessert" in cats or "sweet" in cats or "ice cream" in cats:
+        return "🍦"
+    if "yakitori" in cats:
+        return "🍢"
+    if "izakaya" in cats or "bar" in cats:
+        return "🍶"
+    return "🍴"
+
+
+def discover_and_cache(step_id, location, lat, lng, area, cache):
+    """Discover new places for a step, validate, fetch images, update cache.
+    Returns list of newly added place slugs.
+    """
+    existing_html_names = _get_existing_html_names()
+    new_slugs = []
+
+    # Discover candidates
+    candidates = discover_places(location, lat=lat, lng=lng)
+    if not candidates:
+        return new_slugs
+
+    for c in candidates:
+        name = c.get("name", "").strip()
+        if not name or len(name) < 2:
+            continue
+
+        # Skip global chains
+        if _normalize_name(name) in SKIP_NAMES or any(
+            chain in name.lower() for chain in SKIP_NAMES
+        ):
+            continue
+
+        slug = slugify(f"{name}-{area}")
+
+        # Skip if already in cache (exact slug)
+        if slug in cache["places"]:
+            continue
+
+        # Skip if same name already cached for any area (cross-area dedup)
+        if any(_names_match(name, p["name"]) for p in cache["places"].values()):
+            continue
+
+        # Skip if already in index.html (fuzzy match against EN + JP names)
+        if any(_names_match(name, html_name) for html_name in existing_html_names):
+            continue
+
+        # Validate
+        print(f"    Validating: {name}...", end=" ", flush=True)
+        osm_result = validate_nominatim(name, c.get("name_jp", ""), lat, lng, area)
+        yelp_result = {"status": "SKIPPED"}
+        if YELP_API_KEY:
+            yelp_result = validate_yelp(name, location, lat, lng)
+
+        sources = []
+        if osm_result.get("status") == "FOUND":
+            sources.append("OpenStreetMap")
+        if yelp_result.get("status") == "FOUND":
+            sources.append("Yelp")
+
+        if not sources:
+            print("❌ unverified, skipping")
+            continue
+
+        print(f"✅ verified ({', '.join(sources)})")
+
+        # Get Yelp details for price, rating, URL
+        yelp_url = yelp_result.get("yelp_url", "")
+        price = c.get("price") or yelp_result.get("price", "")
+        rating = c.get("rating") or yelp_result.get("rating")
+        categories = c.get("categories") or yelp_result.get("categories", "")
+
+        # Build maps URL
+        place_lat = c.get("lat") or osm_result.get("lat") or lat
+        place_lng = c.get("lng") or osm_result.get("lng") or lng
+        maps_url = f"https://maps.apple.com/?q={quote(name)}&ll={place_lat},{place_lng}"
+
+        # Search for a Wikimedia image by cuisine/dish type
+        image_data = None
+        search_terms = []
+        if categories:
+            # Use the first category as search term
+            first_cat = categories.split(",")[0].strip()
+            search_terms.append(f"{first_cat} Japanese food")
+        search_terms.append(f"{name} food")
+        if "Osaka" in location or "Dotonbori" in location or "Shinsekai" in location:
+            search_terms.append(f"Osaka street food")
+        else:
+            search_terms.append(f"Kyoto food")
+
+        for term in search_terms:
+            image_data = search_wikimedia_image(term)
+            if image_data:
+                break
+
+        # Build cache entry
+        entry = {
+            "slug": slug,
+            "name": name,
+            "name_jp": c.get("name_jp", ""),
+            "description": f"{categories}" if categories else f"Local restaurant near {area}",
+            "top_dishes": [],
+            "price_range": price,
+            "maps_url": maps_url,
+            "yelp_url": yelp_url,
+            "image_url": image_data["url"] if image_data else None,
+            "image_alt": image_data["alt"] if image_data else None,
+            "lat": place_lat,
+            "lng": place_lng,
+            "associated_step_id": step_id,
+            "area": area,
+            "emoji": _pick_emoji(categories),
+            "rating": rating,
+            "validation": {
+                "status": "VERIFIED",
+                "sources": sources,
+                "validated_at": datetime.now(timezone.utc).isoformat(),
+            },
+            "added_at": datetime.now(timezone.utc).isoformat(),
+            "injected_into_html": False,
+        }
+
+        cache["places"][slug] = entry
+        new_slugs.append(slug)
+
+    return new_slugs
+
+
+# ─── CACHED DISCOVERY (ALL STOPS) ───
+
+def run_discover_cached():
+    """Run discovery for all stops, updating the persistent cache."""
+    cache = load_cache()
+    total_new = 0
+    summary = {}
+
+    print(f"\n{'='*60}")
+    print(f"  FOOD DISCOVERY — All Itinerary Stops")
+    print(f"{'='*60}")
+    print(f"  Cache: {len(cache['places'])} existing places")
+    print(f"  APIs: OSM ✅ | Yelp {'✅' if YELP_API_KEY else '❌'}")
+    print()
+
+    # Track areas already processed (dedup same-area stops)
+    processed_areas = {}
+
+    for step in DISCOVERY_STEPS:
+        step_id = step["step_id"]
+        location = step["location"]
+        area = step["area"]
+
+        # Dedup: if this area was already processed for a primary step, skip
+        primary = AREA_PRIMARY_STEP.get(area)
+        if primary and primary != step_id:
+            # This step shares an area with a primary step — skip discovery
+            # but don't skip if the primary hasn't been processed yet
+            if area in processed_areas:
+                print(f"  ⏭  {step_id} — dedup with {processed_areas[area]}")
+                continue
+
+        print(f"\n  🔎 {step_id} — {location}")
+        new_slugs = discover_and_cache(
+            step_id, location, step["lat"], step["lng"], area, cache
+        )
+        processed_areas[area] = step_id
+        summary[step_id] = new_slugs
+        total_new += len(new_slugs)
+
+        if new_slugs:
+            for slug in new_slugs:
+                p = cache["places"][slug]
+                img = "🖼" if p.get("image_url") else "  "
+                print(f"    + {p['name']} {img} {p.get('price_range', '')}")
+
+    save_cache(cache)
+
+    # Print summary
+    print(f"\n{'='*60}")
+    print(f"  DISCOVERY SUMMARY")
+    print(f"{'='*60}")
+    print(f"  New places found:  {total_new}")
+    print(f"  Total in cache:    {len(cache['places'])}")
+    print()
+
+    if total_new > 0:
+        print(f"  {'Step':<28} {'New':>4}  Places")
+        print(f"  {'─'*28} {'─'*4}  {'─'*30}")
+        for step_id, slugs in summary.items():
+            if slugs:
+                names = ", ".join(cache["places"][s]["name"] for s in slugs[:3])
+                if len(slugs) > 3:
+                    names += f" +{len(slugs)-3} more"
+                print(f"  {step_id:<28} {len(slugs):>4}  {names}")
+    else:
+        print("  No new places found. All candidates are already cached or in HTML.")
+
+    return cache
+
+
+# ─── HTML INJECTION ───
+
+def _build_img_card_html(place):
+    """Build an img-card HTML string for a place with an image."""
+    p = place
+    dishes_html = ""
+    if p.get("top_dishes"):
+        dish_items = "\n".join(
+            f'<div class="dish"><strong>{d.get("name", "")}</strong> — {d.get("desc", "")}</div>'
+            for d in p["top_dishes"][:3]
+        )
+        dishes_html = f"""<div class="dishes">
+<div class="dishes-title">{p.get('emoji', '🍴')} Top picks</div>
+{dish_items}
+</div>"""
+
+    yelp_link = ""
+    if p.get("yelp_url"):
+        yelp_link = f'\n<a class="maps-link" href="{p["yelp_url"]}" target="_blank">⭐ Yelp</a>'
+
+    maps_link = ""
+    if p.get("maps_url"):
+        maps_link = f'\n<a class="maps-link" href="{p["maps_url"]}" target="_blank">📍 Maps</a>'
+
+    price_pill = ""
+    if p.get("price_range"):
+        price_pill = f'<span class="meta-pill">{p["price_range"]}</span>'
+
+    return f"""<div class="img-card">
+<div class="img-banner" style="height:140px;background-image:url('{p["image_url"]}')">
+<div class="img-title">{p["name"]}<small>{p.get("name_jp", "")} · {p.get("area", "")} · Walk-in</small></div>
+</div>
+<div class="img-body">
+<div class="desc">{p.get("description", "")}</div>
+{dishes_html}<div class="card-meta">{price_pill}<span class="meta-pill">Walk-in</span>{yelp_link}{maps_link}</div>
+</div>
+</div>"""
+
+
+def _build_card_html(place):
+    """Build a card HTML string for a place without an image."""
+    p = place
+
+    yelp_link = ""
+    if p.get("yelp_url"):
+        yelp_link = f'\n<a class="maps-link" href="{p["yelp_url"]}" target="_blank">⭐ Yelp</a>'
+
+    maps_link = ""
+    if p.get("maps_url"):
+        maps_link = f'\n<a class="maps-link" href="{p["maps_url"]}" target="_blank">📍 Maps</a>'
+
+    price_pill = ""
+    if p.get("price_range"):
+        price_pill = f'<span class="meta-pill">{p["price_range"]}</span>'
+
+    return f"""<div class="card">
+<div class="card-top">
+<div class="card-emoji">{p.get("emoji", "🍴")}</div>
+<div class="card-info">
+<div class="card-name">{p["name"]}</div>
+<div class="card-jp">{p.get("name_jp", "")} · {p.get("area", "")}</div>
+<div class="card-desc">{p.get("description", "")}</div>
+<div class="card-meta">{price_pill}<span class="meta-pill">Walk-in</span>{yelp_link}{maps_link}</div>
+</div>
+</div>
+</div>"""
+
+
+def run_inject():
+    """Inject un-injected cached places into index.html."""
+    cache = load_cache()
+    html = INDEX_FILE.read_text(encoding="utf-8")
+
+    # Collect un-injected places grouped by step_id
+    by_step = {}
+    for slug, place in cache["places"].items():
+        if not place.get("injected_into_html", False):
+            step_id = place.get("associated_step_id", "")
+            by_step.setdefault(step_id, []).append((slug, place))
+
+    if not by_step:
+        print("  No un-injected places in cache. Nothing to do.")
+        return
+
+    injected_count = 0
+
+    for step_id, places in by_step.items():
+        # Find the time-block with this id
+        block_pattern = f'id="{step_id}"'
+        block_pos = html.find(block_pattern)
+        if block_pos < 0:
+            print(f"  ⚠️  Step {step_id} not found in HTML, skipping {len(places)} places")
+            continue
+
+        # Build cards HTML
+        cards_html = ""
+        for slug, place in places:
+            if place.get("image_url"):
+                cards_html += "\n" + _build_img_card_html(place)
+            else:
+                cards_html += "\n" + _build_card_html(place)
+
+        # Look for existing food-nearby after this step's content
+        # Search forward from the time-block for the next time-block or section
+        search_start = block_pos
+        # Find the next time-block after this one
+        next_block = html.find('<div class="time-block"', search_start + len(block_pattern))
+        # Also check for section boundaries
+        next_section = html.find('<div class="section"', search_start + len(block_pattern))
+        # Use the nearest boundary
+        boundary = len(html)
+        if next_block > 0:
+            boundary = min(boundary, next_block)
+        if next_section > 0:
+            boundary = min(boundary, next_section)
+
+        region = html[search_start:boundary]
+
+        # Check if there's already a food-nearby details in this region
+        food_nearby_offset = region.rfind('<details class="food-nearby">')
+        if food_nearby_offset >= 0:
+            # Find the inner div and append cards before its closing tag
+            inner_pos = search_start + food_nearby_offset
+            # Find the closing </div> for food-nearby-inner
+            close_inner = html.find('</div>\n</details>', inner_pos)
+            if close_inner > 0:
+                insert_pos = close_inner
+                html = html[:insert_pos] + cards_html + "\n" + html[insert_pos:]
+            else:
+                # Fallback: insert before </details>
+                close_details = html.find('</details>', inner_pos)
+                if close_details > 0:
+                    html = html[:close_details] + cards_html + "\n" + html[close_details:]
+        else:
+            # Create a new food-nearby block
+            # Insert just before the next time-block/section boundary
+            emoji = places[0][1].get("emoji", "🍴")
+            area = places[0][1].get("area", "nearby")
+            summary_text = f"{emoji} More food near {area} ({len(places)} discovered)"
+            new_block = f"""\n<details class="food-nearby">
+<summary>{summary_text}</summary>
+<div class="food-nearby-inner">
+{cards_html}
+</div>
+</details>\n"""
+            html = html[:boundary] + new_block + html[boundary:]
+
+        # Mark as injected
+        for slug, place in places:
+            cache["places"][slug]["injected_into_html"] = True
+            injected_count += 1
+            print(f"  ✅ Injected: {place['name']} → {step_id}")
+
+    # Save updated HTML and cache
+    INDEX_FILE.write_text(html, encoding="utf-8")
+    save_cache(cache)
+
+    print(f"\n  📝 Injected {injected_count} new food cards into index.html")
+
+
+# ─── SHOW CACHE ───
+
+def run_show_cache():
+    """Print cache summary."""
+    cache = load_cache()
+    places = cache.get("places", {})
+
+    if not places:
+        print("  Cache is empty. Run --discover-cached first.")
+        return
+
+    print(f"\n{'='*60}")
+    print(f"  CACHE SUMMARY — {len(places)} places")
+    print(f"  Last updated: {cache.get('last_updated', 'never')}")
+    print(f"{'='*60}")
+
+    # Group by step
+    by_step = {}
+    for slug, p in places.items():
+        step = p.get("associated_step_id", "unknown")
+        by_step.setdefault(step, []).append(p)
+
+    for step_id, step_places in sorted(by_step.items()):
+        injected = sum(1 for p in step_places if p.get("injected_into_html"))
+        with_image = sum(1 for p in step_places if p.get("image_url"))
+        print(f"\n  {step_id} ({len(step_places)} places, {injected} injected, {with_image} with images)")
+        for p in step_places:
+            img = "🖼" if p.get("image_url") else "  "
+            inj = "✅" if p.get("injected_into_html") else "⬜"
+            rating = f"⭐{p['rating']}" if p.get("rating") else ""
+            print(f"    {inj} {img} {p['name']} {p.get('price_range', '')} {rating}")
+
+
 # ─── CLI ───
 
 if __name__ == "__main__":
@@ -642,6 +1248,12 @@ if __name__ == "__main__":
                        help="Run full validation + discovery")
     parser.add_argument("--extract", action="store_true",
                        help="Just extract and list all places from HTML")
+    parser.add_argument("--discover-cached", action="store_true",
+                       help="Discover food for all stops, validate, cache results")
+    parser.add_argument("--inject", action="store_true",
+                       help="Inject un-injected cached places into index.html")
+    parser.add_argument("--show-cache", action="store_true",
+                       help="Show cache summary")
 
     args = parser.parse_args()
 
@@ -656,7 +1268,13 @@ if __name__ == "__main__":
             print(f"      {p['step']} | {coords}")
         sys.exit(0)
 
-    if args.validate:
+    if args.show_cache:
+        run_show_cache()
+    elif args.discover_cached:
+        run_discover_cached()
+    elif args.inject:
+        run_inject()
+    elif args.validate:
         run_validation()
     elif args.discover:
         run_discovery(location=args.discover)
