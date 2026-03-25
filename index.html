@@ -394,10 +394,10 @@ const SCHEDULE=[
   {id:'act-d3-shinsekai',name:'Shinsekai Kushikatsu',duration:120,transit:10,start:'17:30',day:3},
   {id:'act-d3-night',name:'Dotonbori Night',duration:120,transit:0,start:'19:30',day:3},
   {id:'act-d4-hozenji',name:'Hozenji Temple + Yokocho',duration:30,transit:0,start:'08:30',day:4},
-  {id:'act-d4-castle',name:'Osaka Castle Park',duration:60,transit:20,start:'11:15',day:4},
-  {id:'act-d4-umeda',name:'Umeda Food — Hanadako + Kiji',duration:60,transit:15,start:'12:30',day:4},
-  {id:'act-d4-skybuilding',name:'Umeda Sky Building',duration:40,transit:5,start:'13:30',day:4},
-  {id:'act-d4-train-suwa',name:'Train to Suwa',duration:240,transit:15,start:'14:30',day:4}
+  {id:'act-d4-castle',name:'Checkout → Luggage to Shin-Osaka',duration:45,transit:0,start:'11:00',day:4},
+  {id:'act-d4-umeda',name:'Umeda Food — Hanadako + Kiji',duration:60,transit:10,start:'12:00',day:4},
+  {id:'act-d4-skybuilding',name:'Umeda Sky Building',duration:40,transit:5,start:'13:00',day:4},
+  {id:'act-d4-train-suwa',name:'Train to Suwa',duration:240,transit:10,start:'14:00',day:4}
 ];
 
 let skipState=JSON.parse(localStorage.getItem('kyoto-skip')||'[]');
@@ -2430,21 +2430,20 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 
 <div class="route-card">
-<div class="route-title">🗺️ Day 4 Route — Namba → Castle → Umeda → Shin-Osaka → Nagoya → Suwa</div>
+<div class="route-title">🗺️ Day 4 Route — Namba → Shin-Osaka (bags) → Umeda (food) → Shin-Osaka → Suwa</div>
 <table class="route-table">
 <tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
 <tr><td>Dormy Inn → Hozenji</td><td class="rt-mode">🚶 Walk</td><td>2 min</td><td>Free</td></tr>
-<tr><td>Namba → Tanimachi 4-chome</td><td class="rt-mode">🚇 Subway</td><td>10 min</td><td>¥280</td></tr>
-<tr><td>Osaka Castle → Umeda</td><td class="rt-mode">🚇 Subway</td><td>15 min</td><td>¥280</td></tr>
-<tr><td>Umeda → Namba (grab luggage)</td><td class="rt-mode">🚇 Midosuji</td><td>10 min</td><td>¥240</td></tr>
-<tr><td>Namba → Shin-Osaka</td><td class="rt-mode">🚇 Midosuji</td><td>15 min</td><td>¥280</td></tr>
+<tr><td>Namba → Shin-Osaka (drop bags)</td><td class="rt-mode">🚇 Midosuji</td><td>15 min</td><td>¥280</td></tr>
+<tr><td>Shin-Osaka → Umeda</td><td class="rt-mode">🚇 Midosuji</td><td>5 min</td><td>¥240</td></tr>
+<tr><td>Umeda → Shin-Osaka (grab bags)</td><td class="rt-mode">🚇 Midosuji</td><td>5 min</td><td>¥240</td></tr>
 <tr><td>Shin-Osaka → Nagoya</td><td class="rt-mode">🚄 Nozomi</td><td>50 min</td><td>¥6,880</td></tr>
 <tr><td>Nagoya → Shiojiri</td><td class="rt-mode">🚃 Shinano LE</td><td>~2h</td><td>¥5,700</td></tr>
 <tr><td>Shiojiri → Kami-Suwa</td><td class="rt-mode">🚃 JR Local</td><td>15 min</td><td>¥420</td></tr>
 </table>
 <div class="route-total">
-<span>Total transit: ~4h 30min</span>
-<span>Total cost: ~¥14,080</span>
+<span>Total transit: ~3h 45min</span>
+<span>Total cost: ~¥13,760</span>
 </div>
 </div>
 
@@ -2491,38 +2490,27 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <div class="tip">☕ <strong>Morning flow:</strong> Marufuku Coffee (8:00 AM, 4 min walk south) → Hozenji temple (8:30, 4 min walk back north) → back to Dormy Inn by 9:00 for onsen + packing.</div>
 
-<!-- CHECKOUT + LUGGAGE -->
-<div class="transport-card">
-<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">9:00–11:00</span><span class="t-value">Back to Dormy Inn — onsen, pack, checkout by 11:00</span></div>
-<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Luggage</span><span class="t-value">Store at Namba Station coin locker (¥400–700) or ask Dormy Inn front desk to hold bags</span></div>
-<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Next</span><span class="t-value">Midosuji Line Namba → Honmachi, transfer Chuo Line → Tanimachi 4-chome · ~15 min · ¥280</span></div>
-</div>
-
-<!-- 11:15 OSAKA CASTLE -->
-<div class="time-block" id="act-d4-castle"><span class="step-num">STEP 2</span><span class="clock">🏯</span> <span class="time-text">11:15 AM – 12:15 PM</span> · Osaka Castle Park<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-castle')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-castle')">Skip →</button></span></div>
-
-<div class="img-card">
-<div class="img-banner" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Osaka_Castle_03bs3200.jpg/960px-Osaka_Castle_03bs3200.jpg')">
-<div class="img-title">Osaka Castle — Toyotomi Hideyoshi's Fortress<small>大阪城 · Park free · Tower ¥1,200</small></div>
-</div>
-<div class="img-body">
-<div class="desc">Japan's most famous castle, surrounded by moats and 3,000 cherry trees. The exterior and park are the real draw — walk the stone walls, cross the moat bridges, photograph the tower. Inside is a concrete reconstruction with a museum (skip if short on time). Cherry buds should be swelling in late March.</div>
-<div class="card-meta"><span class="meta-pill">Park: free</span><span class="meta-pill">Tower: ¥1,200</span><span class="meta-pill">🚶 10 min from station</span>
-<a class="maps-link" href="https://maps.apple.com/?q=Osaka+Castle&ll=34.6873,135.5262" target="_blank">📍 Maps</a></div>
-</div>
-</div>
-
-<div class="tip">⏰ <strong>Time-saving tip:</strong> Walk the park + moat for photos (free, 45 min) and skip the museum inside unless you love feudal history. The 1,200 yen tower entry + 30 min queue isn't worth it on a tight schedule. The best shot is from the southwest corner across the inner moat.</div>
+<!-- CHECKOUT + LUGGAGE TO SHIN-OSAKA -->
+<div class="time-block" id="act-d4-castle"><span class="step-num">STEP 2</span><span class="clock">🧳</span> <span class="time-text">11:00 AM – 11:45 AM</span> · Checkout → Luggage to Shin-Osaka<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-castle')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-castle')">Skip →</button></span></div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Osaka Castle Park</span></div>
+<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">11:00</span><span class="t-value">Checkout Dormy Inn Namba</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Midosuji Line: Namba → Shin-Osaka · 15 min · ¥280</span></div>
+<div class="t-row"><span class="t-icon">🔑</span><span class="t-label">Locker</span><span class="t-value">Coin lockers at Shin-Osaka Station 3F (near JR ticket gates) · ¥400–700 · IC card or coins</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Tickets</span><span class="t-value">While here: buy Suwa through-ticket at JR Ticket Office (みどりの窓口). "Shin-Osaka kara Kami-Suwa made" · saves time later</span></div>
+</div>
+
+<div class="tip">🧳 <strong>Why Shin-Osaka?</strong> Umeda (where you're eating next) is just 1 stop away on the Midosuji Line. When you're done eating, walk or take 1 stop back to Shin-Osaka → grab bags → board Nozomi. No backtracking to Namba.</div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Shin-Osaka (bags in locker)</span></div>
 <div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Shin-Umeda Shokudogai (Umeda)</span></div>
-<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Tanimachi Line: Tanimachi 4-chome → Higashi-Umeda · 10 min · ¥280</span></div>
-<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Higashi-Umeda → Shin-Umeda Shokudogai · 5 min (under the train tracks)</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Midosuji Line: Shin-Osaka → Umeda · 1 stop · 5 min · ¥240</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Umeda Station → Shin-Umeda Shokudogai · 5 min (under the train tracks)</span></div>
 </div>
 
-<!-- 12:30 UMEDA FOOD -->
-<div class="time-block" id="act-d4-umeda"><span class="step-num">STEP 3</span><span class="clock">🐙</span> <span class="time-text">12:30 PM – 1:30 PM</span> · Umeda Food — Hanadako + Kiji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-umeda')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-umeda')">Skip →</button></span></div>
+<!-- 12:00 UMEDA FOOD -->
+<div class="time-block" id="act-d4-umeda"><span class="step-num">STEP 3</span><span class="clock">🐙</span> <span class="time-text">12:00 PM – 1:00 PM</span> · Umeda Food — Hanadako + Kiji<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-umeda')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-umeda')">Skip →</button></span></div>
 
 <div class="tip">🔥 <strong>Two Michelin legends in ONE alley.</strong> Shin-Umeda Shokudogai (新梅田食道街) is a retro maze of tiny restaurants under the train tracks near JR Osaka Station. Hanadako + Kiji are both here — do both.</div>
 
@@ -2620,8 +2608,8 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </details>
 
-<!-- 1:30 UMEDA SKY BUILDING (optional) -->
-<div class="time-block" id="act-d4-skybuilding"><span class="step-num">STEP 4</span><span class="clock">🏙</span> <span class="time-text">1:30 PM – 2:10 PM</span> · Umeda Sky Building<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-skybuilding')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-skybuilding')">Skip →</button></span></div>
+<!-- 1:00 UMEDA SKY BUILDING (optional) -->
+<div class="time-block" id="act-d4-skybuilding"><span class="step-num">STEP 4</span><span class="clock">🏙</span> <span class="time-text">1:00 PM – 1:40 PM</span> · Umeda Sky Building<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-skybuilding')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-skybuilding')">Skip →</button></span></div>
 
 <div class="card">
 <span class="card-label label-rec">Optional · Skip if behind schedule</span>
@@ -2637,13 +2625,13 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 </div>
 
-<!-- 2:30 GRAB LUGGAGE + TRAIN TO SUWA -->
-<div class="time-block" id="act-d4-train-suwa"><span class="step-num">STEP 5</span><span class="clock">🚄</span> <span class="time-text">2:30 PM – 6:30 PM</span> · Train to Suwa<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-train-suwa')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-train-suwa')">Skip →</button></span></div>
+<!-- 2:00 GRAB LUGGAGE + TRAIN TO SUWA -->
+<div class="time-block" id="act-d4-train-suwa"><span class="step-num">STEP 5</span><span class="clock">🚄</span> <span class="time-text">2:00 PM – 6:00 PM</span> · Train to Suwa<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d4-train-suwa')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d4-train-suwa')">Skip →</button></span></div>
 
 <div class="transport-card">
-<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Luggage</span><span class="t-value">Midosuji Line Umeda → Namba (10 min) — grab bags from locker</span></div>
-<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Midosuji Line Namba → Shin-Osaka · 15 min · ¥280</span></div>
-<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Tickets</span><span class="t-value">JR Ticket Office (みどりの窓口) at Shin-Osaka. Ask for "Shin-Osaka kara Kami-Suwa made" (through-ticket). Non-reserved is fine on a weekday.</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Subway</span><span class="t-value">Midosuji Line: Umeda → Shin-Osaka · 1 stop · 5 min · ¥240</span></div>
+<div class="t-row"><span class="t-icon">🧳</span><span class="t-label">Luggage</span><span class="t-value">Grab bags from Shin-Osaka 3F locker (you passed right by it)</span></div>
+<div class="t-row"><span class="t-icon">🎫</span><span class="t-label">Tickets</span><span class="t-value">Already bought this morning! Head to Shinkansen gates.</span></div>
 </div>
 
 <div class="card">
