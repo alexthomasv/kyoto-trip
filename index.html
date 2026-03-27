@@ -397,7 +397,12 @@ const SCHEDULE=[
   {id:'act-d4-castle',name:'Checkout → Luggage to Shin-Osaka',duration:45,transit:0,start:'11:00',day:4},
   {id:'act-d4-umeda',name:'Umeda Food — Hanadako + Kiji',duration:60,transit:10,start:'12:00',day:4},
   {id:'act-d4-skybuilding',name:'Umeda Sky Building',duration:40,transit:5,start:'13:00',day:4},
-  {id:'act-d4-train-suwa',name:'Train to Suwa',duration:240,transit:10,start:'14:00',day:4}
+  {id:'act-d4-train-suwa',name:'Train to Suwa',duration:240,transit:10,start:'14:00',day:4},
+  {id:'act-d5-arrive',name:'Arrive Shinjuku',duration:5,transit:20,start:'15:48',day:5},
+  {id:'act-d5-checkin',name:'Check in Dormy Inn Akihabara',duration:15,transit:0,start:'16:10',day:5},
+  {id:'act-d5-lookback',name:'Look Back Exhibition',duration:60,transit:25,start:'17:00',day:5},
+  {id:'act-d5-shopping',name:'Shibuya Shopping',duration:120,transit:20,start:'18:30',day:5},
+  {id:'act-d5-yakiniku',name:'Yakiniku Dinner',duration:90,transit:10,start:'20:30',day:5}
 ];
 
 let skipState=JSON.parse(localStorage.getItem('kyoto-skip')||'[]');
@@ -1027,6 +1032,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <a href="#day2">Day 2 Full Day</a>
 <a href="#day3">Day 3 Cherry + Arashiyama + Uji + Osaka</a>
 <a href="#day4">Day 4 Osaka + Suwa</a>
+<a href="#day5">Day 5 Tokyo</a>
 <a href="#streetfood">Street Food</a>
 <a href="#restaurants">Restaurants</a>
 <a href="#shopping">Shopping</a>
@@ -1738,7 +1744,9 @@ document.addEventListener('DOMContentLoaded',function(){
 <!-- ═══════════════════════════════════════════════ -->
 <!-- DAY 3 — TUESDAY MARCH 24 — ARASHIYAMA + UJI  -->
 <!-- ═══════════════════════════════════════════════ -->
-<div class="section" id="day3">
+<details class="day-done-wrap" id="day3">
+<summary class="day-done-summary">✅ Day 3 — Tue, March 24 · Cherry Tree + Arashiyama + Uji → Osaka <span class="day-done-badge">Completed</span></summary>
+<div class="section">
 <div class="section-title">
 <span class="icon">🎋</span>
 <h2>Day 3 — Tue, March 24 · Cherry Tree + Arashiyama + Uji → Osaka</h2>
@@ -2408,10 +2416,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
 </div>
 
+</div>
+</details>
+
 <!-- ═══════════════════════════════════════════════ -->
 <!-- DAY 4 — WEDNESDAY MARCH 25 — OSAKA → SUWA     -->
 <!-- ═══════════════════════════════════════════════ -->
-<div class="section" id="day4">
+<details class="day-done-wrap" id="day4">
+<summary class="day-done-summary">✅ Day 4 — Wed, March 25 · Osaka Food Legends → Train to Suwa <span class="day-done-badge">Completed</span></summary>
+<div class="section">
 <div class="section-title">
 <span class="icon">🐙</span>
 <h2>Day 4 — Wed, March 25 · Osaka Food Legends → Train to Suwa</h2>
@@ -2670,6 +2683,178 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 
 <div class="tip">🍱 <strong>Ekiben tip:</strong> Buy a train bento at Shin-Osaka station before boarding! The ekiben shops near the Shinkansen gates have Osaka specialties — look for the takoyaki bento or Osaka pressed sushi (battera). Perfect for the 3h ride.</div>
+
+</div>
+</div>
+</details>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAY 5 — FRIDAY MARCH 27 — TOKYO                -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="section" id="day5">
+<div class="section-title">
+<span class="icon">🗼</span>
+<h2>Day 5 — Fri, March 27 · Tokyo — Look Back, Shibuya Shopping, Yakiniku</h2>
+<span class="sub">Exhibition, Shibuya 109, GU, Le Labo, A5 wagyu</span>
+</div>
+
+<div class="route-card">
+<div class="route-title">🗺️ Day 5 Route — Shinjuku → Akihabara → Azabudai → Shibuya → Akihabara</div>
+<table class="route-table">
+<tr><th>Leg</th><th>Mode</th><th>Time</th><th>Cost</th></tr>
+<tr><td>Shinjuku → Akihabara (check in)</td><td class="rt-mode">🚃 JR Chuo</td><td>20 min</td><td>¥210</td></tr>
+<tr><td>Akihabara → Kamiyacho (exhibition)</td><td class="rt-mode">🚇 Hibiya</td><td>20 min</td><td>¥210</td></tr>
+<tr><td>Kamiyacho → Ebisu</td><td class="rt-mode">🚇 Hibiya</td><td>10 min</td><td>¥180</td></tr>
+<tr><td>Ebisu → Shibuya (shopping)</td><td class="rt-mode">🚃 JR Yamanote</td><td>3 min</td><td>¥150</td></tr>
+<tr><td>Shibuya → Akihabara</td><td class="rt-mode">🚃 JR Yamanote</td><td>30 min</td><td>¥210</td></tr>
+</table>
+<div class="route-total">
+<span>Total transit: ~1h 25min</span>
+<span>Total cost: ~¥960</span>
+</div>
+</div>
+
+<!-- 3:48 ARRIVE SHINJUKU -->
+<div class="time-block" id="act-d5-arrive"><span class="step-num">STEP 1</span><span class="clock">🚄</span> <span class="time-text">3:48 PM</span> · Arrive Shinjuku<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d5-arrive')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d5-arrive')">Skip →</button></span></div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">JR</span><span class="t-value">JR Chuo Line (Rapid) Shinjuku → Akihabara · 20 min · ¥210 · IC card</span></div>
+<div class="t-row"><span class="t-icon">🏨</span><span class="t-label">Hotel</span><span class="t-value">Dormy Inn Akihabara — check in, drop bags · ~15 min</span></div>
+</div>
+
+<!-- 4:25 CHECK IN -->
+<div class="time-block" id="act-d5-checkin"><span class="step-num">STEP 2</span><span class="clock">🏨</span> <span class="time-text">4:10 PM – 4:25 PM</span> · Check in Dormy Inn Akihabara<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d5-checkin')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d5-checkin')">Skip →</button></span></div>
+
+<div class="tip">🧳 Drop bags and go — you need to make the Look Back exhibition before last entry at 17:30!</div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Dormy Inn → Naka-Okachimachi Station (仲御徒町) · 8 min walk south</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Hibiya Line</span><span class="t-value">Naka-Okachimachi → Kamiyacho (神谷町) · ~15 min · ¥210</span></div>
+<div class="t-row"><span class="t-icon">🚶</span><span class="t-label">Walk</span><span class="t-value">Exit 5 → directly into Azabudai Hills Gallery (underground connected)</span></div>
+</div>
+
+<!-- 5:00 LOOK BACK EXHIBITION -->
+<div class="time-block" id="act-d5-lookback"><span class="step-num">STEP 3</span><span class="clock">🎬</span> <span class="time-text">5:00 PM – 6:00 PM</span> · Look Back Exhibition<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d5-lookback')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d5-lookback')">Skip →</button></span></div>
+
+<div class="img-card">
+<div class="img-banner" style="height:140px;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;align-items:flex-end">
+<div class="img-title">劇場アニメ ルックバック展 ―押山清高 線の感情<small>Look Back Exhibition · Azabudai Hills Gallery · Last entry 17:30</small></div>
+</div>
+<div class="img-body">
+<div class="desc">Original storyboards by Tatsuki Fujimoto shown publicly for the first time, a "drawing tunnel" with original art floor-to-ceiling, recreated rooms of Fujino and Kyomoto. Audio guide available (¥770, bring earbuds). This is 2 days before the exhibition closes — expect crowds.</div>
+<div class="dishes">
+<div class="dishes-title">🎫 Your tickets</div>
+<div class="dish"><strong>2 x General Admission</strong> — Inquiry #AHG56727693407-0001</div>
+<div class="dish"><strong>Time slot:</strong> Fri, Mar 27 · 10:00–18:00 (last entry 17:30)</div>
+<div class="dish"><strong>Gift shop</strong> stays open until 18:30 — hit it after viewing</div>
+</div>
+<div class="card-meta"><span class="meta-pill">¥2,300 × 2 (pre-paid)</span><span class="meta-pill">⏰ Last entry 17:30!</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Azabudai+Hills+Gallery+Tokyo&ll=35.6620,139.7385" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">FROM</span><span class="t-value">Azabudai Hills (Kamiyacho)</span></div>
+<div class="t-row"><span class="t-icon">📍</span><span class="t-label">TO</span><span class="t-value">Shibuya</span></div>
+<div class="t-row"><span class="t-icon">🚇</span><span class="t-label">Hibiya Line</span><span class="t-value">Kamiyacho → Ebisu · 10 min · ¥180</span></div>
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">JR</span><span class="t-value">Ebisu → Shibuya · JR Yamanote 1 stop · 3 min · ¥150</span></div>
+</div>
+
+<!-- 6:30 SHIBUYA SHOPPING -->
+<div class="time-block" id="act-d5-shopping"><span class="step-num">STEP 4</span><span class="clock">🛍</span> <span class="time-text">6:30 PM – 8:30 PM</span> · Shibuya Shopping<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d5-shopping')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d5-shopping')">Skip →</button></span></div>
+
+<div class="tip">🛍 <strong>All 3 stores within 10 min walk of each other.</strong> Everything closes at 21:00 — you have plenty of time. Moussy is INSIDE Shibuya 109 (2F), so that's one stop.</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">👗</div>
+<div class="card-info">
+<div class="card-name">Shibuya 109 — Moussy (2F)</div>
+<div class="card-jp">SHIBUYA109 · 2F MOUSSY · 道玄坂</div>
+<div class="card-desc">Iconic Shibuya fashion tower. Moussy is on the 2nd floor — Japanese denim and streetwear. 3 min walk from Hachiko Exit.</div>
+<div class="card-meta"><span class="meta-pill">10 AM – 9 PM</span><span class="meta-pill">🚶 3 min from Hachiko</span>
+<a class="maps-link" href="https://maps.apple.com/?q=SHIBUYA109+Tokyo&ll=35.6594,139.6985" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">👕</div>
+<div class="card-info">
+<div class="card-name">GU Shibuya — 4 Floors</div>
+<div class="card-jp">ジーユー渋谷店 · Center-Gai · B1F–3F</div>
+<div class="card-desc">Uniqlo's trendier, cheaper sister brand. 4 floors on Center-Gai street. 5 min walk from 109.</div>
+<div class="card-meta"><span class="meta-pill">10 AM – 9 PM</span><span class="meta-pill">🚶 5 min from 109</span>
+<a class="maps-link" href="https://maps.apple.com/?q=GU+Shibuya+Center+Gai+Tokyo&ll=35.6613,139.6983" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🧴</div>
+<div class="card-info">
+<div class="card-name">Le Labo — Shibuya PARCO 1F</div>
+<div class="card-jp">ル ラボ · 渋谷パルコ 1F · Personalized labels</div>
+<div class="card-desc">Artisan fragrances. The Shibuya PARCO branch offers personalized label service (up to 23 characters). Don't miss the Tokyo city exclusive: GAIAC 10.</div>
+<div class="card-meta"><span class="meta-pill">11 AM – 9 PM</span><span class="meta-pill">🚶 5 min from GU</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Le+Labo+Shibuya+PARCO+Tokyo&ll=35.6620,139.6980" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<!-- 8:30 YAKINIKU -->
+<div class="time-block" id="act-d5-yakiniku"><span class="step-num">STEP 5</span><span class="clock">🥩</span> <span class="time-text">8:30 PM – 10:00 PM</span> · Yakiniku Dinner<span class="step-actions"><button class="step-btn-done" onclick="stepDone('act-d5-yakiniku')">Done ✓</button><button class="step-btn-skip" onclick="stepSkip('act-d5-yakiniku')">Skip →</button></span></div>
+
+<div class="card">
+<span class="card-label label-top">🏆 Sister restaurant of Yoroniku</span>
+<div class="card-top">
+<div class="card-emoji">🥩</div>
+<div class="card-info">
+<div class="card-name">Namaiki — Premium Wagyu Yakiniku</div>
+<div class="card-jp">生粋 · Suehirocho · 5 min from Dormy Inn</div>
+<div class="card-desc">Sister restaurant of the legendary Yoroniku. Premium A5 wagyu omakase from ¥6,000. Signature: tongue sashimi, silk sirloin, Chateaubriand. Counter + table seating. Walk back to hotel after.</div>
+<div class="card-meta"><span class="meta-pill">¥8,000–10,000</span><span class="meta-pill">5 PM – midnight</span><span class="meta-pill">Closed Mon (today is Fri ✅)</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Namaiki+Yakiniku+Suehirocho+Tokyo&ll=35.7050,139.7720" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+
+<details class="food-nearby">
+<summary>🥩 Yakiniku alternatives (Shibuya or Akihabara)</summary>
+<div class="food-nearby-inner">
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🥩</div>
+<div class="card-info">
+<div class="card-name">Ushigoro Bambina Shibuya</div>
+<div class="card-jp">うしごろバンビーナ渋谷 · A5 wagyu</div>
+<div class="card-desc">A5 wagyu at reasonable prices. If you want yakiniku in Shibuya before heading back. 3 min from station.</div>
+<div class="card-meta"><span class="meta-pill">¥5,000–8,000</span><span class="meta-pill">In Shibuya</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Ushigoro+Bambina+Shibuya+Tokyo&ll=35.6595,139.7005" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-top">
+<div class="card-emoji">🥩</div>
+<div class="card-info">
+<div class="card-name">Nikuya Yokocho Akihabara — All-You-Can-Eat Wagyu</div>
+<div class="card-jp">肉屋横丁 · BiTO AKIBA 3F · Budget option</div>
+<div class="card-desc">100-minute all-you-can-eat wagyu. Self-select cuts from the butcher display. 1 min from Akihabara Station.</div>
+<div class="card-meta"><span class="meta-pill">¥3,500–5,000</span><span class="meta-pill">Near Akihabara Stn</span>
+<a class="maps-link" href="https://maps.apple.com/?q=Nikuya+Yokocho+Akihabara+Tokyo&ll=35.6983,139.7730" target="_blank">📍 Maps</a></div>
+</div>
+</div>
+</div>
+</div>
+</details>
+
+<div class="transport-card">
+<div class="t-row"><span class="t-icon">🚃</span><span class="t-label">Return</span><span class="t-value">JR Yamanote: Shibuya → Akihabara · 30 min · ¥210 (or eat at Namaiki near hotel instead)</span></div>
+<div class="t-row"><span class="t-icon">♨️</span><span class="t-label">Onsen</span><span class="t-value">Dormy Inn has a natural hot spring bath — perfect after a long day of trains + walking</span></div>
+</div>
 
 </div>
 
